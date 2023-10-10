@@ -5,7 +5,6 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 public class Boards : MonoBehaviour {
-    // public NextPiece nextPiece;
     public HealthBar healthbar;
     public CharacterAnimation characterAnimation;
     public GameOverScreen overScreen;
@@ -15,7 +14,6 @@ public class Boards : MonoBehaviour {
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
- 
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
@@ -44,7 +42,10 @@ public class Boards : MonoBehaviour {
         currentHealth = 1; //monster.getHealth();
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
-        // SpawmNextPiece();
+
+        int random = Random.Range(0, this.tetrominoes.Length);
+        this.nextPiece = this.tetrominoes[random]; //Cần làm hàm show nó ra phần next piece
+        NextPiece.NextPieceShow(this.nextPiece);
         SpawmPiece(); 
     }
 
@@ -55,11 +56,12 @@ public class Boards : MonoBehaviour {
     // Tạo khối
     public void SpawmPiece(){
         if (isGameOver == false){
+            this.activePiece.Initialize(this, this.spawnPosition, this.nextPiece);
+            // Tạo mới 
             int random = Random.Range(0, this.tetrominoes.Length);
-            TetrominoData data = this.tetrominoes[random];
+            this.nextPiece = this.tetrominoes[random]; // Cần hàm show lên next piece
+            NextPiece.NextPieceShow(this.nextPiece);
 
-            this.activePiece.Initialize(this, this.spawnPosition, data);
-            
             this.activePiece.RandomTile();
             
             if(IsValidPosition(this.activePiece, this.spawnPosition)){
