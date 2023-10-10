@@ -14,6 +14,8 @@ public class Boards : MonoBehaviour {
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
+    public TetrominoData nextPiece;
+
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
