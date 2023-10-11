@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1535b35f257b49646b83e8e055d37a44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7bc5e1b7f6d1de249b6738da98612fac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: a6f6132a2710f334eb18b5e520083639, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59ea92583a450d742b1c724573a7820e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -209,3 +209,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   completed: 0
   uncompleteOj: {fileID: 6416962513244275657}
+  selectionZone: {fileID: 0}
+  player: {fileID: 0}
+  startZone: {fileID: 0}
