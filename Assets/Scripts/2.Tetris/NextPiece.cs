@@ -5,7 +5,9 @@ public class NextPiece : MonoBehaviour
 {
     public Tilemap nextPieceTilemap;
     public Piece nextPiece;
-    private Vector3Int nextPiecePosition;
+    public Vector3Int nextPiecePosition;
+    public TetrominoData nextPieceData;
+
     public void Awake()
     {
         this.nextPieceTilemap = GetComponentInChildren<Tilemap>();

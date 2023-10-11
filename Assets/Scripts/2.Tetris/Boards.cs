@@ -14,7 +14,7 @@ public class Boards : MonoBehaviour {
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
-    public TetrominoData nextPiece;
+    public NextPiece nextPiece;
 
     public static int currentHealth;
     public static int maxHealth;
@@ -46,7 +46,7 @@ public class Boards : MonoBehaviour {
         healthbar.SetHealth(maxHealth);
 
         int random = Random.Range(0, this.tetrominoes.Length);
-        this.nextPiece = this.tetrominoes[random]; //Cần làm hàm show nó ra phần next piece
+        this.nextPiece.nextPieceData = this.tetrominoes[random]; //Cần làm hàm show nó ra phần next piece
 
         SpawmPiece(); 
     }
@@ -58,10 +58,11 @@ public class Boards : MonoBehaviour {
     // Tạo khối
     public void SpawmPiece(){
         if (isGameOver == false){
-            this.activePiece.Initialize(this, this.spawnPosition, this.nextPiece);
+            this.activePiece.Initialize(this, this.spawnPosition, this.nextPiece.nextPieceData);
             // Tạo mới 
             int random = Random.Range(0, this.tetrominoes.Length);
-            this.nextPiece = this.tetrominoes[random]; // Cần hàm show lên next piece
+            this.nextPiece.nextPieceData = this.tetrominoes[random]; // Cần hàm show lên next piece
+            nextPiece.NextPieceShow(nextPiece.nextPieceData);
 
             this.activePiece.RandomTile();
             
