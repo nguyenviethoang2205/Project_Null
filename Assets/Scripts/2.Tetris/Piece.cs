@@ -38,9 +38,14 @@ public class Piece : MonoBehaviour{
             this.cells[i] = (Vector3Int)data.cells[i];
         }
     }
+    public void Initialize(Vector3Int position, TetrominoData data)
+    {
+        this.position = position;
+        this.data = data;
+    }
 
-    // Chọn gạch ngẫu nghiên
-    public Tile RandomTile(){
+        // Chọn gạch ngẫu nghiên
+        public Tile RandomTile(){
         int randomIndex = Random.Range(0, tiles.Length);
         selectTile = tiles[randomIndex];
         return selectTile;

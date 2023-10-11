@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Slime_D : MonoBehaviour{
+public class Slime : MonoBehaviour{
     private int enemyHealth;
     private string enemyName;
 

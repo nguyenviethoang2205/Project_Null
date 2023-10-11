@@ -47,7 +47,7 @@ public class Boards : MonoBehaviour {
 
         int random = Random.Range(0, this.tetrominoes.Length);
         this.nextPiece = this.tetrominoes[random]; //Cần làm hàm show nó ra phần next piece
-        NextPiece.NextPieceShow(this.nextPiece);
+
         SpawmPiece(); 
     }
 
@@ -62,7 +62,6 @@ public class Boards : MonoBehaviour {
             // Tạo mới 
             int random = Random.Range(0, this.tetrominoes.Length);
             this.nextPiece = this.tetrominoes[random]; // Cần hàm show lên next piece
-            NextPiece.NextPieceShow(this.nextPiece);
 
             this.activePiece.RandomTile();
             
