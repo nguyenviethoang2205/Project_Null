@@ -54,21 +54,21 @@ public class Piece : MonoBehaviour{
 
             this.lockTime += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.X))){
                 Rotate(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.A)){
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)){
                 Move(Vector2Int.left);
-            } else if (Input.GetKeyDown(KeyCode.D)){
+            } else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
                 Move(Vector2Int.right);
             }
 
-            if (Input.GetKeyDown(KeyCode.S)){
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
                 Move(Vector2Int.down);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)){
                 HardDrop();
             }
 
