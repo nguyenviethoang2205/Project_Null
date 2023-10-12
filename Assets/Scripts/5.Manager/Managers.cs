@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 [RequireComponent(typeof(PlayerInputManager))]
 
-public class Managers : MonoBehaviour
-{
+public class Managers : MonoBehaviour{
     private static PlayerInputManager _inputManager;
 
     public static PlayerInputManager Input 
@@ -15,9 +13,8 @@ public class Managers : MonoBehaviour
             return _inputManager;
         }
     }
-    
 
     public void Awake() {
         _inputManager = GetComponent<PlayerInputManager>();
-    }
+     }
 }

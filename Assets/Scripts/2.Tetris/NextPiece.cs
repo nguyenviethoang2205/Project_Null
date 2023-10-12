@@ -1,30 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
-
 public class NextPiece : MonoBehaviour
 {
-    public Tilemap nextPieceTilemap;
-    public Piece nextPiece;
-    public Vector3Int nextPiecePosition;
-    public TetrominoData nextPieceData;
+    public NextBox board {get; private set;}
+    public TetrominoData data {get; private set;}
+    public Vector3Int position {get; private set;}
+    public Vector3Int[] cells {get; private set;}
+    public Tile[] tiles;
+    public Tile selectTile;
 
-    public void Awake()
-    {
-        this.nextPieceTilemap = GetComponentInChildren<Tilemap>();
-        this.nextPiece = GetComponentInChildren<Piece>();
-    }
-    public void NextPieceShow(TetrominoData data) 
-    {
-        this.nextPiece.Initialize(nextPiecePosition, data);
-        Set(nextPiece);
-    }
+    public int nextPieceColor = -1;
 
-    public void Set(Piece piece)
-    {
-        for (int i = 0; i < piece.cells.Length; i++)
-        {
-            Vector3Int tilePosition = piece.cells[i] + piece.position;
-            this.nextPieceTilemap.SetTile(tilePosition, piece.selectTile);
+    public void Initialize(NextBox board, Vector3Int position, TetrominoData data){
+        this.board = board;
+        this.position = position;
+        this.data = data; 
+
+        if (this.cells == null){
+            this.cells = new Vector3Int[data.cells.Length];
+        }
+
+        for (int i = 0; i < data.cells.Length; i++){
+            this.cells[i] = (Vector3Int)data.cells[i];
         }
     }
+
+    public Tile RandomTile(){
+        int random = Random.Range(0, tiles.Length);
+        selectTile = tiles[random];
+        nextPieceColor = random;
+        return selectTile;
+    }
+
 }
+

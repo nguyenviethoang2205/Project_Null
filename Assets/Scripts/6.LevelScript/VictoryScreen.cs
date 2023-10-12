@@ -10,6 +10,7 @@ public class VictoryScreen : MonoBehaviour{
     }
 
     public void ExitToMap(){
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

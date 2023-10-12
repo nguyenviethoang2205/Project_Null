@@ -1,11 +1,9 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Threading;
 
 public class Piece : MonoBehaviour{
 
     public Tile[] tiles;
-
     public GameOverScreen overScreen; 
     public PauseScreen pauseScreen;
     public VictoryScreen victoryScreen;
@@ -17,10 +15,10 @@ public class Piece : MonoBehaviour{
     public int rotationIndex {get; private set;}
 
     public float stepDelay = 1f;
+    public float lockDelay = 0.5f;
 
     private float stepTime;
-
-    private static bool control = true;
+    private float lockTime;
 
     public void Initialize(Boards board, Vector3Int position, TetrominoData data){
         this.board = board;
@@ -29,6 +27,7 @@ public class Piece : MonoBehaviour{
 
         this.rotationIndex = 0; 
         this.stepTime = Time.time + this.stepDelay;
+        this.lockTime = 0f;
 
         if (this.cells == null){
             this.cells = new Vector3Int[data.cells.Length];
@@ -38,87 +37,47 @@ public class Piece : MonoBehaviour{
             this.cells[i] = (Vector3Int)data.cells[i];
         }
     }
-    public void Initialize(Vector3Int position, TetrominoData data)
-    {
-        this.position = position;
-        this.data = data;
+
+    // Chọn gạch ngẫu nghiên
+    public Tile RandomTile(){
+        int PieceColor = Random.Range(0, tiles.Length);
+        selectTile = tiles[PieceColor];
+        return selectTile;
     }
 
-        // Chọn gạch ngẫu nghiên
-        public Tile RandomTile(){
-        int randomIndex = Random.Range(0, tiles.Length);
-        selectTile = tiles[randomIndex];
+    // Chọn gạch theo màu nó có
+    public Tile GetColorTile(int Index){
+        selectTile = tiles[Index];
         return selectTile;
     }
 
     // Điều khiển
     private void Update(){
         // Vô hiêu hóa điều khiển nếu dừng, thua hoặc thắng trò chơi
-        if(pauseScreen.isPause == false && overScreen.isOver == false && victoryScreen.isVictory == false){
+        if(pauseScreen.isPause == false && overScreen.isOver == false && victoryScreen.isVictory == false && board.isAnimationRun == false){
             this.board.Clear(this);
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
+            this.lockTime += Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.X))){
                 Rotate(1);
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                if (control == true)
-                {
-                    Move(Vector2Int.left);
-                    Thread.Sleep(110);
-                    control = false;
-                }
-                else
-                {
-                    Thread.Sleep(50);
-                    Move(Vector2Int.left);
-                }
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                if (control == true)
-                {
-                    Move(Vector2Int.right);
-                    Thread.Sleep(110);
-                    control = false;
-                }
-                else
-                {
-                    Thread.Sleep(50);
-                    Move(Vector2Int.right);
-                }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)){
+                Move(Vector2Int.left);
+            } else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
+                Move(Vector2Int.right);
             }
 
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                if (control == true)
-                {
-                    Move(Vector2Int.down);
-                    Thread.Sleep(110);
-                    control = false;
-                }
-                else
-                {
-                    Thread.Sleep(50);
-                    Move(Vector2Int.down);
-                }
-                this.stepTime = Time.time + this.stepDelay;
-            }
-            if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                control = true;
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+                Move(Vector2Int.down);
             }
 
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)){
                 HardDrop();
             }
 
-            if (Time.time >= this.stepTime)
-            {
+            if (Time.time >= this.stepTime) {
                 Step();
             }
 
@@ -130,8 +89,12 @@ public class Piece : MonoBehaviour{
     private void Step(){
         this.stepTime = Time.time + this.stepDelay;
 
-        MoveDown(Vector2Int.down);
+        Move(Vector2Int.down);
 
+        // Làm cho khối đứng im trong khoảng thời gian ngắn 
+        if(this.lockTime >= this.lockDelay){
+            Lock();
+        }
     }
 
     // Hàm không cho khối tetris rơi
@@ -158,27 +121,9 @@ public class Piece : MonoBehaviour{
 
         if (valid) {
             this.position = newPosition;
+            this.lockTime = 0f;
         }
 
-        return valid;
-    }
-
-    private bool MoveDown(Vector2Int translation)
-    {
-        Vector3Int newPosition = this.position;
-        newPosition.x += translation.x;
-        newPosition.y += translation.y;
-
-        bool valid = this.board.IsValidPosition(this, newPosition);
-
-        if (valid)
-        {
-            this.position = newPosition;
-        }
-        else
-        {
-            Lock();
-        }
         return valid;
     }
 
