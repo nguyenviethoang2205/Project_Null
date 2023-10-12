@@ -424,6 +424,8 @@ GameObject:
   - component: {fileID: 295504789}
   - component: {fileID: 295504791}
   - component: {fileID: 295504790}
+  - component: {fileID: 295504793}
+  - component: {fileID: 295504792}
   m_Layer: 0
   m_Name: NexPieceTilemap
   m_TagString: Untagged
@@ -483,7 +485,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -511,7 +513,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: -0.5, y: -0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -530,6 +532,48 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &295504792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295504788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d827f1235a953d4ba5038084fa15345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tetrominoes:
+  - tetromino: 0
+  - tetromino: 1
+  - tetromino: 2
+  - tetromino: 3
+  - tetromino: 4
+  - tetromino: 5
+  - tetromino: 6
+  nextPosition: {x: 0, y: 0, z: 0}
+  nextPieceIndex: 0
+  nextPieceColor: -1
+--- !u!114 &295504793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295504788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3344d39fb03b54382dc515d7455c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 84b294a68e80e8841ba88b22ecc92b5c, type: 2}
+  - {fileID: 11400000, guid: 304a4c40278878f4797c0d85e3c378f0, type: 2}
+  - {fileID: 11400000, guid: 824c30db5dfa33141ba5ee85dcbcb015, type: 2}
+  - {fileID: 11400000, guid: a61b3166872abfa4da55545498814edf, type: 2}
+  selectTile: {fileID: 0}
+  nextPieceColor: -1
 --- !u!1 &309315438
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,8 +583,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309315441}
-  - component: {fileID: 309315440}
-  - component: {fileID: 309315439}
   - component: {fileID: 309315442}
   m_Layer: 0
   m_Name: Manager
@@ -549,30 +591,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &309315439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309315438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf548e587fb62d24cbf0d25362f0196e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &309315440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309315438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccf54fec3e800046992998a21c7c96a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &309315441
 Transform:
   m_ObjectHideFlags: 0
@@ -701,28 +719,13 @@ GameObject:
   m_Component:
   - component: {fileID: 364107195}
   - component: {fileID: 364107194}
-  - component: {fileID: 364107193}
   m_Layer: 0
   m_Name: NextPiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &364107193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364107192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3344d39fb03b54382dc515d7455c38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boards: {fileID: 2000079864}
-  nextPeice: {fileID: 2000079865}
+  m_IsActive: 1
 --- !u!156049354 &364107194
 Grid:
   m_ObjectHideFlags: 0
@@ -743,7 +746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364107192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 3.5, z: 0}
+  m_LocalPosition: {x: -4.5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 295504789}
@@ -3309,7 +3312,7 @@ GameObject:
   - component: {fileID: 1698924920}
   - component: {fileID: 1698924921}
   m_Layer: 0
-  m_Name: Background_Title_Gray_55
+  m_Name: NextBoxBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3368,12 +3371,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b05d31af8831e9f4b81b09938795ac32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e7d1c527d8cc3245bd6954888e49594, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 2.2, y: 2.2}
+  m_DrawMode: 0
+  m_Size: {x: 2.75, y: 2.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3503,7 +3506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1857038986
 Transform:
   m_ObjectHideFlags: 0
@@ -3512,7 +3515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857038985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 3.5, z: 0}
+  m_LocalPosition: {x: -4.5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1698924920}
@@ -3551,6 +3554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68b892c75624548b17d1ba87b11974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextBox: {fileID: 295504792}
   healthbar: {fileID: 1129838884}
   characterAnimation: {fileID: 309315442}
   overScreen: {fileID: 420338192}
