@@ -5,7 +5,7 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 public class Boards : MonoBehaviour {
-    // public NextPiece nextPiece;
+    public NextBox nextBox;
     public HealthBar healthbar;
     public CharacterAnimation characterAnimation;
     public GameOverScreen overScreen;
@@ -19,7 +19,8 @@ public class Boards : MonoBehaviour {
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
-
+    private int activePieceIndex = -1;
+    private int activePieceColor = -1;
     // Kiểm tra trò chơi có kết thúc không? 
     private static bool isGameOver = false;
     // Lấy vị trí trung tâm của bảng
@@ -40,6 +41,7 @@ public class Boards : MonoBehaviour {
     }
     
     private void Start(){
+        // nextPiece.InitializeNextPiece();
         maxHealth = 1; // monster.getHealth();
         currentHealth = 1; //monster.getHealth();
         healthbar.SetMaxHealth(maxHealth);;
@@ -55,12 +57,23 @@ public class Boards : MonoBehaviour {
     // Tạo khối
     public void SpawmPiece(){
         if (isGameOver == false){
-            int random = Random.Range(0, this.tetrominoes.Length);
-            TetrominoData data = this.tetrominoes[random];
+            TetrominoData data;
+            if (activePieceIndex == -1){
+                int random = Random.Range(0, this.tetrominoes.Length);
+                data = this.tetrominoes[random];
+                activePieceIndex = nextBox.nextPieceIndex;
+            }else{
+                data = this.tetrominoes[activePieceIndex];
+                activePieceIndex = nextBox.nextPieceIndex;
+            }
 
             this.activePiece.Initialize(this, this.spawnPosition, data);
             
-            this.activePiece.RandomTile();
+            if (activePieceColor == -1){
+                this.activePiece.RandomTile();
+            } else {
+                this.activePiece.GetColorTile(activePieceColor);
+            }
             
             if(IsValidPosition(this.activePiece, this.spawnPosition)){
                 Set(this.activePiece);
@@ -125,6 +138,9 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            activePieceColor = nextBox.nextPieceColor;
+            nextBox.ClearPiece();
+            nextBox.SpawmPiece();
             // Kiểm tra thiệt hại và ghi nó vào thanh máu
             CalculateDamage(totalLinesClear);
             currentHealth = currentHealth - damage;
@@ -210,4 +226,3 @@ public class Boards : MonoBehaviour {
             victoryScreen.Setup();
     }
 }
-

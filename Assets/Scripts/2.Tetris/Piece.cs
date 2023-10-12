@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Piece : MonoBehaviour{
 
     public Tile[] tiles;
-
     public GameOverScreen overScreen; 
     public PauseScreen pauseScreen;
     public VictoryScreen victoryScreen;
@@ -41,8 +40,14 @@ public class Piece : MonoBehaviour{
 
     // Chọn gạch ngẫu nghiên
     public Tile RandomTile(){
-        int randomIndex = Random.Range(0, tiles.Length);
-        selectTile = tiles[randomIndex];
+        int PieceColor = Random.Range(0, tiles.Length);
+        selectTile = tiles[PieceColor];
+        return selectTile;
+    }
+
+    // Chọn gạch theo màu nó có
+    public Tile GetColorTile(int Index){
+        selectTile = tiles[Index];
         return selectTile;
     }
 
