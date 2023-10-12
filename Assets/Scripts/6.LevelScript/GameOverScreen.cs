@@ -15,6 +15,7 @@ public class GameOverScreen : MonoBehaviour{
     }
 
     public void ReturnMenu(){
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
