@@ -118,6 +118,8 @@ public class Boards : MonoBehaviour {
         }
         return true;
     }
+    public int countLines = 0; 
+    public int total = 0;
     // Xóa các hàng đầy 
     public void ClearLines(){
         if (isGameOver == false){
@@ -131,6 +133,8 @@ public class Boards : MonoBehaviour {
                     // Xóa dòng; 
                     LineClear(row);
                     totalLinesClear++;
+                    countLines++;
+                    total++;
                 } else {
                     // Kiểm tra hàng tiếp theo
                     row++;
@@ -143,11 +147,15 @@ public class Boards : MonoBehaviour {
             CalculateDamage(totalLinesClear);
             currentHealth = currentHealth - damage;
             healthbar.SetHealth(currentHealth);
+            // Check Skill
             enemyCore.CheckSkillClearLine();
             // Kiểm tra xem có hoàn thành game đấu chưa?
             if (currentHealth <= 0){
                 StartCoroutine(Victory());
                 isGameOver = true;
+            }
+            if (countLines >= 3){
+                countLines = countLines % 3;
             }
         }
     }
