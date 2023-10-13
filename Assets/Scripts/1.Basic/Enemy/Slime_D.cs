@@ -1,16 +1,30 @@
 ﻿using UnityEngine;
 
-public class Slime_D : MonoBehaviour{
-    private int enemyHealth;
-    private string enemyName;
+public class Slime_D : EnemyCore{ 
 
-    public void Initialize()
-    {
-        this.enemyHealth = 150;
-        this.enemyName = "Slime-D";
+    public override void Awake(){
+        getName();
+        getHealth();
     }
+    public override void EnemySkill(){}
 
-    public string getName(){return enemyName;}
-    public int getHealth(){return enemyHealth;}
-}
+    
+    public override void CheckSkillStart(){}
+
+    public override void CheckSkillSpawn(){}
+
+    public override void CheckSkillClearLine(){}
+    
+    public override string getName()
+    {
+        SetEnemyName("Old Slime");
+        return EnemyName;
+    }   
+
+    public override int getHealth()
+    {
+        SetEnemyHealth(150);
+        return EnemyHealth;
+    }
+}    
 
