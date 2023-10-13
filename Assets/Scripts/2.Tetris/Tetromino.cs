@@ -9,6 +9,7 @@ public enum Tetromino {
     L,
     S,
     Z,
+    //P,// Khoi doc
 }
 
 [System.Serializable]
