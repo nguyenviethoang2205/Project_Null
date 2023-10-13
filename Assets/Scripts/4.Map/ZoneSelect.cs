@@ -29,7 +29,7 @@ public class ZoneSelect : MonoBehaviour
     }
 
     public IEnumerator Completed(){
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         uncompleteOj.SetActive(false);
         
     }
