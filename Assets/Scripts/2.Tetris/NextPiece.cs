@@ -1,35 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
-
 public class NextPiece : MonoBehaviour
 {
-    public Boards boards;
-    public Piece nextPeice;
-    public Tilemap tilemap{get; private set;}
+    public NextBox board {get; private set;}
+    public TetrominoData data {get; private set;}
+    public Vector3Int position {get; private set;}
+    public Vector3Int[] cells {get; private set;}
+    public Tile[] tiles;
+    public Tile selectTile;
 
+    public int nextPieceColor = -1;
 
-    private void Awake(){
-        this.tilemap = GetComponentInChildren<Tilemap>();
+    public void Initialize(NextBox board, Vector3Int position, TetrominoData data){
+        this.board = board;
+        this.position = position;
+        this.data = data; 
+
+        if (this.cells == null){
+            this.cells = new Vector3Int[data.cells.Length];
+        }
+
+        for (int i = 0; i < data.cells.Length; i++){
+            this.cells[i] = (Vector3Int)data.cells[i];
+        }
     }
 
-    public void Spawm()
-    {
-            int random = Random.Range(0, boards.tetrominoes.Length);
-            TetrominoData data = boards.tetrominoes[random];
-
-            // this.nextPiece.Initialize(this, this.spawnPosition, data);
-            
-            // this.nextPiece.RandomTile();
-            
-            // if(IsValidPosition(this.activePiece, this.spawnPosition)){
-            //     Set(this.activePiece);
-            // }
+    public Tile RandomTile(){
+        int random = Random.Range(0, tiles.Length);
+        selectTile = tiles[random];
+        nextPieceColor = random;
+        return selectTile;
     }
 
-    // public void Set(Piece piece){
-    //     for ( int i = 0; i < piece.cells.Length; i++ ){
-    //         Vector3Int tilePosition = piece.cells[i] + piece.position;
-    //         this.tilemap.SetTile(tilePosition, piece.selectTile);
-    //     }
-    // }
 }
+

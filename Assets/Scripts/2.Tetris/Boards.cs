@@ -5,7 +5,7 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 public class Boards : MonoBehaviour {
-    // public NextPiece nextPiece;
+    public NextBox nextBox;
     public HealthBar healthbar;
     public CharacterAnimation characterAnimation;
     public GameOverScreen overScreen;
@@ -19,9 +19,12 @@ public class Boards : MonoBehaviour {
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
+    private int activePieceIndex = -1;
+    private int activePieceColor = -1;
 
+    public bool isAnimationRun = false;
     // Kiểm tra trò chơi có kết thúc không? 
-    private static bool isGameOver = false;
+    public bool isGameOver = false;
     // Lấy vị trí trung tâm của bảng
     public RectInt Bounds{
         get{
@@ -31,7 +34,7 @@ public class Boards : MonoBehaviour {
     }
 
     private void Awake(){
-        isGameOver = false;
+        
         this.tilemap = GetComponentInChildren<Tilemap>();
         this.activePiece  = GetComponentInChildren<Piece>();
         for ( int i = 0; i < this.tetrominoes.Length; i++ ){
@@ -40,8 +43,10 @@ public class Boards : MonoBehaviour {
     }
     
     private void Start(){
-        maxHealth = 1; // monster.getHealth();
-        currentHealth = 1; //monster.getHealth();
+        isGameOver = false;
+        // nextPiece.InitializeNextPiece();
+        maxHealth = 100; // monster.getHealth();
+        currentHealth = 100; //monster.getHealth();
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         // SpawmNextPiece();
@@ -55,12 +60,23 @@ public class Boards : MonoBehaviour {
     // Tạo khối
     public void SpawmPiece(){
         if (isGameOver == false){
-            int random = Random.Range(0, this.tetrominoes.Length);
-            TetrominoData data = this.tetrominoes[random];
+            TetrominoData data;
+            if (activePieceIndex == -1){
+                int random = Random.Range(0, this.tetrominoes.Length);
+                data = this.tetrominoes[random];
+                activePieceIndex = nextBox.nextPieceIndex;
+            }else{
+                data = this.tetrominoes[activePieceIndex];
+                activePieceIndex = nextBox.nextPieceIndex;
+            }
 
             this.activePiece.Initialize(this, this.spawnPosition, data);
             
-            this.activePiece.RandomTile();
+            if (activePieceColor == -1){
+                this.activePiece.RandomTile();
+            } else {
+                this.activePiece.GetColorTile(activePieceColor);
+            }
             
             if(IsValidPosition(this.activePiece, this.spawnPosition)){
                 Set(this.activePiece);
@@ -125,6 +141,9 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            activePieceColor = nextBox.nextPieceColor;
+            nextBox.ClearPiece();
+            nextBox.SpawmPiece();
             // Kiểm tra thiệt hại và ghi nó vào thanh máu
             CalculateDamage(totalLinesClear);
             currentHealth = currentHealth - damage;
@@ -193,21 +212,24 @@ public class Boards : MonoBehaviour {
 
     // thực hiện hành động khi thất bại
     IEnumerator GameOver(){
+        isAnimationRun = true;
         characterAnimation.PlayerDoLoseAction();
         characterAnimation.EnemyDoVictoryAction();
         
         yield return new WaitForSeconds(4);
-            overScreen.Setup();
+        overScreen.Setup();
+        isAnimationRun = false;
     }
 
     // thực hiện hành động khi chiến thắng
     IEnumerator Victory(){
+        isAnimationRun = true;
         characterAnimation.EnemyDoLoseAction();
         yield return new WaitForSeconds(1);
         characterAnimation.PlayerDoVictoryAction();
         
         yield return new WaitForSeconds(4);
-            victoryScreen.Setup();
+        victoryScreen.Setup();
+        isAnimationRun = false;
     }
 }
-
