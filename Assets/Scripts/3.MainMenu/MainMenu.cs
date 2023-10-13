@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator StartGame(){
         StartCoroutine(ShowPanel());
         yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene("Tetris");
+        SceneManager.LoadScene("Level_Map");
     }
 
     // Di chuyển logo

@@ -16,17 +16,26 @@ public class CharacterAnimation : MonoBehaviour
         playerAnimation.AnimationState.Complete +=  (trackEntry) => WaitAnimationComplete(trackEntry, "attack/melee/mouth-bite", "action/idle/normal", playerAnimation);
         DoAnimation("attack/melee/mouth-bite", playerAnimation);
     }
-
+    // người chơi bị đấm
+    public void PlayerDoDefenseAction(){
+        playerAnimation.AnimationState.Complete += (trackEntry) => WaitAnimationComplete(trackEntry, "defense/hit-by-normal", "action/idle/normal", playerAnimation);
+        DoAnimation("defense/hit-by-normal", playerAnimation);
+    }
+    // Người chơi thắng
     public void PlayerDoVictoryAction(){
         LoopAnimation("activity/victory-pose-back-flip", playerAnimation);
     }
-
     // Người chơi thất bại
     public void PlayerDoLoseAction(){
         LoopAnimation("activity/prepare", playerAnimation);
     }
     
     // Các hoạt động của Enemy
+    // enemy tấn công
+    public void EnemyDoAttackAction(){
+        enemyAnimation.AnimationState.Complete +=  (trackEntry) => WaitAnimationComplete(trackEntry, "attack/melee/normal-attack", "action/idle/normal", enemyAnimation);
+        DoAnimation("attack/melee/normal-attack", enemyAnimation);
+    }
     // Enemy thực hiện hành động bị tấn công
     public void EnemyDoDefenseAction(){
         enemyAnimation.AnimationState.Complete += (trackEntry) => WaitAnimationComplete(trackEntry, "defense/hit-by-normal", "action/idle/normal", enemyAnimation);

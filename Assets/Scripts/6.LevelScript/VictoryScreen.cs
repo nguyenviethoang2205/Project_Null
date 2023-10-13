@@ -11,6 +11,6 @@ public class VictoryScreen : MonoBehaviour{
 
     public void ExitToMap(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Level_Map");
     }
 }

@@ -653,6 +653,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 304a4c40278878f4797c0d85e3c378f0, type: 2}
   - {fileID: 11400000, guid: 824c30db5dfa33141ba5ee85dcbcb015, type: 2}
   - {fileID: 11400000, guid: a61b3166872abfa4da55545498814edf, type: 2}
+  - {fileID: 11400000, guid: 1528ed220105be64aa716c1c58027a4d, type: 2}
   selectTile: {fileID: 0}
   nextPieceColor: -1
 --- !u!1 &309315438
@@ -665,6 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309315441}
   - component: {fileID: 309315442}
+  - component: {fileID: 309315439}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -672,6 +674,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &309315439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309315438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c981a3ad87ba1154c939a6a261be3148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCore: {fileID: 1547606836}
+  enemyDisplayName: {fileID: 2136554761}
 --- !u!4 &309315441
 Transform:
   m_ObjectHideFlags: 0
@@ -827,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364107192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 3, z: 0}
+  m_LocalPosition: {x: -5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 295504789}
@@ -1662,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.01763916, y: -0.000011444092}
+  m_AnchoredPosition: {x: 0.01763916, y: 0}
   m_SizeDelta: {x: 0.03515625, y: -0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &840202676
@@ -1678,7 +1694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.67395794, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2492,8 +2508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 662.67, y: -497.13}
-  m_SizeDelta: {x: 580.0534, y: 72.60997}
+  m_AnchoredPosition: {x: 665.2, y: -506.42}
+  m_SizeDelta: {x: 575.05524, y: 54.037827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129838882
 MonoBehaviour:
@@ -2587,7 +2603,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1129838882}
   m_FillRect: {fileID: 840202675}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -2775,7 +2791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e7bb503cd21f84a6facba57897585f57, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 9c5f971d81c5b4ca88949ad1d9548f71, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -2818,7 +2834,17 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b924ca2ce0b14f0c93c96bd032e95eb, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3170,9 +3196,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547606834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff2ee85778bc847ab22a27a8f1f21e, type: 3}
+  m_Script: {fileID: 11500000, guid: 31f44529e05831a408701af7ad3fafb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boards: {fileID: 2000079864}
+  EnemyName: 
+  EnemyHealth: 0
 --- !u!1 &1569196516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,6 +3727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68b892c75624548b17d1ba87b11974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCore: {fileID: 1547606836}
   nextBox: {fileID: 295504792}
   healthbar: {fileID: 1129838884}
   characterAnimation: {fileID: 309315442}
@@ -3713,6 +3743,8 @@ MonoBehaviour:
   - tetromino: 6
   spawnPosition: {x: 0, y: 7, z: 0}
   boardSize: {x: 9, y: 18}
+  isAnimationRun: 0
+  isGameOver: 0
 --- !u!114 &2000079865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3730,6 +3762,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 304a4c40278878f4797c0d85e3c378f0, type: 2}
   - {fileID: 11400000, guid: 824c30db5dfa33141ba5ee85dcbcb015, type: 2}
   - {fileID: 11400000, guid: a61b3166872abfa4da55545498814edf, type: 2}
+  - {fileID: 11400000, guid: 1528ed220105be64aa716c1c58027a4d, type: 2}
   overScreen: {fileID: 420338192}
   pauseScreen: {fileID: 1219911599}
   victoryScreen: {fileID: 362599750}
@@ -4165,7 +4198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3300171, y: 34.129974}
+  m_AnchoredPosition: {x: 5, y: 40}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115194138
@@ -4239,8 +4272,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 184.2, y: 56}
-  m_SizeDelta: {x: 191.00189, y: 25.726727}
+  m_AnchoredPosition: {x: 182.1, y: 69.8}
+  m_SizeDelta: {x: 210.78351, y: 56.6104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2136554761
 MonoBehaviour:
@@ -4263,7 +4296,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6076a86dcc9df05468d1cbbd0238d492, type: 3}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4274,7 +4307,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: 'ENEMY
+
+'
 --- !u!222 &2136554762
 CanvasRenderer:
   m_ObjectHideFlags: 0
