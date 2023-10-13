@@ -653,6 +653,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 304a4c40278878f4797c0d85e3c378f0, type: 2}
   - {fileID: 11400000, guid: 824c30db5dfa33141ba5ee85dcbcb015, type: 2}
   - {fileID: 11400000, guid: a61b3166872abfa4da55545498814edf, type: 2}
+  - {fileID: 11400000, guid: 1528ed220105be64aa716c1c58027a4d, type: 2}
   selectTile: {fileID: 0}
   nextPieceColor: -1
 --- !u!1 &309315438
@@ -665,6 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309315441}
   - component: {fileID: 309315442}
+  - component: {fileID: 309315439}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -672,6 +674,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &309315439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309315438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c981a3ad87ba1154c939a6a261be3148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCore: {fileID: 1547606836}
+  enemyDisplayName: {fileID: 2136554761}
 --- !u!4 &309315441
 Transform:
   m_ObjectHideFlags: 0
@@ -2775,7 +2791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e7bb503cd21f84a6facba57897585f57, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 9c5f971d81c5b4ca88949ad1d9548f71, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -2818,7 +2834,17 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b924ca2ce0b14f0c93c96bd032e95eb, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
+  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3170,9 +3196,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547606834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff2ee85778bc847ab22a27a8f1f21e, type: 3}
+  m_Script: {fileID: 11500000, guid: 31f44529e05831a408701af7ad3fafb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boards: {fileID: 2000079864}
+  EnemyName: 
+  EnemyHealth: 0
 --- !u!1 &1569196516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,6 +3727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68b892c75624548b17d1ba87b11974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCore: {fileID: 1547606836}
   nextBox: {fileID: 295504792}
   healthbar: {fileID: 1129838884}
   characterAnimation: {fileID: 309315442}
@@ -3732,6 +3762,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 304a4c40278878f4797c0d85e3c378f0, type: 2}
   - {fileID: 11400000, guid: 824c30db5dfa33141ba5ee85dcbcb015, type: 2}
   - {fileID: 11400000, guid: a61b3166872abfa4da55545498814edf, type: 2}
+  - {fileID: 11400000, guid: 1528ed220105be64aa716c1c58027a4d, type: 2}
   overScreen: {fileID: 420338192}
   pauseScreen: {fileID: 1219911599}
   victoryScreen: {fileID: 362599750}

@@ -5,6 +5,7 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 public class Boards : MonoBehaviour {
+    public EnemyCore enemyCore;
     public NextBox nextBox;
     public HealthBar healthbar;
     public CharacterAnimation characterAnimation;
@@ -19,6 +20,7 @@ public class Boards : MonoBehaviour {
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
+    public int totalLinesClear = 0;
     private int activePieceIndex = -1;
     private int activePieceColor = -1;
 
@@ -44,18 +46,12 @@ public class Boards : MonoBehaviour {
     
     private void Start(){
         isGameOver = false;
-        // nextPiece.InitializeNextPiece();
-        maxHealth = 100; // monster.getHealth();
-        currentHealth = 100; //monster.getHealth();
+        maxHealth = enemyCore.EnemyHealth;
+        currentHealth = enemyCore.EnemyHealth;
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
-        // SpawmNextPiece();
         SpawmPiece(); 
     }
-
-    // private void SpawmNextPiece(){
-    //     nextPiece.Spawm();
-    // }
 
     // Tạo khối
     public void SpawmPiece(){
@@ -122,14 +118,13 @@ public class Boards : MonoBehaviour {
         }
         return true;
     }
-
     // Xóa các hàng đầy 
     public void ClearLines(){
         if (isGameOver == false){
             RectInt bounds = this.Bounds;
             // Bất đầu từ dòng dưới cùng
             int row = bounds.yMin;
-            int totalLinesClear = 0;
+            totalLinesClear = 0;
 
             while (row < bounds.yMax){
                 if (IsLineFull(row)){
@@ -148,6 +143,7 @@ public class Boards : MonoBehaviour {
             CalculateDamage(totalLinesClear);
             currentHealth = currentHealth - damage;
             healthbar.SetHealth(currentHealth);
+            enemyCore.CheckSkillClearLine();
             // Kiểm tra xem có hoàn thành game đấu chưa?
             if (currentHealth <= 0){
                 StartCoroutine(Victory());
@@ -210,7 +206,44 @@ public class Boards : MonoBehaviour {
         }
     }
 
+    // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
+    // Gây tăng một hàng
+    public void MakeAGrayLine(){
+        RectInt bounds = this.Bounds;
+        int NullTile = Random.Range(bounds.xMin, Bounds.xMax);
+        int row = bounds.yMax;
+        while(row > bounds.yMin - 1){
+            for (int col = bounds.xMin; col < bounds.xMax; col++){
+                Vector3Int position = new Vector3Int(col, row, 0);
+                TileBase above = this.tilemap.GetTile(position);
+
+                position = new Vector3Int(col, row + 1, 0);
+                this.tilemap.SetTile(position, above);
+            }  
+            row--;
+        }
+        for (int col = bounds.xMin; col < bounds.xMax; col++){
+            Vector3Int position = new Vector3Int(col, bounds.yMin, 0);
+            this.tilemap.SetTile(position, null);
+        }
+
+
+        this.activePiece.GetBlackTile();
+        for (int col = bounds.xMin; col < bounds.xMax; col++){
+            if (col != NullTile){
+                Vector3Int position = new Vector3Int(col, bounds.yMin, 0);
+                this.tilemap.SetTile(position, activePiece.blackTile);
+            }    
+        }
+
+    }
+
+
     // thực hiện hành động khi thất bại
+    public void DoEnemyAttack(){
+        StartCoroutine(DoEnemyAttackAnimation());
+    }
+
     IEnumerator GameOver(){
         isAnimationRun = true;
         characterAnimation.PlayerDoLoseAction();
@@ -231,5 +264,11 @@ public class Boards : MonoBehaviour {
         yield return new WaitForSeconds(4);
         victoryScreen.Setup();
         isAnimationRun = false;
+    }
+
+    IEnumerator DoEnemyAttackAnimation(){    
+        characterAnimation.EnemyDoAttackAction();
+        yield return new WaitForSeconds(0.1f);
+        characterAnimation.PlayerDoDefenseAction();
     }
 }

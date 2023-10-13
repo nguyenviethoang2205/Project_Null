@@ -8,6 +8,7 @@ public class Piece : MonoBehaviour{
     public PauseScreen pauseScreen;
     public VictoryScreen victoryScreen;
     public Tile selectTile;
+    public Tile blackTile;
     public Boards board {get; private set;}
     public TetrominoData data {get; private set;}
     public Vector3Int[] cells  {get; private set;}
@@ -19,7 +20,6 @@ public class Piece : MonoBehaviour{
 
     private float stepTime;
     private float lockTime;
-
     public void Initialize(Boards board, Vector3Int position, TetrominoData data){
         this.board = board;
         this.position = position;
@@ -40,7 +40,7 @@ public class Piece : MonoBehaviour{
 
     // Chọn gạch ngẫu nghiên
     public Tile RandomTile(){
-        int PieceColor = Random.Range(0, tiles.Length);
+        int PieceColor = Random.Range(0, 3);
         selectTile = tiles[PieceColor];
         return selectTile;
     }
@@ -49,6 +49,11 @@ public class Piece : MonoBehaviour{
     public Tile GetColorTile(int Index){
         selectTile = tiles[Index];
         return selectTile;
+    }
+
+    public Tile GetBlackTile(){
+        blackTile = tiles[4];
+        return blackTile;
     }
 
     // Điều khiển
