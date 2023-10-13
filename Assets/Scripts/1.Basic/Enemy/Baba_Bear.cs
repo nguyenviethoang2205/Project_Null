@@ -7,16 +7,11 @@ public class Baba_Bear : EnemyCore{
         getHealth();
     }
     public override void EnemySkill(){
-        if (boards.totalLinesClear == 1){
+        int lines = boards.countLines;
+        while ( lines - 3 >= 0 ){
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
-        } else if (boards.totalLinesClear == 3){
-            int count = 0;
-            while (count < 2){
-                boards.MakeAGrayLine();
-                count++;
-            }
-            boards.DoEnemyAttack();
+            lines = lines - 3;
         }
     }
 
@@ -37,7 +32,7 @@ public class Baba_Bear : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(200);
+        SetEnemyHealth(300);
         return EnemyHealth;
     }
 }    

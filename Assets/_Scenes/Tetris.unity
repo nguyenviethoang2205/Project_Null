@@ -3743,8 +3743,11 @@ MonoBehaviour:
   - tetromino: 6
   spawnPosition: {x: 0, y: 7, z: 0}
   boardSize: {x: 9, y: 18}
+  totalLinesClear: 0
   isAnimationRun: 0
   isGameOver: 0
+  countLines: 0
+  total: 0
 --- !u!114 &2000079865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3767,6 +3770,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 1219911599}
   victoryScreen: {fileID: 362599750}
   selectTile: {fileID: 0}
+  blackTile: {fileID: 0}
   stepDelay: 1
   lockDelay: 0.5
 --- !u!483693784 &2000079866

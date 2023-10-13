@@ -37,9 +37,9 @@ public class Piece : MonoBehaviour{
         }
     }
 
-    // Chọn gạch ngẫu nghiên
+    // Chọn mau gạch ngẫu nghiên
     public Tile RandomTile(){
-        int PieceColor = Random.Range(0, 3);
+        int PieceColor = Random.Range(0, 4);
         selectTile = tiles[PieceColor];
         return selectTile;
     }
