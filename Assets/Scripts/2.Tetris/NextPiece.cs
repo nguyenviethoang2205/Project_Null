@@ -26,7 +26,7 @@ public class NextPiece : MonoBehaviour
     }
 
     public Tile RandomTile(){
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 4);
         selectTile = tiles[random];
         nextPieceColor = random;
         return selectTile;
