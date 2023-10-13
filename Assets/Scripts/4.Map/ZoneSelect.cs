@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,7 @@ public class ZoneSelect : MonoBehaviour
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         startZone = GameObject.FindGameObjectWithTag("Respawn");
-        StartZone();
+        player.transform.position = startZone.transform.position;
         UpdateZone();
     }
 
@@ -24,13 +25,21 @@ public class ZoneSelect : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        player.transform.position = gameObject.transform.position;
-        // SceneManager.LoadScene("Tetris");
+         Move();        
     }
 
-
-    public void StartZone(){
-        player.transform.position = startZone.transform.position;
+    public IEnumerator Completed(){
+        yield return new WaitForSeconds(2);
+        uncompleteOj.SetActive(false);
+        
     }
+
+    public void Move(){
+        player.transform.DOMove(gameObject.transform.position, 1);
+        StartCoroutine(Completed());
+    }
+    // public void StartZone(){
+    //     player.transform.position = startZone.transform.position;
+    // }
 }
     
