@@ -18,6 +18,10 @@ public class ZoneSelect : MonoBehaviour
         UpdateZone();
     }
 
+    private void Update() {
+        selectionZone = gameObject;
+    }
+
     public void UpdateZone(){
         if (!completed){ 
             uncompleteOj.SetActive(true);
@@ -37,9 +41,23 @@ public class ZoneSelect : MonoBehaviour
     public void Move(){
         player.transform.DOMove(gameObject.transform.position, 1);
         StartCoroutine(Completed());
+        StartCoroutine(FindZone());
+
     }
-    // public void StartZone(){
-    //     player.transform.position = startZone.transform.position;
-    // }
+
+    public IEnumerator FindZone(){
+        yield return new WaitForSeconds(1);
+
+        if(selectionZone == GameObject.FindGameObjectWithTag("BossZone")){
+            SceneManager.LoadScene("Tetris");
+        }
+
+        else if(selectionZone == GameObject.FindGameObjectWithTag("ItemZone")){
+            SceneManager.LoadScene("GetItems");
+        }
+
+        
+    }
+
 }
     
