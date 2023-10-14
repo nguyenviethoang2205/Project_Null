@@ -6,7 +6,6 @@ public class Slime_D : EnemyCore{
         getName();
         getHealth();
     }
-    public override void EnemySkill(){}
 
     
     public override void CheckSkillStart(){}

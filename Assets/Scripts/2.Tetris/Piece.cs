@@ -20,6 +20,7 @@ public class Piece : MonoBehaviour{
     public float stepDelay = 1f;
 
     private float stepTime;
+    private int delayControl = 130;
     public void Initialize(Boards board, Vector3Int position, TetrominoData data){
         this.board = board;
         this.position = position;
@@ -72,7 +73,7 @@ public class Piece : MonoBehaviour{
                 if (control == true)
                 {
                     Move(Vector2Int.left);
-                    Thread.Sleep(110);
+                    Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else
@@ -86,7 +87,7 @@ public class Piece : MonoBehaviour{
                 if (control == true)
                 {
                     Move(Vector2Int.right);
-                    Thread.Sleep(110);
+                    Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else
@@ -101,7 +102,7 @@ public class Piece : MonoBehaviour{
                 if (control == true)
                 {
                     Move(Vector2Int.down);
-                    Thread.Sleep(110);
+                    Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else

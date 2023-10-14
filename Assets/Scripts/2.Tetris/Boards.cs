@@ -245,7 +245,17 @@ public class Boards : MonoBehaviour {
         }
 
     }
+    // xóa cột
 
+    public void deleteCollum(int col) 
+    {
+        RectInt bounds = this.Bounds;
+        for (int row = bounds.yMin; row < bounds.yMax; row++)
+        {
+            Vector3Int position = new Vector3Int(col, row, 0);
+            this.tilemap.SetTile(position, null);
+        }
+    }
 
     // thực hiện hành động khi thất bại
     public void DoEnemyAttack(){

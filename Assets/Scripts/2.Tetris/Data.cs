@@ -17,7 +17,8 @@ public static class Data{
         { Tetromino.O, new Vector2Int[]{ new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int( 0, 0), new Vector2Int(1, 0) } }, 
         { Tetromino.S, new Vector2Int[]{ new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int(-1, 0), new Vector2Int(0, 0) } }, 
         { Tetromino.T, new Vector2Int[]{ new Vector2Int( 0, 1), new Vector2Int(-1, 0), new Vector2Int( 0, 0), new Vector2Int(1, 0) } }, 
-        { Tetromino.Z, new Vector2Int[]{ new Vector2Int(-1, 1), new Vector2Int( 0, 1), new Vector2Int( 0, 0), new Vector2Int(1, 0) } }, 
+        { Tetromino.Z, new Vector2Int[]{ new Vector2Int(-1, 1), new Vector2Int( 0, 1), new Vector2Int( 0, 0), new Vector2Int(1, 0) } },
+        //{ Tetromino.P, new Vector2Int[]{ new Vector2Int(-1, 1), new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(-1, -1), new Vector2Int(0, -1), new Vector2Int(1, -1) } },
     };
 
     // Tọa độ của Tetromino I khi đụng tường
@@ -53,5 +54,6 @@ public static class Data{
         {Tetromino.S, WallKicksJLOSTZ },
         {Tetromino.T, WallKicksJLOSTZ },
         {Tetromino.Z, WallKicksJLOSTZ },
+        //{Tetromino.P, WallKicksJLOSTZ },
     };
 }
