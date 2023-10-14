@@ -10,8 +10,6 @@ public abstract class EnemyCore : MonoBehaviour
     
     public abstract void Awake();
     // Tạo skill
-    public abstract void EnemySkill();
-    // Lấy giá trị Tên
     public abstract string getName();
     // Lấy giá trị máu
     public abstract int getHealth();

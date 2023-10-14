@@ -6,7 +6,7 @@ public class Baba_Bear : EnemyCore{
         getName();
         getHealth();
     }
-    public override void EnemySkill(){
+    public void EnemySkill(){
         int lines = boards.countLines;
         while ( lines - 3 >= 0 ){
             boards.MakeAGrayLine();
