@@ -9,6 +9,7 @@ TagManager:
   - ItemZone
   - BossZone
   - Item
+  - EliteZone
   layers:
   - Default
   - TransparentFX

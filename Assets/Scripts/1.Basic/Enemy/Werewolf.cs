@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : EnemyCore
+public class Werewolf : EnemyCore
 {
     public override void Awake()
     {
@@ -12,16 +12,16 @@ public class Boss : EnemyCore
     public void EnemySkill1()
     {
         int lines = boards.countLines;
-        while (lines - 3 >= 0)
+        while (lines - 4 >= 0)
         {
-            int deleteCol = Random.Range(boards.Bounds.xMin, boards.Bounds.xMax - 2);
-            for(int i = 0; i<3; i++)
+            int deleteCol = Random.Range(boards.Bounds.xMin, boards.Bounds.xMax);
+            for(int i = 0; i<1; i++)
             {
                 boards.deleteCollum(deleteCol);
                 deleteCol++;
             }
             boards.DoEnemyAttack();
-            lines = lines - 3;
+            lines = lines - 4;
         }
     }
     bool activeSkill2 = true;
@@ -47,13 +47,13 @@ public class Boss : EnemyCore
 
     public override string getName()
     {
-        SetEnemyName("Boss");
+        SetEnemyName("Pink-Mecha-Nam");
         return EnemyName;
     }
 
     public override int getHealth()
     {
-        SetEnemyHealth(300);
+        SetEnemyHealth(400);
         return EnemyHealth;
     }
 }

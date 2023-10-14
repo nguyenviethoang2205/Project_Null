@@ -9,10 +9,10 @@ public class Baba_Bear : EnemyCore{
     }
     public void EnemySkill(){
         int lines = boards.countLines;
-        while ( lines - 3 >= 0 ){
+        while ( lines - 4 >= 0 ){
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
-            lines = lines - 3;
+            lines = lines - 4;
         }
     }
 
@@ -33,7 +33,7 @@ public class Baba_Bear : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(100);
+        SetEnemyHealth(300);
         return EnemyHealth;
     }
 }    
