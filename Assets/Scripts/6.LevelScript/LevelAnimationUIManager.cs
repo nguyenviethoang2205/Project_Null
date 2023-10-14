@@ -8,6 +8,7 @@ public class LevelAnimationUIManager : MonoBehaviour
     public EnemyCore enemyCore;
     public Text enemyDisplayName;
 
+
     private void Start(){
         ChangeName();
     }

@@ -36,7 +36,6 @@ public class Boards : MonoBehaviour {
     }
 
     private void Awake(){
-        
         this.tilemap = GetComponentInChildren<Tilemap>();
         this.activePiece  = GetComponentInChildren<Piece>();
         for ( int i = 0; i < this.tetrominoes.Length; i++ ){
@@ -276,7 +275,7 @@ public class Boards : MonoBehaviour {
 
     IEnumerator DoEnemyAttackAnimation(){    
         characterAnimation.EnemyDoAttackAction();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.2f);
         characterAnimation.PlayerDoDefenseAction();
     }
 }

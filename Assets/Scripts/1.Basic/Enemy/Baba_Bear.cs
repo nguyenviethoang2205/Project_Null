@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// using System;
+using UnityEngine;
 
 public class Baba_Bear : EnemyCore{ 
 
