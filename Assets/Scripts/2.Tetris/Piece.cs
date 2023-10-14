@@ -17,17 +17,18 @@ public class Piece : MonoBehaviour{
     public Vector3Int position  {get; private set;}
     public int rotationIndex {get; private set;}
 
-    public float stepDelay = 1f;
+    public float dropSpeed;
 
     private float stepTime;
     private int delayControl = 130;
-    public void Initialize(Boards board, Vector3Int position, TetrominoData data){
+    public void Initialize(Boards board, Vector3Int position, TetrominoData data, float dropSpeed){
         this.board = board;
         this.position = position;
-        this.data = data; 
+        this.data = data;
+        this.dropSpeed = dropSpeed;
 
         this.rotationIndex = 0; 
-        this.stepTime = Time.time + this.stepDelay;
+        this.stepTime = Time.time + this.dropSpeed;
 
         if (this.cells == null){
             this.cells = new Vector3Int[data.cells.Length];
@@ -116,7 +117,7 @@ public class Piece : MonoBehaviour{
                     Thread.Sleep(50);
                     Move(Vector2Int.down);
                 }
-                this.stepTime = Time.time + this.stepDelay;
+                this.stepTime = Time.time + this.dropSpeed;
             }
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow))
             {
@@ -142,7 +143,7 @@ public class Piece : MonoBehaviour{
     // hàm tự động chuyển khối xuống phía dưới
     private void Step()
     {
-        this.stepTime = Time.time + this.stepDelay;
+        this.stepTime = Time.time + this.dropSpeed;
 
         MoveDown(Vector2Int.down);
 
