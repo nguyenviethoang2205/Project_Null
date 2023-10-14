@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    [SerializeField] private Transform[] zone;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Zone[] zoneNode;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public GameObject player;
+    public float moveSpeed;
+    
+    private void Start() {
+        zoneNode = GetComponentsInChildren<Zone>();
     }
 }

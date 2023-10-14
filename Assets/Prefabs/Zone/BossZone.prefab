@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8826059800507010727}
   - component: {fileID: 8826059800507010726}
   - component: {fileID: 6089683304508267869}
+  - component: {fileID: -3853078679370391276}
   m_Layer: 0
   m_Name: BossZone
   m_TagString: BossZone
@@ -145,6 +146,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.47
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3853078679370391276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826059800507010728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a8ff24d5a60994488d0b541b759c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8826059801133214326
 GameObject:
   m_ObjectHideFlags: 0
