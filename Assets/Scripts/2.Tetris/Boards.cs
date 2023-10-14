@@ -11,12 +11,14 @@ public class Boards : MonoBehaviour {
     public CharacterAnimation characterAnimation;
     public GameOverScreen overScreen;
     public VictoryScreen victoryScreen;
+    public LevelAudioPlayer levelAudioPlayer;
     public Tilemap tilemap {get; private set;}
     public Piece activePiece {get; private set;}
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
  
+    private bool nearEnd = false;
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
@@ -50,6 +52,7 @@ public class Boards : MonoBehaviour {
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         SpawmPiece(); 
+        levelAudioPlayer.PlayThemeAudio();
     }
 
     // Tạo khối
@@ -139,13 +142,20 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            if (totalLinesClear == 0){
+                levelAudioPlayer.PlayPieceDownSound();
+            } else {
+                levelAudioPlayer.PlayPieceClearSound();
+            }
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
             nextBox.SpawmPiece();
             // Kiểm tra thiệt hại và ghi nó vào thanh máu
             CalculateDamage(totalLinesClear);
             currentHealth = currentHealth - damage;
+            CheckHealthStatus();
             healthbar.SetHealth(currentHealth);
+            
             // Check Skill
             enemyCore.CheckSkillClearLine();
             // Kiểm tra xem có hoàn thành game đấu chưa?
@@ -156,7 +166,24 @@ public class Boards : MonoBehaviour {
             if (countLines >= 3){
                 countLines = countLines % 3;
             }
+            CheckNearEnd();
         }
+    }
+
+    private void CheckNearEnd(){
+        if (nearEnd == true){
+            levelAudioPlayer.PlayNearEndTheme();
+        }
+    }
+    private void CheckHealthStatus(){
+        if (currentHealth > (maxHealth * 2 / 3))
+                healthbar.TurnGreen();
+            else if (currentHealth <= (maxHealth / 3)){
+                healthbar.TurnRed();
+                nearEnd = true;
+            }
+            else
+                healthbar.TurnYellow();
     }
 
     // Kiểm tra dòng có đủ block không
@@ -200,6 +227,7 @@ public class Boards : MonoBehaviour {
         if (lines == 0)
             damage = 0;
         else{
+            levelAudioPlayer.PlayPlayerAttackSound();
             characterAnimation.PlayerDoAttackAction();
             characterAnimation.EnemyDoDefenseAction();
             if (lines == 1)
@@ -256,6 +284,10 @@ public class Boards : MonoBehaviour {
         }
     }
 
+    public void MoveSound(){
+        levelAudioPlayer.PlayPieceMoveSound();
+    }
+
     // thực hiện hành động khi thất bại
     public void DoEnemyAttack(){
         StartCoroutine(DoEnemyAttackAnimation());
@@ -263,29 +295,44 @@ public class Boards : MonoBehaviour {
 
     IEnumerator GameOver(){
         isAnimationRun = true;
+        if (nearEnd == true){
+            levelAudioPlayer.PlayNearEndTheme();
+        } else {
+            levelAudioPlayer.StopThemeAudio();
+        }
         characterAnimation.PlayerDoLoseAction();
         characterAnimation.EnemyDoVictoryAction();
-        
+        levelAudioPlayer.PlayPlayerLoseSound();
+        levelAudioPlayer.PlayDefenseVictorySound();
         yield return new WaitForSeconds(4);
         overScreen.Setup();
+        levelAudioPlayer.PlayGameOverAudio();
         isAnimationRun = false;
     }
 
     // thực hiện hành động khi chiến thắng
     IEnumerator Victory(){
         isAnimationRun = true;
+        levelAudioPlayer.StopNearEndTheme();
+        // levelAudioPlayer.StopThemeAudio();
+        levelAudioPlayer.PlayDefenseLoseSound();
         characterAnimation.EnemyDoLoseAction();
         yield return new WaitForSeconds(1);
         characterAnimation.PlayerDoVictoryAction();
-        
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
+        levelAudioPlayer.PlayPlayerVictorySound();
+        yield return new WaitForSeconds(3);
         victoryScreen.Setup();
+        levelAudioPlayer.PlayVictoryAudio();
         isAnimationRun = false;
     }
 
-    IEnumerator DoEnemyAttackAnimation(){    
+    IEnumerator DoEnemyAttackAnimation(){   
+        levelAudioPlayer.PlayDefenseAttackSound(); 
         characterAnimation.EnemyDoAttackAction();
         yield return new WaitForSecondsRealtime(0.2f);
         characterAnimation.PlayerDoDefenseAction();
     }
+
+
 }
