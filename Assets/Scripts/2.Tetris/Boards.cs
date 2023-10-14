@@ -23,7 +23,7 @@ public class Boards : MonoBehaviour {
 
     public float dropSpeed = 1f;
     public float currnetTime;
-    public float addSpeedTime = 5f;
+    public float addSpeedTime = 15f;
 
     public int totalLinesClear = 0;
     private int activePieceIndex = -1;
@@ -267,6 +267,7 @@ public class Boards : MonoBehaviour {
     private void updateSpeed()
     {
         this.dropSpeed = this.dropSpeed - this.dropSpeed * 0.05f;
+        this.currnetTime = Time.time;
     }
 
     // thực hiện hành động khi thất bại
