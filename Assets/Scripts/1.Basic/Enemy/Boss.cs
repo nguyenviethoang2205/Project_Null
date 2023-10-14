@@ -53,7 +53,7 @@ public class Boss : EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(100);
+        SetEnemyHealth(300);
         return EnemyHealth;
     }
 }
