@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTheme: {fileID: 1967414020}
+  nearEndTheme: {fileID: 396925709}
   gameOverTheme: {fileID: 1930603530}
   victoryTheme: {fileID: 1038756366}
   pieceDownSound: {fileID: 337873560}
@@ -1401,6 +1402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 396925707}
   - component: {fileID: 396925708}
+  - component: {fileID: 396925709}
   m_Layer: 0
   m_Name: NearEndTheme
   m_TagString: Untagged
@@ -1432,7 +1434,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8b5f038a8275ae74586a24066c38682b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc366a436872fe144af3e31e3a6ca047, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1518,6 +1520,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &396925709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396925706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa79da7315a274348ab7cdc584ec4c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 396925708}
 --- !u!1 &420338188
 GameObject:
   m_ObjectHideFlags: 0
@@ -5672,7 +5687,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3d58fef583adca64ab16f266fcac64b8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d4a451466c3eed94ba72aab2169bf2e1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
