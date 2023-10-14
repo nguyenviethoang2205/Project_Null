@@ -22,6 +22,11 @@ public class Boards : MonoBehaviour {
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
+
+    public float dropSpeed = 1f;
+    public float currnetTime;
+    public float addSpeedTime = 15f;
+
     public int totalLinesClear = 0;
     private int activePieceIndex = -1;
     private int activePieceColor = -1;
@@ -51,6 +56,7 @@ public class Boards : MonoBehaviour {
         currentHealth = enemyCore.EnemyHealth;
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
+        this.currnetTime = Time.time;
         SpawmPiece(); 
         levelAudioPlayer.PlayThemeAudio();
     }
@@ -67,8 +73,9 @@ public class Boards : MonoBehaviour {
                 data = this.tetrominoes[activePieceIndex];
                 activePieceIndex = nextBox.nextPieceIndex;
             }
-
-            this.activePiece.Initialize(this, this.spawnPosition, data);
+            if (Time.time - this.currnetTime >= addSpeedTime)
+                updateSpeed();
+            this.activePiece.Initialize(this, this.spawnPosition, data, dropSpeed);
             
             if (activePieceColor == -1){
                 this.activePiece.RandomTile();
@@ -282,6 +289,12 @@ public class Boards : MonoBehaviour {
             Vector3Int position = new Vector3Int(col, row, 0);
             this.tilemap.SetTile(position, null);
         }
+    }
+    // tăng tốc độ rơi
+    private void updateSpeed()
+    {
+        this.dropSpeed = this.dropSpeed - this.dropSpeed * 0.05f;
+        this.currnetTime = Time.time;
     }
 
     public void MoveSound(){

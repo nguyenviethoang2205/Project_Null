@@ -9,7 +9,7 @@ public class Boss : EnemyCore
         getName();
         getHealth();
     }
-    public void EnemySkill()
+    public void EnemySkill1()
     {
         int lines = boards.countLines;
         while (lines - 3 >= 0)
@@ -24,7 +24,16 @@ public class Boss : EnemyCore
             lines = lines - 3;
         }
     }
-
+    bool activeSkill2 = true;
+    public void EnemySkill2()
+    {
+        if (Boards.currentHealth * 3 <= EnemyHealth && activeSkill2==true)
+        {
+            for (int i = 0; i < 5; i++)
+                boards.MakeAGrayLine();
+            activeSkill2 = false;
+        }
+    }
 
     public override void CheckSkillStart() { }
 
@@ -32,7 +41,8 @@ public class Boss : EnemyCore
 
     public override void CheckSkillClearLine()
     {
-        EnemySkill();
+        EnemySkill1();
+        EnemySkill2();
     }
 
     public override string getName()
