@@ -23,6 +23,10 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(PlaySoundContinuously());
     }
 
+    public void StopSound(){
+        audioSource.Stop();
+    }
+
     private IEnumerator PlaySoundContinuously()
     {
         while (true) // Lặp vô hạn

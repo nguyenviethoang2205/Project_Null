@@ -63,56 +63,62 @@ public class Piece : MonoBehaviour{
             this.board.Clear(this);
 
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.X))
             {
                 Rotate(1);
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 if (control == true)
                 {
+                    board.MoveSound();
                     Move(Vector2Int.left);
                     Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else
                 {
+                    board.MoveSound();
                     Thread.Sleep(50);
                     Move(Vector2Int.left);
                 }
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 if (control == true)
                 {
+                    board.MoveSound();
                     Move(Vector2Int.right);
                     Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else
                 {
+                    board.MoveSound();
                     Thread.Sleep(50);
                     Move(Vector2Int.right);
                 }
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 if (control == true)
                 {
+                    board.MoveSound();
                     Move(Vector2Int.down);
                     Thread.Sleep(this.delayControl);
                     control = false;
                 }
                 else
                 {
+                    board.MoveSound();
                     Thread.Sleep(50);
                     Move(Vector2Int.down);
                 }
                 this.stepTime = Time.time + this.stepDelay;
             }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
+            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow))
             {
                 control = true;
             }
@@ -120,6 +126,7 @@ public class Piece : MonoBehaviour{
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                board.MoveSound();
                 HardDrop();
             }
 
