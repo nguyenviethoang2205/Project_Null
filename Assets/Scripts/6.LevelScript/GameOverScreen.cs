@@ -25,6 +25,16 @@ public class GameOverScreen : MonoBehaviour{
         SceneManager.LoadScene("Tetris");
     }
 
+    public void RestartBoss(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Tetris_Boss");
+    }
+
+    public void RestartElite(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Tetris_Elite");
+    }
+
     public void ReturnMenu(){
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");

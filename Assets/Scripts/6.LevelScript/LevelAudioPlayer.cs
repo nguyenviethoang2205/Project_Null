@@ -22,7 +22,7 @@ public class LevelAudioPlayer : MonoBehaviour
     public AudioManager buttonSound;
 
     public void PlayThemeAudio(){
-        mainTheme.PlayLoopSound();
+        mainTheme.PlaySound();
     }
 
     public void StopThemeAudio(){
@@ -30,7 +30,7 @@ public class LevelAudioPlayer : MonoBehaviour
     }
 
     public void PlayNearEndTheme(){
-        nearEndTheme.StopSound();
+        nearEndTheme.PlaySound();
     }
 
     public void StopNearEndTheme(){

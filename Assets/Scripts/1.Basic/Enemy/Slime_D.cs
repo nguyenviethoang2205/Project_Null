@@ -22,7 +22,7 @@ public class Slime_D : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(150);
+        SetEnemyHealth(100);
         return EnemyHealth;
     }
 }    

@@ -1434,7 +1434,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d4a451466c3eed94ba72aab2169bf2e1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc366a436872fe144af3e31e3a6ca047, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3909,7 +3909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 1d6eb067ba60547e3b2f10def4a9850c, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 14be820b28f614e7999e0433e684b6a8, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -3952,7 +3952,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fbb4edc344fb848d5bd4b71ba01a02d8, type: 2}
+  - {fileID: 2100000, guid: e9ccf5ec41c7d47ceb0da7e32403e3f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4586,7 +4586,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547606834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff2ee85778bc847ab22a27a8f1f21e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3134cd0e933d4b04780390a7ad04873d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boards: {fileID: 2000079864}
@@ -6056,7 +6056,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 420338192}
-        m_MethodName: Restart
+        m_MethodName: RestartBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -18,7 +18,6 @@ public class Boards : MonoBehaviour {
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
  
-    private bool nearEnd = false;
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
@@ -34,6 +33,9 @@ public class Boards : MonoBehaviour {
     public bool isAnimationRun = false;
     // Kiểm tra trò chơi có kết thúc không? 
     public bool isGameOver = false;
+
+    public bool nearEnd = false;
+    public bool nearEndAudioPlayer = false;
     // Lấy vị trí trung tâm của bảng
     public RectInt Bounds{
         get{
@@ -43,6 +45,7 @@ public class Boards : MonoBehaviour {
     }
 
     private void Awake(){
+        levelAudioPlayer.PlayThemeAudio();
         this.tilemap = GetComponentInChildren<Tilemap>();
         this.activePiece  = GetComponentInChildren<Piece>();
         for ( int i = 0; i < this.tetrominoes.Length; i++ ){
@@ -57,8 +60,7 @@ public class Boards : MonoBehaviour {
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         this.currnetTime = Time.time;
-        SpawmPiece(); 
-        levelAudioPlayer.PlayThemeAudio();
+        SpawmPiece();  
     }
 
     // Tạo khối
@@ -170,18 +172,17 @@ public class Boards : MonoBehaviour {
                 StartCoroutine(Victory());
                 isGameOver = true;
             }
-            if (countLines >= 3){
-                countLines = countLines % 3;
+            if (countLines >= 4){
+                countLines = countLines % 4;
             }
-            CheckNearEnd();
+            if (nearEnd == true && nearEndAudioPlayer == false){
+                levelAudioPlayer.StopThemeAudio();
+                levelAudioPlayer.PlayNearEndTheme();
+                nearEndAudioPlayer = true;
+            }
         }
     }
 
-    private void CheckNearEnd(){
-        if (nearEnd == true){
-            levelAudioPlayer.PlayNearEndTheme();
-        }
-    }
     private void CheckHealthStatus(){
         if (currentHealth > (maxHealth * 2 / 3))
                 healthbar.TurnGreen();
@@ -309,7 +310,7 @@ public class Boards : MonoBehaviour {
     IEnumerator GameOver(){
         isAnimationRun = true;
         if (nearEnd == true){
-            levelAudioPlayer.PlayNearEndTheme();
+            levelAudioPlayer.StopNearEndTheme();
         } else {
             levelAudioPlayer.StopThemeAudio();
         }
