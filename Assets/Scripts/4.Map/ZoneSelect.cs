@@ -7,19 +7,22 @@ public class ZoneSelect : MonoBehaviour
 {
     [SerializeField] private bool completed; //false
     [SerializeField] private GameObject uncompleteOj; 
-    [SerializeField] private GameObject selectionZone;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject startZone;
+    [SerializeField] private GameObject startZone; 
+    [SerializeField] public GameObject selectionZone;
+    public Collider collider;
 
+    public Path path;
+
+    private void Awake() {
+        path = GetComponentInParent<Path>();
+    }
     private void Start() {
+        
         player = GameObject.FindGameObjectWithTag("Player");
         startZone = GameObject.FindGameObjectWithTag("Respawn");
         player.transform.position = startZone.transform.position;
         UpdateZone();
-    }
-
-    private void Update() {
-        selectionZone = gameObject;
     }
 
     public void UpdateZone(){
@@ -29,7 +32,7 @@ public class ZoneSelect : MonoBehaviour
     }
 
     private void OnMouseDown() {
-         Move();        
+        Move();          
     }
 
     public IEnumerator Completed(){
@@ -39,33 +42,71 @@ public class ZoneSelect : MonoBehaviour
     }
 
     public void Move(){
-        player.transform.DOMove(gameObject.transform.position, 1);
+        selectionZone = gameObject;
+        player.transform.DOMove(gameObject.transform.position, 1);    
         StartCoroutine(Completed());
-        StartCoroutine(FindZone());
+        StartCoroutine(ZoneSelected());  
 
     }
 
-    public IEnumerator FindZone(){
+    public IEnumerator ZoneSelected(){
         yield return new WaitForSeconds(1);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if(selectionZone == GameObject.FindGameObjectWithTag("BossZone")){
-            SceneManager.LoadScene("Tetris_Boss");
+        if(selectionZone.name == "Zone_1"){
+                path.zone[2].SetActive(true);
+                path.zone[3].SetActive(true);
+                collider.enabled = false;
+            }
+
+        #region Path1
+            if(selectionZone.name == "Zone_2"){
+                path.zone[4].SetActive(true);
+                path.zone[3].SetActive(false);
+                collider.enabled = false;
+            }
+    
+            if(selectionZone.name == "Zone_4"){
+                path.zone[7].SetActive(true);
+                collider.enabled = false;
+            }
+            
+        #endregion
+        
+        #region Path2
+            if(selectionZone.name == "Zone_3"){
+                    path.zone[5].SetActive(true);
+                    path.zone[6].SetActive(true);
+                    path.zone[2].SetActive(false);
+                    collider.enabled = false;
+                }
+
+            if(selectionZone.name == "Zone_5"){
+                    path.zone[7].SetActive(true);
+                    path.zone[6].SetActive(false);
+                    collider.enabled = false;
+                }
+
+            if(selectionZone.name == "Zone_6"){
+                    path.zone[8].SetActive(true);
+                    path.zone[5].SetActive(false);
+                    collider.enabled = false;
+                }
+            if(selectionZone.name == "Zone_8"){
+                    path.zone[7].SetActive(true);
+                    collider.enabled = false;
+                }
+        #endregion
+
+        if(selectionZone.name == "Zone_7"){
+            path.zone[9].SetActive(true);
+            collider.enabled = false;
         }
-
-        else if(selectionZone == GameObject.FindGameObjectWithTag("ItemZone")){
-            SceneManager.LoadScene("GetItems");
-        }
-
-        else if(selectionZone == GameObject.FindGameObjectWithTag("EliteZone")){
-            SceneManager.LoadScene("Tetris_Elite");
-        }
-
-        else if(selectionZone == GameObject.FindGameObjectWithTag("NormalZone")){
-            SceneManager.LoadScene("Tetris");
-        }
-
+        
         
     }
+    
+
 
 }
     
