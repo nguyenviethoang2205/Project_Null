@@ -48,7 +48,21 @@ public class ZoneSelect : MonoBehaviour
     public IEnumerator FindZone(){
         yield return new WaitForSeconds(1);
 
-        
+        if(selectionZone == GameObject.FindGameObjectWithTag("BossZone")){
+            SceneManager.LoadScene("Tetris_Boss");
+        }
+
+        else if(selectionZone == GameObject.FindGameObjectWithTag("ItemZone")){
+            SceneManager.LoadScene("GetItems");
+        }
+
+        else if(selectionZone == GameObject.FindGameObjectWithTag("EliteZone")){
+            SceneManager.LoadScene("Tetris_Elite");
+        }
+
+        else if(selectionZone == GameObject.FindGameObjectWithTag("NormalZone")){
+            SceneManager.LoadScene("Tetris");
+        }
 
         
     }
