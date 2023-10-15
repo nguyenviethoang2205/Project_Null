@@ -11,8 +11,10 @@ public class ZoneSelect : MonoBehaviour
     [SerializeField] private GameObject startZone; 
     [SerializeField] public GameObject selectionZone;
     public Collider collider;
-
+    
     public Path path;
+
+    private bool isMove = false;
 
     private void Awake() {
         path = GetComponentInParent<Path>();
@@ -32,7 +34,10 @@ public class ZoneSelect : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        Move();          
+        if (isMove == false){
+            isMove = true;
+            Move();         
+        } 
     }
 
     public IEnumerator Completed(){
@@ -52,10 +57,17 @@ public class ZoneSelect : MonoBehaviour
     public IEnumerator ZoneSelected(){
         yield return new WaitForSeconds(1);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        //   if(selectionZone == GameObject.FindGameObjectWithTag("BossZone")){
+        //     SceneManager.LoadScene("Tetris");
+        // }
 
+        // else if(selectionZone == GameObject.FindGameObjectWithTag("ItemZone")){
+        //     SceneManager.LoadScene("GetItems");
+        // }
         if(selectionZone.name == "Zone_1"){
                 path.zone[2].SetActive(true);
                 path.zone[3].SetActive(true);
+                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                 collider.enabled = false;
             }
 
@@ -63,6 +75,7 @@ public class ZoneSelect : MonoBehaviour
             if(selectionZone.name == "Zone_2"){
                 path.zone[4].SetActive(true);
                 path.zone[3].SetActive(false);
+                SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
                 collider.enabled = false;
             }
     
@@ -90,10 +103,12 @@ public class ZoneSelect : MonoBehaviour
             if(selectionZone.name == "Zone_6"){
                     path.zone[8].SetActive(true);
                     path.zone[5].SetActive(false);
+                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
                     collider.enabled = false;
                 }
             if(selectionZone.name == "Zone_8"){
                     path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
                     collider.enabled = false;
                 }
         #endregion
@@ -102,8 +117,12 @@ public class ZoneSelect : MonoBehaviour
             path.zone[9].SetActive(true);
             collider.enabled = false;
         }
-        
-        
+
+        if(selectionZone.name == "BossZone"){
+            SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
+            collider.enabled = false;
+        }
+        isMove = false;
     }
     
 

@@ -2004,7 +2004,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 362599750}
-        m_MethodName: ExitToMap
+        m_MethodName: ExitToMapBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3160,7 +3160,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1219911599}
-        m_MethodName: ReturnMenu
+        m_MethodName: ReturnMenuBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

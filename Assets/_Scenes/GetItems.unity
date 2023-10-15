@@ -2183,7 +2183,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 235601745}
-        m_MethodName: ExitToMap
+        m_MethodName: ExitToMapItems
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

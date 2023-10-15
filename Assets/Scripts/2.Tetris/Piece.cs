@@ -64,7 +64,7 @@ public class Piece : MonoBehaviour{
             this.board.Clear(this);
 
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.X))
             {
                 Rotate(1);
             }

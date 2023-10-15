@@ -168,6 +168,11 @@ public class Boards : MonoBehaviour {
             // Check Skill
             enemyCore.CheckSkillClearLine();
             // Kiểm tra xem có hoàn thành game đấu chưa?
+            if (nearEnd == true && nearEndAudioPlayer == false){
+                levelAudioPlayer.StopThemeAudio();
+                levelAudioPlayer.PlayNearEndTheme();
+                nearEndAudioPlayer = true;
+            }
             if (currentHealth <= 0){
                 StartCoroutine(Victory());
                 isGameOver = true;
@@ -175,11 +180,7 @@ public class Boards : MonoBehaviour {
             if (countLines >= 4){
                 countLines = countLines % 4;
             }
-            if (nearEnd == true && nearEndAudioPlayer == false){
-                levelAudioPlayer.StopThemeAudio();
-                levelAudioPlayer.PlayNearEndTheme();
-                nearEndAudioPlayer = true;
-            }
+            
         }
     }
 

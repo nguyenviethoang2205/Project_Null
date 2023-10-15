@@ -22,17 +22,20 @@ public class GameOverScreen : MonoBehaviour{
 
     public void Restart(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Tetris");
+        SceneManager.UnloadScene("Tetris");
+        SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
     }
 
     public void RestartBoss(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Tetris_Boss");
+        SceneManager.UnloadScene("Tetris_Boss");
+        SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
     }
 
     public void RestartElite(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Tetris_Elite");
+        SceneManager.UnloadScene("Tetris_Elite");
+        SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
     }
 
     public void ReturnMenu(){
