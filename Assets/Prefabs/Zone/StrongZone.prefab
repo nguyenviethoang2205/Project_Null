@@ -130,9 +130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   completed: 0
   uncompleteOj: {fileID: 4067715882392242892}
-  selectionZone: {fileID: 0}
   player: {fileID: 0}
   startZone: {fileID: 0}
+  selectionZone: {fileID: 0}
+  collider: {fileID: 7786849442881383617}
+  path: {fileID: 0}
 --- !u!135 &7786849442881383617
 SphereCollider:
   m_ObjectHideFlags: 0

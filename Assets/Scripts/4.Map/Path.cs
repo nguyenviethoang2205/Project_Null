@@ -1,15 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using System;
+using DG.Tweening;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class Path : MonoBehaviour
 {
-    Zone[] zoneNode;
+    [SerializeField] 
+    public GameObject[] zone;
+    public GameObject currentZone;
+    public ZoneSelect zoneSelect;
 
-    public GameObject player;
-    public float moveSpeed;
-    
-    private void Start() {
-        zoneNode = GetComponentsInChildren<Zone>();
+    private void Awake() {
+        zoneSelect = GetComponentInChildren<ZoneSelect>();
     }
+
+    private void Start() {
+        
+        for (int i = 2; i <= 9; i++){
+            zone[i].SetActive(false);
+        }
+    }
+
+    private void Update() {
+    }
+
+    
+    
 }
