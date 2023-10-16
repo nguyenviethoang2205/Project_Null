@@ -17,13 +17,14 @@ public class ZoneSelect : MonoBehaviour
     private bool isMove = false;
 
     private void Awake() {
-        path = GetComponentInParent<Path>();
-    }
-    private void Start() {
-        
+        path = GetComponentInParent<Path>();  
         player = GameObject.FindGameObjectWithTag("Player");
         startZone = GameObject.FindGameObjectWithTag("Respawn");
         player.transform.position = startZone.transform.position;
+    }
+    private void Start() {
+        
+       
         UpdateZone();
     }
 
