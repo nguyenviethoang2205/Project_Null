@@ -208,6 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 220923935}
+  - component: {fileID: 220923936}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -235,6 +236,25 @@ RectTransform:
   m_AnchoredPosition: {x: -860, y: 450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &220923936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220923934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118e39fd70da2134784e47d848c8384b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOver: 0
+  gameOverRestart: {fileID: 0}
+  gameOverExit: {fileID: 1199511150}
+  gameOverRestartText: {fileID: 0}
+  gameOverExitText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
 --- !u!1 &227212770 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4067715883820255097, guid: a68ba33890e4e714f91cbf2548e91364,
@@ -1095,7 +1115,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1199511151}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220923936}
+        m_MethodName: ReturnMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1199511151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,7 +1146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 017546a4ac14f4f4cb71b0bf7e1d4e88, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65f7c2bb5ebccbc4089e178f1932edbc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

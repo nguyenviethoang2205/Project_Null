@@ -18,16 +18,16 @@ public class PauseScreen : MonoBehaviour
 
     public void ReturnMenu(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ReturnMenuElite(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Elite");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ReturnMenuBoss(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Boss");
+        SceneManager.LoadScene("MainMenu");
     }
 }
