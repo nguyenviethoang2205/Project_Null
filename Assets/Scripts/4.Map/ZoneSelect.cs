@@ -7,7 +7,7 @@ public class ZoneSelect : MonoBehaviour
 {
     [SerializeField] private bool completed; //false
     [SerializeField] private GameObject uncompleteOj; 
-    [SerializeField] private GameObject player;
+    [SerializeField] private static GameObject player;
     [SerializeField] private GameObject startZone; 
     [SerializeField] public GameObject selectionZone;
     public Collider collider;
@@ -57,13 +57,7 @@ public class ZoneSelect : MonoBehaviour
     public IEnumerator ZoneSelected(){
         yield return new WaitForSeconds(1);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        //   if(selectionZone == GameObject.FindGameObjectWithTag("BossZone")){
-        //     SceneManager.LoadScene("Tetris");
-        // }
 
-        // else if(selectionZone == GameObject.FindGameObjectWithTag("ItemZone")){
-        //     SceneManager.LoadScene("GetItems");
-        // }
         if(selectionZone.name == "Zone_1"){
                 path.zone[2].SetActive(true);
                 path.zone[3].SetActive(true);
@@ -81,6 +75,7 @@ public class ZoneSelect : MonoBehaviour
     
             if(selectionZone.name == "Zone_4"){
                 path.zone[7].SetActive(true);
+                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                 collider.enabled = false;
             }
             
@@ -91,12 +86,14 @@ public class ZoneSelect : MonoBehaviour
                     path.zone[5].SetActive(true);
                     path.zone[6].SetActive(true);
                     path.zone[2].SetActive(false);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     collider.enabled = false;
                 }
 
             if(selectionZone.name == "Zone_5"){
                     path.zone[7].SetActive(true);
                     path.zone[6].SetActive(false);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     collider.enabled = false;
                 }
 
@@ -115,6 +112,7 @@ public class ZoneSelect : MonoBehaviour
 
         if(selectionZone.name == "Zone_7"){
             path.zone[9].SetActive(true);
+            SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
             collider.enabled = false;
         }
 
