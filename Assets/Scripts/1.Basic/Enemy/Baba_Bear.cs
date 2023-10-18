@@ -2,18 +2,29 @@
 using UnityEngine;
 
 public class Baba_Bear : EnemyCore{ 
-
+    public int lastTotalLine = 0;
     public override void Awake(){
+        maxSkillWait = 5;
+        skillWait = 3;
+        skillBar.SetMaxSkillValue(maxSkillWait);
+        skillBar.SetSkillValue(skillWait);
+        CheckStatus();
         getName();
         getHealth();
     }
+
     public void EnemySkill(){
-        int lines = boards.countLines;
-        while ( lines - 4 >= 0 ){
+        int lines = boards.totalLines - lastTotalLine;
+        skillWait = skillWait + lines;
+        while ( skillWait / 5 >= 1){
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
-            lines = lines - 4;
+            skillWait = skillWait - 5;
         }
+
+        lastTotalLine = boards.totalLines;
+        skillBar.SetSkillValue(skillWait);
+        CheckStatus();
     }
 
     

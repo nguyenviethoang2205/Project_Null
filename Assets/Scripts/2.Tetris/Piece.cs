@@ -59,7 +59,14 @@ public class Piece : MonoBehaviour{
 
     // Điều khiển
     private void Update(){
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if (pauseScreen.isPause == false)
+                pauseScreen.Setup();
+            else
+                pauseScreen.Continue();
+        }
         // Vô hiêu hóa điều khiển nếu dừng, thua hoặc thắng trò chơi
+        
         if(pauseScreen.isPause == false && overScreen.isOver == false && victoryScreen.isVictory == false && board.isAnimationRun == false){
             this.board.Clear(this);
 

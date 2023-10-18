@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseScreen : MonoBehaviour
 {
     public bool isPause = false;
+
     public void Setup(){
         Time.timeScale = 0f;
         gameObject.SetActive(true); 

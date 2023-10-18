@@ -1,13 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class EnemyCore : MonoBehaviour
 {
+    public SkillBar skillBar;
     public Boards boards;
+    
     public string EnemyName;
     public int EnemyHealth;
-    
+    public int maxSkillWait;
+    public int skillWait;
+
+    public void CheckStatus(){
+        if (skillWait > (maxSkillWait / 3 * 2)) 
+            skillBar.TurnRed();
+        else
+            skillBar.TurnWhite(); 
+    }
+
     public abstract void Awake();
     // Tạo skill
     public abstract string getName();
