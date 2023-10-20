@@ -15,7 +15,8 @@ public class Werewolf : EnemyCore
         getHealth();
     }
 
-     bool Phase2 = false;
+
+    bool Phase2 = false;
     public void EnemySkill1()
     {
         int lines = boards.totalLines - lastTotalLine;
@@ -48,6 +49,20 @@ public class Werewolf : EnemyCore
                 boards.DoEnemyAttack();
                 skillWait = skillWait - 5;
             }
+//     private int countLineSkill1 = 0;
+//     public void EnemySkill1(int totalLineClear)
+//     {
+//         countLineSkill1 = countLineSkill1 + totalLineClear;
+//         while (countLineSkill1 - 4 >= 0)
+//         {
+//             int deleteCol = Random.Range(boards.Bounds.xMin, boards.Bounds.xMax);
+//             for(int i = 0; i<1; i++)
+//             {
+//                 boards.deleteCollum(deleteCol);
+//                 deleteCol++;
+//             }
+//             boards.DoEnemyAttack();
+//             countLineSkill1 = countLineSkill1 - 4;
         }
 
         lastTotalLine = boards.totalLines;
@@ -72,9 +87,9 @@ public class Werewolf : EnemyCore
 
     public override void CheckSkillSpawn() { }
 
-    public override void CheckSkillClearLine()
+    public override void CheckSkillClearLine(int totalLineClear)
     {
-        EnemySkill1();
+        EnemySkill1(totalLineClear);
         EnemySkill2();
     }
 

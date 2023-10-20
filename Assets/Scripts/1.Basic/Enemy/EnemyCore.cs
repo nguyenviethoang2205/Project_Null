@@ -32,7 +32,7 @@ public abstract class EnemyCore : MonoBehaviour
     // Dùng chiêu lúc Spawn Khối
     public abstract void CheckSkillSpawn();
     // Dùng chiêu lúc Clear Dòng xong
-    public abstract void CheckSkillClearLine();
+    public abstract void CheckSkillClearLine(int totalLineClear);
 
     public void SetEnemyHealth(int health)
     {

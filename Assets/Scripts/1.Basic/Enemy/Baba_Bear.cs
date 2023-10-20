@@ -1,8 +1,11 @@
 ﻿// using System;
 using UnityEngine;
 
+
 public class Baba_Bear : EnemyCore{ 
     public int lastTotalLine = 0;
+// public class Baba_Bear : EnemyCore{
+//     private int countLineSkill = 0;
     public override void Awake(){
         maxSkillWait = 5;
         skillWait = 3;
@@ -20,6 +23,13 @@ public class Baba_Bear : EnemyCore{
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
             skillWait = skillWait - 5;
+//     public void EnemySkill(int totalLineClear)
+//     {
+//         countLineSkill = countLineSkill + totalLineClear;
+//         while ( countLineSkill>= 4 ){
+//             boards.MakeAGrayLine();
+//             boards.DoEnemyAttack();
+//             countLineSkill = countLineSkill - 4;
         }
 
         lastTotalLine = boards.totalLines;
@@ -32,8 +42,9 @@ public class Baba_Bear : EnemyCore{
 
     public override void CheckSkillSpawn(){}
 
-    public override void CheckSkillClearLine(){
-        EnemySkill();
+    public override void CheckSkillClearLine(int totalLineClear)
+    {
+        EnemySkill(totalLineClear);
     }
     
     public override string getName()

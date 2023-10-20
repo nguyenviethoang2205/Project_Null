@@ -16,7 +16,7 @@ public class Slime_D : EnemyCore{
 
     public override void CheckSkillSpawn(){}
 
-    public override void CheckSkillClearLine(){}
+    public override void CheckSkillClearLine(int totalLineClear) {}
     
     public override string getName()
     {
