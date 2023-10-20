@@ -122,8 +122,7 @@ public class MainMenu : MonoBehaviour
         openPanel.gameObject.SetActive(false);
     }
 
-    private IEnumerator ShowPanel()
-    {
+    private IEnumerator ShowPanel(){
         Color panelColor = closePanel.color;
         float deltaAlpha = 0.01f;
         closePanel.gameObject.SetActive(true);        

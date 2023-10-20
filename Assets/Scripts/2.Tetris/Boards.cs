@@ -12,6 +12,7 @@ public class Boards : MonoBehaviour {
     public GameOverScreen overScreen;
     public VictoryScreen victoryScreen;
     public LevelAudioPlayer levelAudioPlayer;
+    public LevelAnimationUIManager levelAnimationUIManager;
     public Tilemap tilemap {get; private set;}
     public Piece activePiece {get; private set;}
     public TetrominoData[] tetrominoes;
@@ -27,6 +28,10 @@ public class Boards : MonoBehaviour {
     public float addSpeedTime = 15f;
 
     public int totalLinesClear = 0;
+    public int totalLines = 0;
+    public int totalCombo = 0;
+    public int damageLastTurn = 0;
+    public int totalDamageWithCombo = 0;
     private int activePieceIndex = -1;
     private int activePieceColor = -1;
 
@@ -129,6 +134,7 @@ public class Boards : MonoBehaviour {
         }
         return true;
     }
+
     // Xóa các hàng đầy 
     public void ClearLines(){
         if (isGameOver == false){
@@ -142,38 +148,51 @@ public class Boards : MonoBehaviour {
                     // Xóa dòng; 
                     LineClear(row);
                     totalLinesClear++;
+                    totalLines++;
                 } else {
                     // Kiểm tra hàng tiếp theo
                     row++;
                 }
             }
             if (totalLinesClear == 0){
+                totalCombo = 0;
+                totalDamageWithCombo = 0;
                 levelAudioPlayer.PlayPieceDownSound();
             } else {
+                totalCombo++;
                 levelAudioPlayer.PlayPieceClearSound();
+                // Kiểm tra thiệt hại và ghi nó vào thanh máu
+                CalculateDamage(totalLinesClear);
+                currentHealth = currentHealth - damage;
+                totalDamageWithCombo += damage;
+                levelAnimationUIManager.ChooseDamageToShow();
+                CheckHealthStatus();
+                healthbar.SetHealth(currentHealth);
             }
+            levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
             nextBox.SpawmPiece();
-            // Kiểm tra thiệt hại và ghi nó vào thanh máu
-            CalculateDamage(totalLinesClear);
-            currentHealth = currentHealth - damage;
-            CheckHealthStatus();
-            healthbar.SetHealth(currentHealth);
             
             // Check Skill
-            enemyCore.CheckSkillClearLine(totalLinesClear);
-            // Kiểm tra xem có hoàn thành game đấu chưa?
-            if (nearEnd == true && nearEndAudioPlayer == false){
-                levelAudioPlayer.StopThemeAudio();
-                levelAudioPlayer.PlayNearEndTheme();
-                nearEndAudioPlayer = true;
-            }
-            if (currentHealth <= 0){
-                StartCoroutine(Victory());
-                isGameOver = true;
-            }
-            
+            enemyCore.CheckSkillClearLine();
+            CheckNearEnd();
+            CheckVictory();           
+        }
+    }
+
+    private void CheckNearEnd(){
+        if (nearEnd == true && nearEndAudioPlayer == false){
+            levelAudioPlayer.StopThemeAudio();
+            levelAudioPlayer.PlayNearEndTheme();
+            nearEndAudioPlayer = true;
+        }
+    }
+
+    private void CheckVictory(){
+        if (currentHealth <= 0){
+            StartCoroutine(Victory());
+            isGameOver = true;
         }
     }
 
@@ -226,21 +245,20 @@ public class Boards : MonoBehaviour {
 
     // Hàm tính thiệt hại
     private void CalculateDamage(int lines) {
-        if (lines == 0)
-            damage = 0;
-        else{
-            levelAudioPlayer.PlayPlayerAttackSound();
-            characterAnimation.PlayerDoAttackAction();
-            characterAnimation.EnemyDoDefenseAction();
-            if (lines == 1)
-                damage = 5;
-            else if (lines == 2)
-                damage = 15;
-            else if (lines == 3)
-                damage = 25;
-            else
-                damage = 50;
+        levelAudioPlayer.PlayPlayerAttackSound();
+        characterAnimation.PlayerDoAttackAction();
+        characterAnimation.EnemyDoDefenseAction();
+        
+        damage = (lines * 5) + (10 * (lines - 1));
+        
+        if (totalCombo == 0){
+            damage = currentHealth - damage;
         }
+        else {
+            damage = damage + 2 * (totalCombo - 1);
+        }
+
+        damageLastTurn = damage;
     }
 
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
@@ -312,7 +330,7 @@ public class Boards : MonoBehaviour {
         characterAnimation.EnemyDoVictoryAction();
         levelAudioPlayer.PlayPlayerLoseSound();
         levelAudioPlayer.PlayDefenseVictorySound();
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         overScreen.Setup();
         levelAudioPlayer.PlayGameOverAudio();
         isAnimationRun = false;
@@ -322,14 +340,13 @@ public class Boards : MonoBehaviour {
     IEnumerator Victory(){
         isAnimationRun = true;
         levelAudioPlayer.StopNearEndTheme();
-        // levelAudioPlayer.StopThemeAudio();
         levelAudioPlayer.PlayDefenseLoseSound();
         characterAnimation.EnemyDoLoseAction();
         yield return new WaitForSeconds(1);
         characterAnimation.PlayerDoVictoryAction();
         yield return new WaitForSeconds(1);
         levelAudioPlayer.PlayPlayerVictorySound();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         victoryScreen.Setup();
         levelAudioPlayer.PlayVictoryAudio();
         isAnimationRun = false;

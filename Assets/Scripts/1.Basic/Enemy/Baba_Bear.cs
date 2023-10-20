@@ -1,20 +1,40 @@
 ﻿// using System;
 using UnityEngine;
 
-public class Baba_Bear : EnemyCore{
-    private int countLineSkill = 0;
+
+public class Baba_Bear : EnemyCore{ 
+    public int lastTotalLine = 0;
+// public class Baba_Bear : EnemyCore{
+//     private int countLineSkill = 0;
     public override void Awake(){
+        maxSkillWait = 5;
+        skillWait = 3;
+        skillBar.SetMaxSkillValue(maxSkillWait);
+        skillBar.SetSkillValue(skillWait);
+        CheckStatus();
         getName();
         getHealth();
     }
-    public void EnemySkill(int totalLineClear)
-    {
-        countLineSkill = countLineSkill + totalLineClear;
-        while ( countLineSkill>= 4 ){
+
+    public void EnemySkill(){
+        int lines = boards.totalLines - lastTotalLine;
+        skillWait = skillWait + lines;
+        while ( skillWait / 5 >= 1){
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
-            countLineSkill = countLineSkill - 4;
+            skillWait = skillWait - 5;
+//     public void EnemySkill(int totalLineClear)
+//     {
+//         countLineSkill = countLineSkill + totalLineClear;
+//         while ( countLineSkill>= 4 ){
+//             boards.MakeAGrayLine();
+//             boards.DoEnemyAttack();
+//             countLineSkill = countLineSkill - 4;
         }
+
+        lastTotalLine = boards.totalLines;
+        skillBar.SetSkillValue(skillWait);
+        CheckStatus();
     }
 
     

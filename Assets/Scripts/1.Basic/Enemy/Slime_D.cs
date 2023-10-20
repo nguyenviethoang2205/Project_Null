@@ -3,10 +3,14 @@
 public class Slime_D : EnemyCore{ 
 
     public override void Awake(){
+        maxSkillWait = 4;
+        skillWait = 3;
+        skillBar.SetMaxSkillValue(maxSkillWait);
+        skillBar.SetSkillValue(skillWait);
+        CheckStatus();
         getName();
         getHealth();
     }
-
     
     public override void CheckSkillStart(){}
 
