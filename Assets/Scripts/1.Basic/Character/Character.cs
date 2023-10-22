@@ -1,12 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-[System.Serializable]
-public class Character 
+[JsonObject(MemberSerialization.OptIn)]
+public class Character : MonoBehaviour 
 {
+    [JsonProperty]
+    public new string name; 
 
-    public string characterName;
-    public GameObject player;
     
+
 }

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/GetItems.unity
     guid: b788f30c841de744eba6e06e44f7197b
+  - enabled: 1
+    path: Assets/_Scenes/SelectionChar.unity
+    guid: d0f25ada2ae08374f8df25dfdb35262f
   m_configObjects: {}

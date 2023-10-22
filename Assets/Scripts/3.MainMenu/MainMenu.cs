@@ -28,6 +28,10 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
+    public void ContinuGame(){
+        StartCoroutine(LoadGame());
+    }
+
     public void QuitGame(){
         StartCoroutine(ExitGame());
     }
@@ -38,11 +42,16 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    private IEnumerator LoadGame(){
+        StartCoroutine(ShowPanel());
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene("Level_Map");
+    }
 
     private IEnumerator StartGame(){
         StartCoroutine(ShowPanel());
         yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene("Level_Map");
+        SceneManager.LoadScene("SelectionChar");
     }
 
     // Di chuyển logo
