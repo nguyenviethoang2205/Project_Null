@@ -21,6 +21,8 @@ public class Piece : MonoBehaviour{
 
     private float stepTime;
     private int delayControl = 130;
+
+    private string status;
     public void Initialize(Boards board, Vector3Int position, TetrominoData data, float dropSpeed){
         this.board = board;
         this.position = position;
@@ -76,36 +78,74 @@ public class Piece : MonoBehaviour{
                 Rotate(1);
             }
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (status=="dizzy")
             {
-                if (control == true)
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
-                    board.MoveSound();
-                    Move(Vector2Int.left);
-                    Thread.Sleep(this.delayControl);
-                    control = false;
+                    if (control == true)
+                    {
+                        board.MoveSound();
+                        Move(Vector2Int.right);
+                        Thread.Sleep(this.delayControl);
+                        control = false;
+                    }
+                    else
+                    {
+                        board.MoveSound();
+                        Thread.Sleep(50);
+                        Move(Vector2Int.right);
+                    }
                 }
-                else
+                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
-                    board.MoveSound();
-                    Thread.Sleep(50);
-                    Move(Vector2Int.left);
+                    if (control == true)
+                    {
+                        board.MoveSound();
+                        Move(Vector2Int.left);
+                        Thread.Sleep(this.delayControl);
+                        control = false;
+                    }
+                    else
+                    {
+                        board.MoveSound();
+                        Thread.Sleep(50);
+                        Move(Vector2Int.left);
+                    }
                 }
             }
-            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            else
             {
-                if (control == true)
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
-                    board.MoveSound();
-                    Move(Vector2Int.right);
-                    Thread.Sleep(this.delayControl);
-                    control = false;
+                    if (control == true)
+                    {
+                        board.MoveSound();
+                        Move(Vector2Int.left);
+                        Thread.Sleep(this.delayControl);
+                        control = false;
+                    }
+                    else
+                    {
+                        board.MoveSound();
+                        Thread.Sleep(50);
+                        Move(Vector2Int.left);
+                    }
                 }
-                else
+                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
-                    board.MoveSound();
-                    Thread.Sleep(50);
-                    Move(Vector2Int.right);
+                    if (control == true)
+                    {
+                        board.MoveSound();
+                        Move(Vector2Int.right);
+                        Thread.Sleep(this.delayControl);
+                        control = false;
+                    }
+                    else
+                    {
+                        board.MoveSound();
+                        Thread.Sleep(50);
+                        Move(Vector2Int.right);
+                    }
                 }
             }
 
@@ -216,6 +256,11 @@ public class Piece : MonoBehaviour{
             this.rotationIndex = originalRotation;
             ApplyRotationMatrix(-direction);
         }
+    }
+    //Trạng thái
+    public void getStatus(string status)
+    {
+        this.status = status;
     }
 
     private void ApplyRotationMatrix(int direction){     

@@ -17,7 +17,7 @@ public class Werewolf : EnemyCore
 
 
     bool Phase2 = false;
-    public void EnemySkill1()
+    public void EnemySkill1(int totalLineClear)
     {
         int lines = boards.totalLines - lastTotalLine;
         skillWait = skillWait + lines;
