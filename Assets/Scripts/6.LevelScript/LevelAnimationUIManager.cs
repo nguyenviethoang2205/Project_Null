@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelAnimationUIManager : MonoBehaviour
 {
     public EnemyCore enemyCore;
+    public ComboBar comboBar;
     public Boards boards;
     //-------------------------
     public Text enemyDisplayName;
@@ -25,11 +26,11 @@ public class LevelAnimationUIManager : MonoBehaviour
     }
 
     public void ShowDamageCombo(){
-
-        if (boards.totalCombo < 2){
-            StartCoroutine(CloseCombo());
-        } else {
+        if (boards.totalCombo >= 2){
             ShowCombo();
+        } else {
+            comboBar.HideSlide();
+            CloseCombo();
         }
     }
 
@@ -49,11 +50,48 @@ public class LevelAnimationUIManager : MonoBehaviour
         }
     }
 
+    public void UpdateMaxComboWait(int comboLost){
+        comboBar.SetMaxComboValue(comboLost);
+    }
+
+    public void UpdateComboWait(int comboLost){
+        comboBar.SetComboValue(comboLost);
+    }
+
+    public void ComboTurnWhite(){
+        comboBar.TurnWhite();
+        Color color = new Color(1f, 1f, 1f);
+        textTotalDamage.color = color;
+        textTotalDamageCount.color = color;
+    }
+
+    public void ComboTurnYellow(){
+        comboBar.TurnYellow();
+        Color color = new Color(1f, 0.9529f, 0.3647f);
+        textTotalDamage.color = color;
+        textTotalDamageCount.color = color;
+    }
+
+    public void ComboTurnOrange(){
+        comboBar.TurnOrange();
+        Color color = new Color(1f, 0.52f, 0.29f);
+        textTotalDamage.color = color;
+        textTotalDamageCount.color = color;
+    }
+
+    public void ComboTurnRed(){
+        comboBar.TurnRed();
+        Color color = new Color(1f, 0.3137f, 0.3098f);
+        textTotalDamage.color = color;
+        textTotalDamageCount.color = color;
+    }
+
     private void ChangeName(){
         enemyDisplayName.text = enemyCore.EnemyName;
     }
 
     private void ShowCombo(){
+        comboBar.ShowSlide();
         textCombo.gameObject.SetActive(true);
         textComboCount.gameObject.SetActive(true);
         textTotalDamage.gameObject.SetActive(true);
@@ -72,25 +110,33 @@ public class LevelAnimationUIManager : MonoBehaviour
         textTotalDamageCount.color = textTotalDamageColor;
     }
 
-    IEnumerator CloseCombo()
+    private void CloseCombo()
     {
-        Color textComboColor = textCombo.color;
-        Color textTotalDamageColor = textTotalDamage.color;
-        float deltaAlpha = 0.05f;
-        while (textComboColor.a > 0f){
-            textComboColor.a -= deltaAlpha;
-            textTotalDamageColor.a -= deltaAlpha;
-            textCombo.color = textComboColor;
-            textComboCount.color = textComboColor;
-            textTotalDamage.color = textTotalDamageColor;
-            textTotalDamageCount.color = textTotalDamageColor;
-            yield return new WaitForSecondsRealtime(0.000001f);
-        }
         textCombo.gameObject.SetActive(false);
         textComboCount.gameObject.SetActive(false);
         textTotalDamage.gameObject.SetActive(false);
         textTotalDamageCount.gameObject.SetActive(false);
     }
+
+    // IEnumerator CloseCombo()
+    // {
+    //     Color textComboColor = textCombo.color;
+    //     Color textTotalDamageColor = textTotalDamage.color;
+    //     float deltaAlpha = 0.1f;
+    //     while (textComboColor.a > 0f){
+    //         textComboColor.a -= deltaAlpha;
+    //         textTotalDamageColor.a -= deltaAlpha;
+    //         textCombo.color = textComboColor;
+    //         textComboCount.color = textComboColor;
+    //         textTotalDamage.color = textTotalDamageColor;
+    //         textTotalDamageCount.color = textTotalDamageColor;
+    //         yield return new WaitForSecondsRealtime(0.001f);
+    //     }
+    //     textCombo.gameObject.SetActive(false);
+    //     textComboCount.gameObject.SetActive(false);
+    //     textTotalDamage.gameObject.SetActive(false);
+    //     textTotalDamageCount.gameObject.SetActive(false);
+    // }
 
     IEnumerator ShowDamage(){
         textDamage1.text = "-" + boards.damageLastTurn.ToString();
