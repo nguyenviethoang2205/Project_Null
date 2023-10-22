@@ -43,9 +43,10 @@ public class Baba_Bear : EnemyCore{
 
     public override void CheckSkillSpawn(){}
 
-    public override void CheckSkillClearLine(int totalLineClear)
+    public override void CheckSkillClearLine()
     {
-        EnemySkill(totalLineClear);
+        // EnemySkill(totalLineClear);
+        EnemySkill();
     }
     
     public override string getName()

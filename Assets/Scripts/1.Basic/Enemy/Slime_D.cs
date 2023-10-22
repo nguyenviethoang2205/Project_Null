@@ -16,7 +16,7 @@ public class Slime_D : EnemyCore{
 
     public override void CheckSkillSpawn(){}
 
-    public override void CheckSkillClearLine(int totalLineClear) {}
+    public override void CheckSkillClearLine() {}
     
     public override string getName()
     {
@@ -26,7 +26,7 @@ public class Slime_D : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(100);
+        SetEnemyHealth(999);
         return EnemyHealth;
     }
 }    

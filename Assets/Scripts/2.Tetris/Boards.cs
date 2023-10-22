@@ -30,6 +30,7 @@ public class Boards : MonoBehaviour {
     public int totalLinesClear = 0;
     public int totalLines = 0;
     public int totalCombo = 0;
+    public int comboLost = 4;
     public int damageLastTurn = 0;
     public int totalDamageWithCombo = 0;
     private int activePieceIndex = -1;
@@ -155,8 +156,13 @@ public class Boards : MonoBehaviour {
                 }
             }
             if (totalLinesClear == 0){
-                totalCombo = 0;
-                totalDamageWithCombo = 0;
+                comboLost = comboLost - 1;
+                levelAnimationUIManager.UpdateComboWait(comboLost);
+                if (comboLost == 0){
+                    comboLost = 4;
+                    totalCombo = 0;
+                    totalDamageWithCombo = 0;
+                }
                 levelAudioPlayer.PlayPieceDownSound();
             } else {
                 totalCombo++;
@@ -248,17 +254,41 @@ public class Boards : MonoBehaviour {
         levelAudioPlayer.PlayPlayerAttackSound();
         characterAnimation.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
-        
+        comboLost = 4;
         damage = (lines * 5) + (10 * (lines - 1));
-        
-        if (totalCombo == 0){
-            damage = currentHealth - damage;
+        if (totalCombo > 1){
+            checkComboDamage();
         }
-        else {
-            damage = damage + 2 * (totalCombo - 1);
-        }
-
+        // damage = damage + 2 * (totalCombo - 1);
+        // D = 1.1 wait 4
+        // C = 1.3 wait 3
+        // B = 1.65 wait 2
+        // A = 2 wait 1
         damageLastTurn = damage;
+    }
+
+    private void checkComboDamage(){
+        if (totalCombo <= 5 ){
+            levelAnimationUIManager.UpdateMaxComboWait(4);
+            levelAnimationUIManager.ComboTurnWhite();
+            comboLost = 4;
+            damage = (int)((damage + totalCombo - 1)* 1.1);
+        } else if (totalCombo <= 10) {
+            levelAnimationUIManager.UpdateMaxComboWait(3);
+            levelAnimationUIManager.ComboTurnYellow();
+            comboLost = 3;
+            damage = (int)((damage + totalCombo - 1)* 1.3);
+        } else if (totalCombo <= 15) {
+            levelAnimationUIManager.UpdateMaxComboWait(2);
+            levelAnimationUIManager.ComboTurnOrange();
+            comboLost = 2;
+            damage = (int)((damage + totalCombo - 1)* 1.65);
+        } else {
+            levelAnimationUIManager.UpdateMaxComboWait(1);
+            levelAnimationUIManager.ComboTurnRed();
+            comboLost = 1; 
+            damage = (int)((damage + totalCombo - 1 )* 2);
+        }
     }
 
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //

@@ -87,9 +87,9 @@ public class Werewolf : EnemyCore
 
     public override void CheckSkillSpawn() { }
 
-    public override void CheckSkillClearLine(int totalLineClear)
+    public override void CheckSkillClearLine()
     {
-        EnemySkill1(totalLineClear);
+        EnemySkill1();
         EnemySkill2();
     }
 
