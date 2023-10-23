@@ -16,7 +16,7 @@ public class ZoneSelect : MonoBehaviour
     private bool isMove = false;
 
     #region Data
-    private Character character;
+    private CharacterCore character;
     private IDataService DataService = new JsonDataService();
     private bool EncryptionEnable;
     // private long loadTime;
@@ -25,7 +25,7 @@ public class ZoneSelect : MonoBehaviour
 
     private void Awake()
     {
-        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
+        CharacterCore charData = DataService.LoadData<CharacterCore>("/characters.json", EncryptionEnable);
         
         path = GetComponentInParent<Path>();
         player = GameObject.Find(charData.name);

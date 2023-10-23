@@ -33,6 +33,17 @@ public class NextBox : MonoBehaviour
         Set(this.nextPiece);
         GetColor();
     }
+    public void SpawmPiece(int pieceIndex)
+    {
+        TetrominoData data = this.tetrominoes[pieceIndex];
+
+        this.nextPiece.Initialize(this, this.nextPosition, data);
+
+        this.nextPiece.RandomTile();
+
+        Set(this.nextPiece);
+        GetColor();
+    }
 
     public void ClearPiece(){
         Clear(this.nextPiece);

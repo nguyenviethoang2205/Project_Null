@@ -15,7 +15,7 @@ public class CharSelection : MonoBehaviour
     private int currentChar;
 
     #region Data
-        private Character character;
+        private CharacterCore character;
         private IDataService DataService = new JsonDataService();
         private bool EncryptionEnable;
         private long saveTime;
@@ -50,7 +50,7 @@ public class CharSelection : MonoBehaviour
 
     public void UpdateChar()
     {
-        character = GetComponentInChildren<Character>();
+        character = GetComponentInChildren<CharacterCore>();
         name.text = character.name;
     }
 
