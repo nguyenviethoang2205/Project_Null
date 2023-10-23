@@ -401,15 +401,19 @@ public class Boards : MonoBehaviour {
         }
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
-    // Gây tăng một hàng
-
+    // Thay đổi piece tiếp theo
+    public void ChangeNextPiece(int pieceIndexChange)
+    {
+        this.activePieceIndex = pieceIndexChange;
+    }
+    // Hồi máu cho quái
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
-
+    // Gây tăng một hàng
     public void MakeAGrayLine(){
         RectInt bounds = this.Bounds;
         int NullTile = Random.Range(bounds.xMin, Bounds.xMax);
