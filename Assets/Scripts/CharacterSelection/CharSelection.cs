@@ -15,7 +15,7 @@ public class CharSelection : MonoBehaviour
     private int currentChar;
 
     #region Data
-        private Character character = new Character();
+        private Character character;
         private IDataService DataService = new JsonDataService();
         private bool EncryptionEnable;
         private long saveTime;
@@ -56,8 +56,7 @@ public class CharSelection : MonoBehaviour
 
     public void SelectChar()
     {
-        
-        long startTime = DateTime.Now.Ticks;
+    
         JsonConvert.SerializeObject(character, Formatting.Indented, 
                 new JsonSerializerSettings 
                 { 
@@ -65,8 +64,6 @@ public class CharSelection : MonoBehaviour
                 });
         if (DataService.SaveData("/characters.json", character, EncryptionEnable))
         {
-            
-            saveTime = DateTime.Now.Ticks - startTime;
 
             Debug.Log(character);
         }

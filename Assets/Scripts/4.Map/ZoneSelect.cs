@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using DG.Tweening;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ZoneSelect : MonoBehaviour
 {
-    [SerializeField] private bool completed; //false
+    [SerializeField] public bool isCompleted; //false
     [SerializeField] private GameObject uncompleteOj;
     [SerializeField] private static GameObject player;
     [SerializeField] private GameObject startZone;
@@ -16,7 +16,7 @@ public class ZoneSelect : MonoBehaviour
     private bool isMove = false;
 
     #region Data
-    [SerializeField] private Character character = new Character();
+    private Character character;
     private IDataService DataService = new JsonDataService();
     private bool EncryptionEnable;
     // private long loadTime;
@@ -25,28 +25,34 @@ public class ZoneSelect : MonoBehaviour
 
     private void Awake()
     {
-        Character data = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
-        JsonConvert.SerializeObject(data);
+        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
         
         path = GetComponentInParent<Path>();
-        player = GameObject.Find(data.name);
+        player = GameObject.Find(charData.name);
+        
         startZone = GameObject.FindGameObjectWithTag("Respawn");
         player.transform.position = startZone.transform.position;
+        selectionZone = gameObject;
     }
 
-    public void SerializeJson(){
-        
-    }
     private void Start()
     {
         UpdateZone();
     }
 
+    public void SaveData(){
+
+    }
+
     public void UpdateZone()
     {
-        if (!completed)
+        if (!isCompleted)
         {
             uncompleteOj.SetActive(true);
+        }
+        else{
+            uncompleteOj.SetActive(false);
+            collider.enabled = false;
         }
     }
 
@@ -80,77 +86,58 @@ public class ZoneSelect : MonoBehaviour
         yield return new WaitForSeconds(1);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if (selectionZone.name == "Zone_1")
-        {
+        switch (selectionZone.name)
+        {        
+            case "Zone_1":
             path.zone[2].SetActive(true);
             path.zone[3].SetActive(true);
             SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
+            break;
 
-        #region Path1
-        if (selectionZone.name == "Zone_2")
-        {
-            path.zone[4].SetActive(true);
+            case "Zone_2":
+             path.zone[4].SetActive(true);
             path.zone[3].SetActive(false);
             SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
+            break;
 
-        if (selectionZone.name == "Zone_4")
-        {
-            path.zone[7].SetActive(true);
-            SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
-
-        #endregion
-
-        #region Path2
-        if (selectionZone.name == "Zone_3")
-        {
-            path.zone[5].SetActive(true);
-            path.zone[6].SetActive(true);
-            path.zone[2].SetActive(false);
-            SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
-
-        if (selectionZone.name == "Zone_5")
-        {
+            case "Zone_3":
             path.zone[7].SetActive(true);
             path.zone[6].SetActive(false);
             SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
-
-        if (selectionZone.name == "Zone_6")
-        {
-            path.zone[8].SetActive(true);
+            break;
+            
+            case "Zone_4":
+            path.zone[7].SetActive(true);
+            SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+            break;
+            
+            case "Zone_5":
+            path.zone[7].SetActive(true);
+            path.zone[6].SetActive(false);
+            SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+            break;
+            
+            case "Zone_6":
+             path.zone[8].SetActive(true);
             path.zone[5].SetActive(false);
             SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
-        if (selectionZone.name == "Zone_8")
-        {
-            path.zone[7].SetActive(true);
-            SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
-        #endregion
-
-        if (selectionZone.name == "Zone_7")
-        {
+            break;
+            
+            case "Zone_7":
             path.zone[9].SetActive(true);
             SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
-            collider.enabled = false;
+            break;
+
+            case "Zone_8":
+            path.zone[7].SetActive(true);
+            SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
+            break;
+
+            case "BossZone":
+            SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
+            break;
         }
 
-        if (selectionZone.name == "BossZone")
-        {
-            SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
-            collider.enabled = false;
-        }
         isMove = false;
     }
 

@@ -8,7 +8,6 @@ public class Path : MonoBehaviour
 {
     [SerializeField] 
     public GameObject[] zone;
-    public GameObject currentZone;
     public ZoneSelect zoneSelect;
 
     private void Awake() {
@@ -16,9 +15,12 @@ public class Path : MonoBehaviour
     }
 
     private void Start() {
-        
         for (int i = 2; i <= 9; i++){
-            zone[i].SetActive(false);
+            if(!zoneSelect.isCompleted)
+                {
+                    zone[i].SetActive(false);
+                }
+            
         }
     }
 
