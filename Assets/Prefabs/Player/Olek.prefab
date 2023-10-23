@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Olek
-  gameObject: {fileID: 2890828183796783871}
 --- !u!1 &5348891099759598122
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +159,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 
+  _animationName: action/idle/normal
   loop: 1
   timeScale: 1

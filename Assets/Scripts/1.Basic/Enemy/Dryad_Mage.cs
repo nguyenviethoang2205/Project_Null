@@ -6,10 +6,10 @@ public class Dryad_Mage : EnemyCore
 {
     public override void Awake()
     {
-        /*maxSkillWait = 5;
-        skillWait = 3;
+        maxSkillWait = 0;
+        skillWait = 0;
         skillBar.SetMaxSkillValue(maxSkillWait);
-        skillBar.SetSkillValue(skillWait);*/
+        skillBar.SetSkillValue(skillWait);
         this.skillActive = false;
         this.skillTiming = Time.time;
         this.skillHealingTime = -1;
@@ -56,9 +56,9 @@ public class Dryad_Mage : EnemyCore
 
     public override void CheckSkillSpawn() { }
 
-    public override void CheckSkillClearLine(int totalLineClear)
+    public override void CheckSkillClearLine()
     {
-        if (totalLineClear != 0)
+        if (this.boards.totalLinesClear != 0)
         {
             this.skillActive = false;
             this.skillTiming = Time.time;

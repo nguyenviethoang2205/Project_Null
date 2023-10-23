@@ -181,7 +181,7 @@ public class Boards : MonoBehaviour {
             nextBox.SpawmPiece();
             
             // Check Skill
-            enemyCore.CheckSkillClearLine(this.totalLinesClear);
+            enemyCore.CheckSkillClearLine();
             CheckNearEnd();
             CheckVictory();           
         }
@@ -292,15 +292,15 @@ public class Boards : MonoBehaviour {
     }
 
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
-    // Hồi máu nhờ skill
-    public void Heal(int percent)
-    {
+    // Gây tăng một hàng
+
+    public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
-    // Gây tăng một hàng
+
     public void MakeAGrayLine(){
         RectInt bounds = this.Bounds;
         int NullTile = Random.Range(bounds.xMin, Bounds.xMax);
