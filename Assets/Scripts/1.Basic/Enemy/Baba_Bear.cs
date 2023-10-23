@@ -16,7 +16,7 @@ public class Baba_Bear : EnemyCore{
         getHealth();
     }
 
-    public void EnemySkill(int totalLineClear)
+    public void EnemySkill()
     {
         int lines = boards.totalLines - lastTotalLine;
         skillWait = skillWait + lines;
