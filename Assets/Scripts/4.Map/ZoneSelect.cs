@@ -91,13 +91,13 @@ public class ZoneSelect : MonoBehaviour
                 case "Zone_1":
                     path.zone[2].SetActive(true);
                     path.zone[3].SetActive(true);
-                    SceneManager.LoadScene("Tetris");
+                    // SceneManager.LoadScene("Tetris");
                     break;
 
                 case "Zone_2":
                     path.zone[4].SetActive(true);
                     path.zone[3].SetActive(false);
-                    SceneManager.LoadScene("GetItems");
+                    // SceneManager.LoadScene("GetItems");
                     break;
 
                 case "Zone_3":
