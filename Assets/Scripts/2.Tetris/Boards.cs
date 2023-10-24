@@ -5,10 +5,18 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 public class Boards : MonoBehaviour {
+
+    #region Data
+    private Character character;
+    private IDataService DataService = new JsonDataService();
+    private bool EncryptionEnable;
+    public GameObject player;
+    #endregion
     public EnemyCore enemyCore;
     public NextBox nextBox;
     public HealthBar healthbar;
     public CharacterAnimation characterAnimation;
+    public AnimationCharacter animationCharacter;
     public GameOverScreen overScreen;
     public VictoryScreen victoryScreen;
     public LevelAudioPlayer levelAudioPlayer;
@@ -51,6 +59,14 @@ public class Boards : MonoBehaviour {
     }
 
     private void Awake(){
+        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
+
+        if(player == null){
+            player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject)), new Vector3(-6, (float)-3.5f, -5), Quaternion.Euler(0,180f,0)) as GameObject;
+        }
+        animationCharacter = player.GetComponent<AnimationCharacter>();
+        Debug.Log(animationCharacter);
+
         levelAudioPlayer.PlayThemeAudio();
         this.tilemap = GetComponentInChildren<Tilemap>();
         this.activePiece  = GetComponentInChildren<Piece>();
@@ -252,7 +268,7 @@ public class Boards : MonoBehaviour {
     // Hàm tính thiệt hại
     private void CalculateDamage(int lines) {
         levelAudioPlayer.PlayPlayerAttackSound();
-        characterAnimation.PlayerDoAttackAction();
+        animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
         comboLost = 4;
         damage = (lines * 5) + (10 * (lines - 1));
@@ -364,7 +380,7 @@ public class Boards : MonoBehaviour {
         } else {
             levelAudioPlayer.StopThemeAudio();
         }
-        characterAnimation.PlayerDoLoseAction();
+        animationCharacter.PlayerDoLoseAction();
         characterAnimation.EnemyDoVictoryAction();
         levelAudioPlayer.PlayPlayerLoseSound();
         levelAudioPlayer.PlayDefenseVictorySound();
@@ -381,7 +397,7 @@ public class Boards : MonoBehaviour {
         levelAudioPlayer.PlayDefenseLoseSound();
         characterAnimation.EnemyDoLoseAction();
         yield return new WaitForSeconds(1);
-        characterAnimation.PlayerDoVictoryAction();
+        animationCharacter.PlayerDoVictoryAction();
         yield return new WaitForSeconds(1);
         levelAudioPlayer.PlayPlayerVictorySound();
         yield return new WaitForSeconds(2);
@@ -394,7 +410,7 @@ public class Boards : MonoBehaviour {
         levelAudioPlayer.PlayDefenseAttackSound(); 
         characterAnimation.EnemyDoAttackAction();
         yield return new WaitForSecondsRealtime(0.2f);
-        characterAnimation.PlayerDoDefenseAction();
+        animationCharacter.PlayerDoDefenseAction();
     }
 
 

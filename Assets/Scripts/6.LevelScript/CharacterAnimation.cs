@@ -3,32 +3,9 @@ using Spine.Unity;
 using Spine;
 
 public class CharacterAnimation : MonoBehaviour
-{
-    // Animation của người chơi
-    public SkeletonAnimation playerAnimation;
-    
+{  
     // Animation của quái vật
     public SkeletonAnimation enemyAnimation;
-
-    // Các hoạt động của Player
-    // Người chơi thực hiện hành động tấn công
-    public void PlayerDoAttackAction(){
-        playerAnimation.AnimationState.Complete +=  (trackEntry) => WaitAnimationComplete(trackEntry, "attack/melee/mouth-bite", "action/idle/normal", playerAnimation);
-        DoAnimation("attack/melee/mouth-bite", playerAnimation);
-    }
-    // người chơi bị đấm
-    public void PlayerDoDefenseAction(){
-        playerAnimation.AnimationState.Complete += (trackEntry) => WaitAnimationComplete(trackEntry, "defense/hit-by-normal", "action/idle/normal", playerAnimation);
-        DoAnimation("defense/hit-by-normal", playerAnimation);
-    }
-    // Người chơi thắng
-    public void PlayerDoVictoryAction(){
-        LoopAnimation("activity/victory-pose-back-flip", playerAnimation);
-    }
-    // Người chơi thất bại
-    public void PlayerDoLoseAction(){
-        LoopAnimation("activity/prepare", playerAnimation);
-    }
     
     // Các hoạt động của Enemy
     // enemy tấn công
