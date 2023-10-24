@@ -307,6 +307,12 @@ public class Boards : MonoBehaviour {
         }
     }
 
+    // ----------------- Hiệu ứng Items ảnh hưởng tới map ------- //
+    public void ItemsDealDamage(int damage){
+        currentHealth = currentHealth - damage;
+        healthbar.SetHealth(currentHealth);
+    }
+
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
     // Gây tăng một hàng
 

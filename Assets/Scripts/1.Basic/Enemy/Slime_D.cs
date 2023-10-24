@@ -26,7 +26,7 @@ public class Slime_D : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(999);
+        SetEnemyHealth(1);
         return EnemyHealth;
     }
 }    
