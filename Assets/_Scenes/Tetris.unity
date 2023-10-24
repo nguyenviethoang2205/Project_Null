@@ -7450,6 +7450,7 @@ MonoBehaviour:
   - tetromino: 6
   spawnPosition: {x: 0, y: 7, z: 0}
   boardSize: {x: 9, y: 18}
+  additionDamage: 0
   dropSpeed: 1
   currnetTime: 0
   addSpeedTime: 15

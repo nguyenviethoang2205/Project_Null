@@ -31,6 +31,8 @@ public class CharacterCore : MonoBehaviour
     public virtual int GetExp() { return characterExp; }
     public virtual int GetMaxExp() { return characterMaxExp; }
     public virtual int GetAtk() { return characterAtk; }
+    public virtual void CheckBeforeClearLine(int totalLineClear) { }
+    public virtual void CheckAfterClearLine(int totalLineClear) { }
 
     public void SetName(string name)
     {
