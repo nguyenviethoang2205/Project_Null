@@ -266,11 +266,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 750258898}
   m_PrefabAsset: {fileID: 0}
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2890828183796783864, guid: ae57c08a1ca919a4090a115e85365009,
-    type: 3}
-  m_PrefabInstance: {fileID: 182750495}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &325183889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540098405}
+  - component: {fileID: 1540098404}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1383,6 +1379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 1964738409}
   playerInventory: {fileID: 11400000, guid: 86fce0693ee6b2c4b8e9820a765bcd4a, type: 2}
+  isGameStart: 0
 --- !u!4 &1540098405
 Transform:
   m_ObjectHideFlags: 0
