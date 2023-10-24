@@ -18,20 +18,20 @@ public class VictoryScreen : MonoBehaviour{
 
     public void ExitToMap(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris");
+        SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMapElite(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Elite");
+        SceneManager.LoadScene("Level_Map");
     }
     public void ExitToMapBoss(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Boss");
+        SceneManager.LoadScene("Level_Map");
     }
     public void ExitToMapItems(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("GetItems");
+        SceneManager.LoadScene("Level_Map");
     }
 
     IEnumerator VictoryAnimation(){

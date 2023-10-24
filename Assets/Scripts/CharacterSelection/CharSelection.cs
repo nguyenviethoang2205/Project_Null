@@ -62,6 +62,7 @@ public class CharSelection : MonoBehaviour
                 { 
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 });
+                
         if (DataService.SaveData("/characters.json", character, EncryptionEnable))
         {
 

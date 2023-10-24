@@ -577,6 +577,7 @@ GameObject:
   - component: {fileID: 894590995}
   - component: {fileID: 894590994}
   - component: {fileID: 894590996}
+  - component: {fileID: 894590997}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -651,6 +652,20 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 1072996401}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &894590997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894590993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7689ea96a8af944b285fed34ca1883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tPlayer: {fileID: 0}
+  tFollowTarget: {fileID: 0}
 --- !u!1 &1072996399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1276,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540098405}
-  - component: {fileID: 1540098404}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1269,18 +1283,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1540098404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540098403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5401b6b41ff2b4b9d95822ef7c274c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1540098405
 Transform:
   m_ObjectHideFlags: 0
@@ -1921,6 +1923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968511297144877320, guid: 320f8d2bf53a0e947bfae84704b82541,
+        type: 3}
+      propertyPath: vcam
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7910254606715817372, guid: 320f8d2bf53a0e947bfae84704b82541,
         type: 3}
