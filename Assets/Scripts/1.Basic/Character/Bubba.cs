@@ -7,8 +7,17 @@ public class Bubba : CharacterCore
 {
     public override void Awake()
     {
+        GetName();
+        SetLevel(1);
+        SetExp(0);
+        SetMaxExp(100);
+        SetAtk(5);
         this.skillActive = true;
         this.skillTiming = Time.time;
+    }
+    private void Start()
+    {
+        
     }
     private bool skillActive;
     private float skillTiming;

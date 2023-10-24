@@ -23,6 +23,7 @@ public class Boards : MonoBehaviour {
     public static int currentHealth;
     public static int maxHealth;
     public static int damage;
+    public int additionDamage;
 
     public float dropSpeed = 1f;
     public float currnetTime;
@@ -64,6 +65,7 @@ public class Boards : MonoBehaviour {
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
         currentHealth = enemyCore.EnemyHealth;
+        additionDamage = 0;
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         this.currnetTime = Time.time;
@@ -156,6 +158,7 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            characterCore.CheckBeforeClearLine(totalLinesClear);
             if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
@@ -176,6 +179,7 @@ public class Boards : MonoBehaviour {
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
+            characterCore.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
@@ -257,9 +261,11 @@ public class Boards : MonoBehaviour {
         characterAnimation.EnemyDoDefenseAction();
         comboLost = 4;
         damage = (lines * 5) + (10 * (lines - 1));
-        if (totalCombo > 1){
+        if (totalCombo > 1)
+        {
             checkComboDamage();
         }
+        calculateAdditionDamage(additionDamage);
         // damage = damage + 2 * (totalCombo - 1);
         // D = 1.1 wait 4
         // C = 1.3 wait 3
@@ -267,7 +273,7 @@ public class Boards : MonoBehaviour {
         // A = 2 wait 1
         damageLastTurn = damage;
     }
-
+    // Hàm tính combo
     private void checkComboDamage(){
         if (totalCombo <= 5 ){
             levelAnimationUIManager.UpdateMaxComboWait(4);
@@ -293,6 +299,12 @@ public class Boards : MonoBehaviour {
     }
 
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
+    // Hàm tính thiệt hại thêm từ skill, item
+    public void calculateAdditionDamage(int additionPercent)
+    {
+        if (additionPercent != -1)
+            damage = damage + (damage * additionPercent) / 100;
+    }
     // Thay đổi piece tiếp theo
     public void ChangeNextPiece(int pieceIndexChange)
     {

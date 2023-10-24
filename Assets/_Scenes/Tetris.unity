@@ -6457,7 +6457,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838243810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f322e30593837149b4c48676ff5f310, type: 3}
+  m_Script: {fileID: 11500000, guid: 9730b2faf2d504549a6a2108dbc1adf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
@@ -7011,6 +7011,7 @@ MonoBehaviour:
   - tetromino: 6
   spawnPosition: {x: 0, y: 7, z: 0}
   boardSize: {x: 9, y: 18}
+  additionDamage: 0
   dropSpeed: 1
   currnetTime: 0
   addSpeedTime: 15
