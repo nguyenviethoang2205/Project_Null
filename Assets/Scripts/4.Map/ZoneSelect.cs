@@ -4,6 +4,8 @@ using DG.Tweening;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Spine.Unity;
+using Spine;
 
 public class ZoneSelect : MonoBehaviour
 {
@@ -31,9 +33,13 @@ public class ZoneSelect : MonoBehaviour
             player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject))) as GameObject;
         }
 
+
+
         path = GetComponentInParent<Path>();
         startZone = GameObject.FindGameObjectWithTag("Respawn");
         player.transform.position = startZone.transform.position;
+        SkeletonAnimation skeletonAnimation = player.GetComponentInChildren<SkeletonAnimation>();
+        skeletonAnimation.gameObject.GetComponent<MeshRenderer>().sortingOrder = -1;
         selectionZone = gameObject;
     }
 
@@ -91,24 +97,26 @@ public class ZoneSelect : MonoBehaviour
                 case "Zone_1":
                     path.zone[2].SetActive(true);
                     path.zone[3].SetActive(true);
-                    // SceneManager.LoadScene("Tetris");
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     break;
 
                 case "Zone_2":
                     path.zone[4].SetActive(true);
                     path.zone[3].SetActive(false);
-                    // SceneManager.LoadScene("GetItems");
+                    SceneManager.LoadScene("GetItems",LoadSceneMode.Additive);
                     break;
 
                 case "Zone_3":
                     path.zone[6].SetActive(true);
                     path.zone[5].SetActive(true);
                     path.zone[2].SetActive(false);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris");
                     break;
 
                 case "Zone_4":
                     path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris");
                     break;
 
@@ -121,20 +129,24 @@ public class ZoneSelect : MonoBehaviour
                 case "Zone_6":
                     path.zone[8].SetActive(true);
                     path.zone[5].SetActive(false);
+                    SceneManager.LoadScene("Tetris_Elite_2", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris_Elite");
                     break;
 
                 case "Zone_7":
                     path.zone[9].SetActive(true);
+                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris_Elite");
                     break;
 
                 case "Zone_8":
                     path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("GetItems",LoadSceneMode.Additive);
                     // SceneManager.LoadScene("GetItems");
                     break;
 
                 case "BossZone":
+                    SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris_Boss");
                     break;
             }

@@ -45,6 +45,8 @@ public class Boards : MonoBehaviour {
     private int activePieceIndex = -1;
     private int activePieceColor = -1;
 
+    private int itemBuffATK = 0;
+
     public bool isAnimationRun = false;
     // Kiểm tra trò chơi có kết thúc không? 
     public bool isGameOver = false;
@@ -87,6 +89,13 @@ public class Boards : MonoBehaviour {
         SpawmPiece();  
     }
 
+    private void Update(){
+        if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
+                if (Input.GetKeyDown(KeyCode.Return)){
+                    inventoryManager.UseItems(this);
+                }
+            }
+    }
     // Tạo khối
     public void SpawmPiece(){
         if (isGameOver == false){
@@ -247,6 +256,7 @@ public class Boards : MonoBehaviour {
 
     // Hàm xóa dòng
     private void LineClear(int row){
+        
         RectInt bounds = this.Bounds;
 
         for (int col = bounds.xMin; col < bounds.xMax; col++){
@@ -277,6 +287,7 @@ public class Boards : MonoBehaviour {
         if (totalCombo > 1){
             checkComboDamage();
         }
+        damage = damage + itemBuffATK;
         // damage = damage + 2 * (totalCombo - 1);
         // D = 1.1 wait 4
         // C = 1.3 wait 3
@@ -309,10 +320,45 @@ public class Boards : MonoBehaviour {
         }
     }
 
+    public void DestroyPlayer(){
+        DestroyImmediate(player);
+    }
+
     // ----------------- Hiệu ứng Items ảnh hưởng tới map ------- //
+    private void PlayerUseItemAnimation(){
+        levelAudioPlayer.PlayItemSound();
+        animationCharacter.PlayerDoAttackAction();
+        characterAnimation.EnemyDoDefenseAction();
+    }
     public void ItemsDealDamage(int damage){
-        currentHealth = currentHealth - damage;
+        PlayerUseItemAnimation();
+        if (currentHealth - damage < 1){
+            currentHealth = 1;
+        }  else {
+            currentHealth = currentHealth - damage;
+        }
         healthbar.SetHealth(currentHealth);
+        CheckHealthStatus();
+        CheckNearEnd();
+    }
+
+    public void ItemsDestroyLine(){
+        PlayerUseItemAnimation();
+        Clear(this.activePiece);
+        RectInt bounds = this.Bounds;        
+        LineClear(bounds.yMin);
+        Set(this.activePiece);
+    }
+
+    public void ItemsReduceSkill(){
+        PlayerUseItemAnimation();
+        enemyCore.skillWait = 0;
+        enemyCore.skillBar.SetSkillValue(enemyCore.skillWait);
+    }
+
+    public void ItemsInsertDamage(int buff){
+        PlayerUseItemAnimation();
+        itemBuffATK = itemBuffATK + buff;
     }
 
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //

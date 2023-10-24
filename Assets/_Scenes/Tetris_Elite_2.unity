@@ -2565,7 +2565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 362599750}
-        m_MethodName: ExitToMapElite
+        m_MethodName: ExitToMapElite2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 9c5f971d81c5b4ca88949ad1d9548f71, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: fdcbef6d8f7034d0ebddc3e6483ea46e, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -5141,17 +5141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
-  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
-  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
-  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
-  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
-  - {fileID: 2100000, guid: b2b809d3b60ce564581983bad11581f0, type: 2}
-  - {fileID: 2100000, guid: 3207002d98f0044e7b688d9689e63f05, type: 2}
+  - {fileID: 2100000, guid: 00df9616d5fa14ca5af4cfef555cb74a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5993,7 +5983,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547606834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31f44529e05831a408701af7ad3fafb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2210a36573da5034fbd087080cb82317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillBar: {fileID: 1161185016}
@@ -6002,7 +5992,6 @@ MonoBehaviour:
   EnemyHealth: 0
   maxSkillWait: 0
   skillWait: 0
-  lastTotalLine: 0
 --- !u!1 &1569196516
 GameObject:
   m_ObjectHideFlags: 0
@@ -7681,7 +7670,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 420338192}
-        m_MethodName: RestartElite
+        m_MethodName: RestartElite2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -11,6 +11,7 @@ public class GameOverScreen : MonoBehaviour{
     public Text gameOverExitText;
     public Text gameOverText;
     public Image gameOverPanel;
+    public Boards boards;
     
     public void Setup(){
         Time.timeScale = 0f;
@@ -22,21 +23,32 @@ public class GameOverScreen : MonoBehaviour{
 
     public void Restart(){
         Time.timeScale = 1f;
+        boards.DestroyPlayer();
         SceneManager.UnloadScene("Tetris");
         SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
     }
 
     public void RestartBoss(){
         Time.timeScale = 1f;
+        boards.DestroyPlayer();
         SceneManager.UnloadScene("Tetris_Boss");
         SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
     }
 
     public void RestartElite(){
         Time.timeScale = 1f;
+        boards.DestroyPlayer();
         SceneManager.UnloadScene("Tetris_Elite");
         SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
     }
+
+    public void RestartElite2(){
+        Time.timeScale = 1f;
+        boards.DestroyPlayer();
+        SceneManager.UnloadScene("Tetris_Elite_2");
+        SceneManager.LoadScene("Tetris_Elite_2", LoadSceneMode.Additive);
+    }
+
 
     public void ReturnMenu(){
         Time.timeScale = 1f;

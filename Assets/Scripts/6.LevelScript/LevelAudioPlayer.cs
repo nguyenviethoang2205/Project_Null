@@ -21,6 +21,9 @@ public class LevelAudioPlayer : MonoBehaviour
 
     public AudioManager buttonSound;
 
+    public AudioManager itemSound;
+
+
     public void PlayThemeAudio(){
         mainTheme.PlaySound();
     }
@@ -85,5 +88,9 @@ public class LevelAudioPlayer : MonoBehaviour
 
     public void PlayButtonSound(){
         buttonSound.PlaySound(); 
+    }
+
+    public void PlayItemSound(){
+        itemSound.PlaySound(); 
     }
 }

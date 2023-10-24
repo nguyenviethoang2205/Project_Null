@@ -349,6 +349,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 45523211}
     m_Modifications:
+    - target: {fileID: 2890828182849161770, guid: ae57c08a1ca919a4090a115e85365009,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2890828182849161771, guid: ae57c08a1ca919a4090a115e85365009,
         type: 3}
       propertyPath: m_Mesh
@@ -713,7 +718,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1126,6 +1131,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 45523211}
     m_Modifications:
+    - target: {fileID: 2057956282140596563, guid: 0f50b5a60a8083c4596585980e7f36c8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2890828183796783864, guid: 0f50b5a60a8083c4596585980e7f36c8,
         type: 3}
       propertyPath: m_RootOrder
