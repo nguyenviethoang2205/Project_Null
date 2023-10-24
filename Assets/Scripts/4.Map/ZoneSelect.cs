@@ -14,6 +14,7 @@ public class ZoneSelect : MonoBehaviour
     [SerializeField] private static GameObject player;
     [SerializeField] private GameObject startZone;
     [SerializeField] private GameObject selectionZone;
+    private Vector3 currentPos;
     public new Collider collider;
     public Path path;
 
