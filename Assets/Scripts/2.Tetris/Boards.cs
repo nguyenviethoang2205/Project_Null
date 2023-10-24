@@ -12,6 +12,7 @@ public class Boards : MonoBehaviour {
     private bool EncryptionEnable;
     public GameObject player;
     #endregion
+    public InventoryManager inventoryManager;
     public EnemyCore enemyCore;
     public NextBox nextBox;
     public HealthBar healthbar;
@@ -76,6 +77,7 @@ public class Boards : MonoBehaviour {
     }
     
     private void Start(){
+        inventoryManager.isGameStart = true;
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
         currentHealth = enemyCore.EnemyHealth;
@@ -380,6 +382,7 @@ public class Boards : MonoBehaviour {
     }
 
     IEnumerator GameOver(){
+        inventoryManager.isGameStart = false;
         isAnimationRun = true;
         if (nearEnd == true){
             levelAudioPlayer.StopNearEndTheme();
@@ -398,6 +401,7 @@ public class Boards : MonoBehaviour {
 
     // thực hiện hành động khi chiến thắng
     IEnumerator Victory(){
+        inventoryManager.isGameStart = false;
         isAnimationRun = true;
         levelAudioPlayer.StopNearEndTheme();
         levelAudioPlayer.PlayDefenseLoseSound();

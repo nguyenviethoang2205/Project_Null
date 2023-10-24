@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   itemBase: {fileID: 0}
-  isGetItem: 1
+  isGetItem: 0
