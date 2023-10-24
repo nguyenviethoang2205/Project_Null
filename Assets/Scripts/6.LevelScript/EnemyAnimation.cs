@@ -2,7 +2,7 @@
 using Spine.Unity;
 using Spine;
 
-public class CharacterAnimation : MonoBehaviour
+public class EnemyAnimation : MonoBehaviour
 {  
     // Animation của quái vật
     public SkeletonAnimation enemyAnimation;

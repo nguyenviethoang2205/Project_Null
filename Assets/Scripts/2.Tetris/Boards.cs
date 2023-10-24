@@ -15,7 +15,7 @@ public class Boards : MonoBehaviour {
     public EnemyCore enemyCore;
     public NextBox nextBox;
     public HealthBar healthbar;
-    public CharacterAnimation characterAnimation;
+    public EnemyAnimation characterAnimation;
     public AnimationCharacter animationCharacter;
     public GameOverScreen overScreen;
     public VictoryScreen victoryScreen;
