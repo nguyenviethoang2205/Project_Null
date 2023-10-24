@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
+    public PlayerInventory playerInventory;
     public Image GameLogo;
     public Button playButton;
     public Button exitButton;
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
     }
     
     public void PlayGame(){
+        playerInventory.isGetItem = false;
         StartCoroutine(StartGame());
     }
 

@@ -2323,6 +2323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed9c9b3ff1ee454eba54d9150354c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInventory: {fileID: 11400000, guid: 86fce0693ee6b2c4b8e9820a765bcd4a, type: 2}
   GameLogo: {fileID: 960673588}
   playButton: {fileID: 344928607}
   exitButton: {fileID: 1214267272}
