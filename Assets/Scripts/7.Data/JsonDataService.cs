@@ -19,6 +19,7 @@ public class JsonDataService : IDataService
                 Debug.Log("Data exist, deleting old file and writing new one");
                 File.Delete(path);
             }
+            
             else
             {
                 Debug.Log("Create data fist time");

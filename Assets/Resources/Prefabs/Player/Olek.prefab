@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2890828183796783864}
   - component: {fileID: 5256332518199774050}
+  - component: {fileID: 5344670406370094521}
   m_Layer: 0
   m_Name: Olek
   m_TagString: Player
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Olek
+--- !u!114 &5344670406370094521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890828183796783871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff033f43775bdb4d9648625a6f6339e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimation: {fileID: 4976307437624435916}
 --- !u!1 &5348891099759598122
 GameObject:
   m_ObjectHideFlags: 0
