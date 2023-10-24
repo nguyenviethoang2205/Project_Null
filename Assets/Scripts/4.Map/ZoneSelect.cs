@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using DG.Tweening;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -27,10 +28,11 @@ public class ZoneSelect : MonoBehaviour
     {
         Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
 
-        if(player == null){
+        if (player == null)
+        {
             player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject))) as GameObject;
         }
-        
+
         path = GetComponentInParent<Path>();
         startZone = GameObject.FindGameObjectWithTag("Respawn");
         player.transform.position = startZone.transform.position;
@@ -40,11 +42,6 @@ public class ZoneSelect : MonoBehaviour
     private void Start()
     {
         UpdateZone();
-    }
-
-    public void SaveData()
-    {
-
     }
 
     public void UpdateZone()
@@ -90,56 +87,59 @@ public class ZoneSelect : MonoBehaviour
         yield return new WaitForSeconds(1);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        switch (selectionZone.name)
+        if (!isCompleted) //khi chua hoan thanh thi khong the swicth
         {
-            case "Zone_1":
-                path.zone[2].SetActive(true);
-                path.zone[3].SetActive(true);
-                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-                break;
+            switch (selectionZone.name)
+            {
+                case "Zone_1":
+                    path.zone[2].SetActive(true);
+                    path.zone[3].SetActive(true);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_2":
-                path.zone[4].SetActive(true);
-                path.zone[3].SetActive(false);
-                SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
-                break;
+                case "Zone_2":
+                    path.zone[4].SetActive(true);
+                    path.zone[3].SetActive(false);
+                    SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_3":
-                path.zone[7].SetActive(true);
-                path.zone[6].SetActive(false);
-                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-                break;
+                case "Zone_3":
+                    path.zone[7].SetActive(true);
+                    path.zone[6].SetActive(false);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_4":
-                path.zone[7].SetActive(true);
-                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-                break;
+                case "Zone_4":
+                    path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_5":
-                path.zone[7].SetActive(true);
-                path.zone[6].SetActive(false);
-                SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-                break;
+                case "Zone_5":
+                    path.zone[7].SetActive(true);
+                    path.zone[6].SetActive(false);
+                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_6":
-                path.zone[8].SetActive(true);
-                path.zone[5].SetActive(false);
-                SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
-                break;
+                case "Zone_6":
+                    path.zone[8].SetActive(true);
+                    path.zone[5].SetActive(false);
+                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_7":
-                path.zone[9].SetActive(true);
-                SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
-                break;
+                case "Zone_7":
+                    path.zone[9].SetActive(true);
+                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
+                    break;
 
-            case "Zone_8":
-                path.zone[7].SetActive(true);
-                SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
-                break;
+                case "Zone_8":
+                    path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("GetItems", LoadSceneMode.Additive);
+                    break;
 
-            case "BossZone":
-                SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
-                break;
+                case "BossZone":
+                    SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
+                    break;
+            }
         }
 
         isMove = false;
