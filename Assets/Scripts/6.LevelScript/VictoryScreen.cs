@@ -9,6 +9,7 @@ public class VictoryScreen : MonoBehaviour{
     public Text victoryMapText;
     public Text victoryText;
     public Image victoryPanel;
+    public Boards boards;
     public void Setup(){
         Time.timeScale = 0f;
         gameObject.SetActive(true); 
@@ -18,20 +19,35 @@ public class VictoryScreen : MonoBehaviour{
 
     public void ExitToMap(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_Map");
+        SceneManager.UnloadScene("Tetris");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMapElite(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_Map");
+        SceneManager.UnloadScene("Tetris_Elite");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
     }
+
+    public void ExitToMapElite2(){
+        Time.timeScale = 1f;
+        SceneManager.UnloadScene("Tetris_Elite_2");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
+    }
+
     public void ExitToMapBoss(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_Map");
+        SceneManager.UnloadScene("Tetris_Boss");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
     }
     public void ExitToMapItems(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_Map");
+        SceneManager.UnloadScene("GetItems");
+        // SceneManager.LoadScene("Level_Map");
     }
 
     IEnumerator VictoryAnimation(){

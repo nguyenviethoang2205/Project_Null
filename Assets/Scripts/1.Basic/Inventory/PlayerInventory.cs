@@ -18,4 +18,9 @@ public class PlayerInventory : ScriptableObject
         isGetItem = false;
         itemBase = null;
     }
+
+    public void UseItem(Boards boards){
+        itemBase.UseItems(boards);
+        RemoveItem();
+    }
 }

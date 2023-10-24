@@ -57,7 +57,7 @@ public class Baba_Bear : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(300);
+        SetEnemyHealth(400);
         return EnemyHealth;
     }
 }    

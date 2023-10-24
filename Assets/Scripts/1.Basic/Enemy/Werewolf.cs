@@ -101,7 +101,7 @@ public class Werewolf : EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(400);
+        SetEnemyHealth(500);
         return EnemyHealth;
     }
 }

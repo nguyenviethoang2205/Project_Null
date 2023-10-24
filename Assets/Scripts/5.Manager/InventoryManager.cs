@@ -13,16 +13,20 @@ public class InventoryManager : MonoBehaviour
     private void Update(){
         if (playerInventory.isGetItem == true){
             GetItemImage();
-            if (isGameStart == true){
-                if (Input.GetKeyDown(KeyCode.Return)){
-                    Debug.Log("UseItem");
-                }
-            }
         }
+    }
+
+    public void UseItems(Boards boards){
+        DeleteItemImage();
+        playerInventory.UseItem(boards);
     }
 
     public void GetItemImage(){
         itemImage.sprite = playerInventory.itemBase.itemImage;     
+    }
+
+    private void DeleteItemImage(){
+        itemImage.sprite = null;     
     }
 
 }
