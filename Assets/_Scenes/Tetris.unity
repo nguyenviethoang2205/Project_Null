@@ -6457,7 +6457,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838243810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9730b2faf2d504549a6a2108dbc1adf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 736e4f6c3a8dad448ac72b17fb56ad8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
@@ -6466,6 +6466,11 @@ MonoBehaviour:
   characterMaxExp: 0
   characterAtk: 0
   boards: {fileID: 2000079864}
+  skillEnergy: 0
+  skillReady: 0
+  skillActive: 0
+  changePieceUses: 0
+  timeFlag: 0
 --- !u!1 &1857038985
 GameObject:
   m_ObjectHideFlags: 0
