@@ -196,7 +196,7 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
-            characterCore.CheckBeforeClearLine(totalLinesClear);
+            // characterCore.CheckBeforeClearLine(totalLinesClear);
             if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
@@ -217,7 +217,7 @@ public class Boards : MonoBehaviour {
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
-            characterCore.CheckAfterClearLine(totalLinesClear);
+            // characterCore.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
