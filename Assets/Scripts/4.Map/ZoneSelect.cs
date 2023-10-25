@@ -67,20 +67,17 @@ public class ZoneSelect : MonoBehaviour
 
     public void UpdateZone()
     {
-        foreach (var i in path.zone)
-        {
 
             if (!isCompleted)
             {
                 uncompleteOj.SetActive(true);
             }
+            
             if (isCompleted)
             {
-                i.SetActive(true);
                 uncompleteOj.SetActive(false);
                 collider.enabled = false;
             }
-        }
 
     }
 
@@ -139,7 +136,7 @@ public class ZoneSelect : MonoBehaviour
                 case "Zone_1":
                     path.zone[2].SetActive(true);
                     path.zone[3].SetActive(true);
-                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+                    // SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     break;
 
                 case "Zone_2":
@@ -160,7 +157,7 @@ public class ZoneSelect : MonoBehaviour
                     path.zone[7].SetActive(true);
 
                     SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
-
+                    break;
                     // SceneManager.LoadScene("Tetris");
                 case "Zone_5":
                     path.zone[7].SetActive(true);
