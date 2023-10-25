@@ -26,6 +26,10 @@ public class ItemsManager : MonoBehaviour{
         GetItem2();
         GetItem3();
         GetItem4();
+        GetItem5();
+        GetItem6();
+        GetItem7();
+        GetItem8();
 
         GetRandom1();
         GetRandom2();
@@ -89,9 +93,32 @@ public class ItemsManager : MonoBehaviour{
         items.Add(item);
     }
 
-
     private void GetItem4(){
         PowerPickaxe item = ScriptableObject.CreateInstance<PowerPickaxe>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem5(){
+        GachaCapsule item = ScriptableObject.CreateInstance<GachaCapsule>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem6(){
+        MagicOrb item = ScriptableObject.CreateInstance<MagicOrb>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem7(){
+        MysteryBox item = ScriptableObject.CreateInstance<MysteryBox>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem8(){
+        OlekSkillBook item = ScriptableObject.CreateInstance<OlekSkillBook>();
         item.Initialize();
         items.Add(item);
     }

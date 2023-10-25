@@ -330,13 +330,15 @@ public class Boards : MonoBehaviour {
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
     }
-    public void ItemsDealDamage(int damage){
+    public void ItemsDealDamage(int itemDamage){
         PlayerUseItemAnimation();
-        if (currentHealth - damage < 1){
+        if (currentHealth - itemDamage < 1){
             currentHealth = 1;
         }  else {
-            currentHealth = currentHealth - damage;
+            currentHealth = currentHealth - itemDamage;
         }
+        damage = itemDamage;
+        levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
         CheckHealthStatus();
         CheckNearEnd();
@@ -348,6 +350,7 @@ public class Boards : MonoBehaviour {
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
         Set(this.activePiece);
+
     }
 
     public void ItemsReduceSkill(){
@@ -361,6 +364,42 @@ public class Boards : MonoBehaviour {
         itemBuffATK = itemBuffATK + buff;
     }
 
+    public void ItemsChangeControlPiece(){
+        PlayerUseItemAnimation();
+        Clear(this.activePiece);
+        activePieceIndex = -1;
+        activePieceColor = -1;
+        SpawmPiece();
+    }
+
+    public void ItemsChangeNextPiece(){
+        PlayerUseItemAnimation();
+        nextBox.ClearPiece();
+        nextBox.SpawmPiece();
+    }
+
+    public void ItemsInsertCombo(int combo){
+        PlayerUseItemAnimation();
+        totalCombo = totalCombo + combo;
+        levelAnimationUIManager.ShowDamageCombo();
+        if (totalCombo <= 5 ){
+            levelAnimationUIManager.UpdateMaxComboWait(4);
+            levelAnimationUIManager.ComboTurnWhite();
+            comboLost = 4;
+        } else if (totalCombo <= 10) {
+            levelAnimationUIManager.UpdateMaxComboWait(3);
+            levelAnimationUIManager.ComboTurnYellow();
+            comboLost = 3;
+        } else if (totalCombo <= 15) {
+            levelAnimationUIManager.UpdateMaxComboWait(2);
+            levelAnimationUIManager.ComboTurnOrange();
+            comboLost = 2;
+        } else {
+            levelAnimationUIManager.UpdateMaxComboWait(1);
+            levelAnimationUIManager.ComboTurnRed();
+            comboLost = 1; 
+        }
+    }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
     // Gây tăng một hàng
 
