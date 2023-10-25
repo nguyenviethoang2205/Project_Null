@@ -128,18 +128,6 @@ public class Boards : MonoBehaviour {
             }
         }
     }
-    public void SpawmPiece(Vector3Int certentPosition)
-    {
-        activePieceColor = nextBox.nextPieceColor;
-        nextBox.ClearPiece();
-        nextBox.SpawmPiece();
-        TetrominoData data;
-        data = this.tetrominoes[activePieceIndex];
-        activePieceIndex = nextBox.nextPieceIndex;
-        this.activePiece.Initialize(this, certentPosition, data, dropSpeed);
-        this.activePiece.GetColorTile(activePieceColor);
-        Set(this.activePiece);
-    }
 
     // Xóa block cần xóa trong tilemap
     public void Clear(Piece piece){
