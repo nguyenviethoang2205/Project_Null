@@ -10,6 +10,5 @@ public class Character : MonoBehaviour
 {
     [JsonProperty]
     public new string name; 
-    public float[] position;
 
 }
