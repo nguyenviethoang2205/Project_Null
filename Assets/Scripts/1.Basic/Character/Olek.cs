@@ -6,7 +6,7 @@ public class Olek : CharacterCore
 {
     private int skillEnergy;
     private int skillEnergyMax = 20;
-    private int skillStack;//số skill tích trữ
+    private int readyStack;//số skill tích trữ
     private int activeStack;// số stack tăng damage
     public override void Awake()
     {
@@ -16,19 +16,19 @@ public class Olek : CharacterCore
         SetMaxExp(100);
         SetAtk(5);
         this.skillEnergy = 0;
-        this.skillStack = 1;
+        this.readyStack = 1;
         this.activeStack = 0;
     }
     private void Update()
     {
-        if (activeStack < 3 && skillStack > 0 && Input.GetKeyDown(KeyCode.E))
+        if (activeStack < 3 && readyStack > 0 && Input.GetKeyDown(KeyCode.E))
         {
             CharacterSkill();
             activeStack++;
-            skillStack--;
+            readyStack--;
         }
     }
-    public void CharacterSkill()
+    private void CharacterSkill()
     {
         this.boards.additionDamage += 100;
     }
@@ -38,19 +38,19 @@ public class Olek : CharacterCore
         {
             case 1:
                 skillEnergy += 1;
-                stackEnegry();
+                checkEnegry();
                 break;
             case 2:
                 skillEnergy += 3;
-                stackEnegry();
+                checkEnegry();
                 break;
             case 3:
                 skillEnergy += 5;
-                stackEnegry();
+                checkEnegry();
                 break;
             case 4:
                 skillEnergy += 7;
-                stackEnegry();
+                checkEnegry();
                 break;
             default:
                 Debug.LogWarning("some thing wrong");
@@ -62,16 +62,16 @@ public class Olek : CharacterCore
         boards.additionDamage = boards.additionDamage - 100 * activeStack;
         activeStack = 0;
     }
-    private void stackEnegry()
+    private void checkEnegry()
     {
-        if (skillEnergy >= skillEnergyMax && skillStack < 2)
+        if (skillEnergy >= skillEnergyMax && readyStack < 2)
         {
-            skillStack++;
+            readyStack++;
             skillEnergy -= skillEnergyMax;
         }
-        else if (skillEnergy >= skillEnergyMax && skillStack == 2)
+        else if (skillEnergy >= skillEnergyMax && readyStack == 2)
         {
-            skillStack++;
+            readyStack++;
             skillEnergy = 0;
         }
         else
