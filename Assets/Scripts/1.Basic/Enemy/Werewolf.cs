@@ -36,7 +36,7 @@ public class Werewolf : EnemyCore
                 skillWait = skillWait - 5;
             }
         } else {
-            while (skillWait - 4 >= 0){
+            while (skillWait - 5 >= 0){
                 if (Boards.currentHealth <= (EnemyHealth * 2 / 3) && Phase2 == true){
                     boards.MakeAGrayLine();
                     Phase2 = false;
@@ -47,7 +47,7 @@ public class Werewolf : EnemyCore
                     Phase2 = true;
                 }
                 boards.DoEnemyAttack();
-                skillWait = skillWait - 4;
+                skillWait = skillWait - 5;
             }
 //     private int countLineSkill1 = 0;
 //     public void EnemySkill1(int totalLineClear)
@@ -80,9 +80,6 @@ public class Werewolf : EnemyCore
                 boards.MakeAGrayLine();
             activeSkill2 = false;
             maxSkillWait = 4;
-            skillWait = 3;
-            skillBar.SetMaxSkillValue(maxSkillWait);
-            skillBar.SetSkillValue(skillWait);
         }
     }
 
