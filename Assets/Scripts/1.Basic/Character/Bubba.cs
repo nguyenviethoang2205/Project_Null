@@ -12,14 +12,14 @@ public class Bubba : CharacterCore
         SetExp(0);
         SetMaxExp(100);
         SetAtk(5);
-        this.skillActive = true;
+        this.skillReady = true;
         this.skillTiming = Time.time;
     }
     private void Start()
     {
         
     }
-    private bool skillActive;
+    private bool skillReady;
     private float skillTiming;
     public void CharacterSkill()
     {
@@ -31,12 +31,12 @@ public class Bubba : CharacterCore
     {
         if (this.skillTiming + 15f <= Time.time)
         {
-            this.skillActive = true;
+            this.skillReady = true;
         }
-        if (this.skillActive == true && Input.GetKeyDown(KeyCode.E))
+        if (this.skillReady == true && Input.GetKeyDown(KeyCode.E))
         {
             CharacterSkill();
-            skillActive = false;
+            skillReady = false;
             skillTiming = Time.time;
         }
     }
