@@ -21,7 +21,7 @@ public class NextBox : MonoBehaviour
     private void Start(){
         SpawmPiece();
     }
-
+    // tạo piece random
     public void SpawmPiece(){
         nextPieceIndex = Random.Range(0, this.tetrominoes.Length);
         TetrominoData data = this.tetrominoes[nextPieceIndex];
@@ -30,6 +30,18 @@ public class NextBox : MonoBehaviour
             
         this.nextPiece.RandomTile();
         
+        Set(this.nextPiece);
+        GetColor();
+    }
+    // tạo piece cố định
+    public void SpawmPiece(int pieceIndex)
+    {
+        TetrominoData data = this.tetrominoes[pieceIndex];
+
+        this.nextPiece.Initialize(this, this.nextPosition, data);
+
+        this.nextPiece.RandomTile();
+
         Set(this.nextPiece);
         GetColor();
     }

@@ -257,6 +257,11 @@ public class Piece : MonoBehaviour{
             ApplyRotationMatrix(-direction);
         }
     }
+    //Nhận tốc độ
+    public void getSpeed(float multiply)
+    {
+        this.dropSpeed *= multiply;
+    }
     //Trạng thái
     public void getStatus(string status)
     {
