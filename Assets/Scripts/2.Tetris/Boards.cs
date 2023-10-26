@@ -32,8 +32,7 @@ public class Boards : MonoBehaviour {
     public int currentHealth;
     public int maxHealth;
     public int damage;
-
-    public int hp = 0;
+    public int additionDamage;
 
     public float dropSpeed = 1f;
     public float currnetTime;
@@ -86,6 +85,7 @@ public class Boards : MonoBehaviour {
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
         currentHealth = enemyCore.EnemyHealth;
+        additionDamage = 0;
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         this.currnetTime = Time.time;
@@ -94,7 +94,6 @@ public class Boards : MonoBehaviour {
     }
 
     private void Update(){
-        hp = currentHealth;
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
@@ -130,6 +129,19 @@ public class Boards : MonoBehaviour {
                 isGameOver = true;
             }
         }
+    }
+    //đổi chỗ cho piece
+    public void SpawmPiece(Vector3Int certentPosition)
+    {
+        activePieceColor = nextBox.nextPieceColor;
+        nextBox.ClearPiece();
+        nextBox.SpawmPiece();
+        TetrominoData data;
+        data = this.tetrominoes[activePieceIndex];
+        activePieceIndex = nextBox.nextPieceIndex;
+        this.activePiece.Initialize(this, certentPosition, data, dropSpeed);
+        this.activePiece.GetColorTile(activePieceColor);
+        Set(this.activePiece);
     }
 
     // Xóa block cần xóa trong tilemap
@@ -187,6 +199,7 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            // characterCore.CheckBeforeClearLine(totalLinesClear);
             if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
@@ -207,6 +220,7 @@ public class Boards : MonoBehaviour {
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
+            // characterCore.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
@@ -288,10 +302,12 @@ public class Boards : MonoBehaviour {
         characterAnimation.EnemyDoDefenseAction();
         comboLost = 4;
         damage = (lines * 5) + (10 * (lines - 1));
-        if (totalCombo > 1){
+        if (totalCombo > 1)
+        {
             checkComboDamage();
         }
         damage = damage + itemBuffATK;
+        calculateAdditionDamage(additionDamage);
         // damage = damage + 2 * (totalCombo - 1);
         // D = 1.1 wait 4
         // C = 1.3 wait 3
@@ -299,7 +315,7 @@ public class Boards : MonoBehaviour {
         // A = 2 wait 1
         damageLastTurn = damage;
     }
-
+    // Hàm tính combo
     private void checkComboDamage(){
         if (totalCombo <= 5 ){
             levelAnimationUIManager.UpdateMaxComboWait(4);
@@ -342,6 +358,7 @@ public class Boards : MonoBehaviour {
         }
         damage = itemDamage;
         damageLastTurn = damage;
+
         levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
         CheckHealthStatus();
@@ -397,6 +414,19 @@ public class Boards : MonoBehaviour {
             comboLost = 1; 
         }
     }
+    // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
+    // tính damage thêm
+    public void calculateAdditionDamage(int additionPercent)
+    {
+        if (additionPercent != -1)
+            damage = damage + (damage * additionPercent) / 100;
+    }
+    // thay đổi piece tiếp theo
+    public void ChangeNextPiece(int pieceIndexChange)
+    {
+        this.activePieceIndex = pieceIndexChange;
+    }
+    // Gây tăng một hàng
 
     public void ItemsRestartGame(){
         currentHealth = maxHealth;
@@ -422,7 +452,6 @@ public class Boards : MonoBehaviour {
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
     }
-
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
