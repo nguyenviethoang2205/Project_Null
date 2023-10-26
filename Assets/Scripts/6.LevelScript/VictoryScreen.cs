@@ -24,6 +24,27 @@ public class VictoryScreen : MonoBehaviour{
         // SceneManager.LoadScene("Level_Map");
     }
 
+    public void ExitToMap2(){
+        Time.timeScale = 1f;
+        SceneManager.UnloadScene("Tetris_2");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
+    }
+
+    public void ExitToMap3(){
+        Time.timeScale = 1f;
+        SceneManager.UnloadScene("Tetris_3");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
+    }
+
+    public void ExitToMap4(){
+        Time.timeScale = 1f;
+        SceneManager.UnloadScene("Tetris_4");
+        boards.DestroyPlayer();
+        // SceneManager.LoadScene("Level_Map");
+    }
+
     public void ExitToMapElite(){
         Time.timeScale = 1f;
         SceneManager.UnloadScene("Tetris_Elite");
@@ -52,7 +73,7 @@ public class VictoryScreen : MonoBehaviour{
 
     IEnumerator VictoryAnimation(){
         Color panelColor = victoryPanel.color;
-        float deltaAlpha = 0.025f;
+        float deltaAlpha = 0.01f;
         victoryPanel.gameObject.SetActive(true); 
         //Hiện Panel      
         while (panelColor.a < 0.7f)
@@ -64,7 +85,7 @@ public class VictoryScreen : MonoBehaviour{
         yield return new WaitForSecondsRealtime(0.5f);
         // Hiện Text
         Color textColor = victoryText.color;
-        deltaAlpha = 0.025f;
+        deltaAlpha = 0.01f;
         while (textColor.a < 1f)
         {
             textColor.a += deltaAlpha;
@@ -75,7 +96,7 @@ public class VictoryScreen : MonoBehaviour{
         // Hiện button
         Color buttonColor = victoryMap.image.color;
 
-        deltaAlpha = 0.025f;
+        deltaAlpha = 0.01f;
         while (buttonColor.a < 1f)
         {
             buttonColor.a += deltaAlpha;

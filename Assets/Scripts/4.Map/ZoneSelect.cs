@@ -63,11 +63,6 @@ public class ZoneSelect : MonoBehaviour
     private void Update()
     {
         UpdateZone();
-        // GetFirstItem();
-    }
-
-    private void GetFirstItem(){
-        SceneManager.LoadScene("GetItems",LoadSceneMode.Additive);
     }
 
     public void UpdateZone()
@@ -160,26 +155,28 @@ public class ZoneSelect : MonoBehaviour
 
                 case "Zone_4":
                     path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("Tetris_2", LoadSceneMode.Additive);
+                    // SceneManager.LoadScene("Tetris");
 
-                    SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
                     break;
                     // SceneManager.LoadScene("Tetris");
                 case "Zone_5":
                     path.zone[7].SetActive(true);
                     path.zone[6].SetActive(false);
+                    SceneManager.LoadScene("Tetris_3", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris");
                     break;
 
                 case "Zone_6":
                     path.zone[8].SetActive(true);
                     path.zone[5].SetActive(false);
-                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
+                    SceneManager.LoadScene("Tetris_Elite_2", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris_Elite");
                     break;
 
                 case "Zone_7":
                     path.zone[9].SetActive(true);
-                    SceneManager.LoadScene("Tetris_Elite_2", LoadSceneMode.Additive);
+                    SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
                     // SceneManager.LoadScene("Tetris_Elite");
                     break;
 

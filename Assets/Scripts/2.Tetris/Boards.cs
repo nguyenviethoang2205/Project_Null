@@ -28,10 +28,10 @@ public class Boards : MonoBehaviour {
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
- 
-    public static int currentHealth;
-    public static int maxHealth;
-    public static int damage;
+
+    public int currentHealth;
+    public int maxHealth;
+    public int damage;
     public int additionDamage;
 
     public float dropSpeed = 1f;
@@ -80,7 +80,7 @@ public class Boards : MonoBehaviour {
         }
     }
     
-    private void Start(){
+    private void Start(){ 
         inventoryManager.isGameStart = true;
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
@@ -89,10 +89,12 @@ public class Boards : MonoBehaviour {
         healthbar.SetMaxHealth(maxHealth);;
         healthbar.SetHealth(maxHealth);
         this.currnetTime = Time.time;
+        enemyCore.CheckSkillStart();
         SpawmPiece();  
     }
 
     private void Update(){
+        hp = currentHealth;
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
@@ -224,11 +226,10 @@ public class Boards : MonoBehaviour {
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
             nextBox.SpawmPiece();
-            
             // Check Skill
             enemyCore.CheckSkillClearLine();
             CheckNearEnd();
-            CheckVictory();           
+            CheckVictory();
         }
     }
 
@@ -370,7 +371,6 @@ public class Boards : MonoBehaviour {
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
         Set(this.activePiece);
-
     }
 
     public void ItemsReduceSkill(){
@@ -448,14 +448,26 @@ public class Boards : MonoBehaviour {
         deleteCollum(deleteCol + 2);
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
-    // Hồi máu cho quái
+    // Gây tăng một hàng
+    public void EnemyDestroyLine(){
+        RectInt bounds = this.Bounds;        
+        LineClear(bounds.yMin);
+    }
+
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
-    // Gây tăng một hàng
+
+    public void HealInt(int HP){
+        currentHealth = currentHealth + HP;
+        if (currentHealth >= maxHealth)
+            currentHealth = maxHealth;
+        healthbar.SetHealth(currentHealth);
+    }
+
     public void MakeAGrayLine(){
         RectInt bounds = this.Bounds;
         int NullTile = Random.Range(bounds.xMin, Bounds.xMax);

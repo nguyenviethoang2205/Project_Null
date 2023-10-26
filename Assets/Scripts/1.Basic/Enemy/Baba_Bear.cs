@@ -7,8 +7,8 @@ public class Baba_Bear : EnemyCore{
 // public class Baba_Bear : EnemyCore{
 //     private int countLineSkill = 0;
     public override void Awake(){
-        maxSkillWait = 5;
-        skillWait = 3;
+        maxSkillWait = 4;
+        skillWait = 2;
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
@@ -20,10 +20,10 @@ public class Baba_Bear : EnemyCore{
     {
         int lines = boards.totalLines - lastTotalLine;
         skillWait = skillWait + lines;
-        while ( skillWait / 5 >= 1){
+        while ( skillWait / 4 >= 1){
             boards.MakeAGrayLine();
             boards.DoEnemyAttack();
-            skillWait = skillWait - 5;
+            skillWait = skillWait - 4;
 //     public void EnemySkill(int totalLineClear)
 //     {
 //         countLineSkill = countLineSkill + totalLineClear;

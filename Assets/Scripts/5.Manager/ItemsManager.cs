@@ -21,18 +21,18 @@ public class ItemsManager : MonoBehaviour{
     public Text itemSkill3;
 
     private void Start(){
-        GetItem1();
-        GetItem2();
-        GetItem3();
-        GetItem4();
-        GetItem5();
-        GetItem6();
-        GetItem7();
-        GetItem8();
-        GetItem9();
+        // GetItem1();
+        // GetItem2();
+        // GetItem3();
+        // GetItem4();
+        // GetItem5();
+        // GetItem6();
+        // GetItem7();
+        // GetItem8();
+        // GetItem9();
         GetItem10();
-        GetItem11();
-        GetItem12();
+        // GetItem11();
+        // GetItem12();
 
         GetRandom1();
         GetRandom2();

@@ -7327,6 +7327,7 @@ MonoBehaviour:
   selectTile: {fileID: 0}
   blackTile: {fileID: 0}
   dropSpeed: 0
+  status: 
 --- !u!483693784 &2000079866
 TilemapRenderer:
   m_ObjectHideFlags: 0
