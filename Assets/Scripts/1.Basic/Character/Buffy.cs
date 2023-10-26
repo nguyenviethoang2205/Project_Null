@@ -29,6 +29,7 @@ public class Buffy: Character
         board = GameObject.FindGameObjectWithTag("Board");
         boards = board.GetComponent<Boards>();
         //--------------------------//
+
         if (skillReady == true && Input.GetKeyDown(KeyCode.E))
         {
             if (skillActive == false)
@@ -136,5 +137,6 @@ public class Buffy: Character
     {
         SetName("Buffy");
         return name;
+
     }
 }

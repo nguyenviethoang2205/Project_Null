@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "OlekSkillBook", menuName = "Game/OlekSkillBook")]
+// [CreateAssetMenu(fileName = "OlekSkillBook", menuName = "Game/OlekSkillBook")]
 public class OlekSkillBook : ItemBase
 {
     public override void Initialize()
@@ -11,6 +11,7 @@ public class OlekSkillBook : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsInsertCombo(10);
     }
 }

@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubba : Character
+public class Bubba : CharacterCore
 {
     public override void Awake()
     {
-        boards = GetComponent<Boards>();
         GetName();
         SetLevel(1);
         SetExp(0);
@@ -19,16 +18,19 @@ public class Bubba : Character
     private void Start()
     {
 
+
     }
     private bool skillReady;
     private float skillTiming;
     private float coolDown = 15f;
+
     public void CharacterSkill()
     {
         this.boards.nextBox.ClearPiece();
         this.boards.nextBox.SpawmPiece(0);
         this.boards.ChangeNextPiece(0);
     }
+
     private void Update()
     {
         //--------------------------//

@@ -57,7 +57,7 @@ public class GameOverScreen : MonoBehaviour{
 
     IEnumerator GameOverAnimation(){
         Color panelColor = gameOverPanel.color;
-        float deltaAlpha = 0.05f;
+        float deltaAlpha = 0.025f;
         gameOverPanel.gameObject.SetActive(true); 
         //Hiện Panel      
         while (panelColor.a < 0.7f)
@@ -69,7 +69,7 @@ public class GameOverScreen : MonoBehaviour{
         yield return new WaitForSecondsRealtime(0.5f);
         // Hiện Text
         Color textColor = gameOverText.color;
-        deltaAlpha = 0.05f;
+        deltaAlpha = 0.025f;
         while (textColor.a < 1f)
         {
             textColor.a += deltaAlpha;
@@ -79,8 +79,7 @@ public class GameOverScreen : MonoBehaviour{
         yield return new WaitForSecondsRealtime(0.5f);
         // Hiện button
         Color buttonColor = gameOverRestart.image.color;
-
-        deltaAlpha = 0.05f;
+        deltaAlpha = 0.025f;
         while (buttonColor.a < 1f)
         {
             buttonColor.a += deltaAlpha;

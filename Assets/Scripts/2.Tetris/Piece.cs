@@ -22,7 +22,7 @@ public class Piece : MonoBehaviour{
     private float stepTime;
     private int delayControl = 130;
 
-    private string status;
+    public string status;
     public void Initialize(Boards board, Vector3Int position, TetrominoData data, float dropSpeed){
         this.board = board;
         this.position = position;
@@ -266,6 +266,11 @@ public class Piece : MonoBehaviour{
     public void getStatus(string status)
     {
         this.status = status;
+    }
+    //Nhận tốc độ
+    public void getSpeed(float multiply)
+    {
+        this.dropSpeed *= multiply;
     }
 
     private void ApplyRotationMatrix(int direction){     

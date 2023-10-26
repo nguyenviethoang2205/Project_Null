@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MagicOrb", menuName = "Game/MagicOrb")]
+// [CreateAssetMenu(fileName = "MagicOrb", menuName = "Game/MagicOrb")]
 public class MagicOrb : ItemBase
 {
     public override void Initialize()
@@ -11,6 +11,7 @@ public class MagicOrb : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsChangeNextPiece();
     }
 }

@@ -11,6 +11,7 @@ public class GachaCapsule : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsChangeControlPiece();
     }
 }

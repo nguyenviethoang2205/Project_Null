@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine; 
 using UnityEngine.Tilemaps;
 using Spine.Unity;
@@ -197,6 +198,7 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
+            // characterCore.CheckBeforeClearLine(totalLinesClear);
             if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
@@ -217,6 +219,7 @@ public class Boards : MonoBehaviour {
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
+            // characterCore.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();
@@ -299,7 +302,8 @@ public class Boards : MonoBehaviour {
         characterAnimation.EnemyDoDefenseAction();
         comboLost = 4;
         damage = (lines * 5) + (10 * (lines - 1));
-        if (totalCombo > 1){
+        if (totalCombo > 1)
+        {
             checkComboDamage();
         }
         damage = damage + itemBuffATK;
@@ -311,7 +315,7 @@ public class Boards : MonoBehaviour {
         // A = 2 wait 1
         damageLastTurn = damage;
     }
-
+    // Hàm tính combo
     private void checkComboDamage(){
         if (totalCombo <= 5 ){
             levelAnimationUIManager.UpdateMaxComboWait(4);
@@ -341,19 +345,20 @@ public class Boards : MonoBehaviour {
     }
 
     // ----------------- Hiệu ứng Items ảnh hưởng tới map ------- //
-    private void PlayerUseItemAnimation(){
+    public void PlayerUseItemAnimation(){
         levelAudioPlayer.PlayItemSound();
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
     }
     public void ItemsDealDamage(int itemDamage){
-        PlayerUseItemAnimation();
         if (currentHealth - itemDamage < 1){
             currentHealth = 1;
         }  else {
             currentHealth = currentHealth - itemDamage;
         }
         damage = itemDamage;
+        damageLastTurn = damage;
+
         levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
         CheckHealthStatus();
@@ -361,7 +366,6 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsDestroyLine(){
-        PlayerUseItemAnimation();
         Clear(this.activePiece);
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
@@ -370,18 +374,15 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsReduceSkill(){
-        PlayerUseItemAnimation();
         enemyCore.skillWait = 0;
         enemyCore.skillBar.SetSkillValue(enemyCore.skillWait);
     }
 
     public void ItemsInsertDamage(int buff){
-        PlayerUseItemAnimation();
         itemBuffATK = itemBuffATK + buff;
     }
 
     public void ItemsChangeControlPiece(){
-        PlayerUseItemAnimation();
         Clear(this.activePiece);
         activePieceIndex = -1;
         activePieceColor = -1;
@@ -389,13 +390,11 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsChangeNextPiece(){
-        PlayerUseItemAnimation();
         nextBox.ClearPiece();
         nextBox.SpawmPiece();
     }
 
     public void ItemsInsertCombo(int combo){
-        PlayerUseItemAnimation();
         totalCombo = totalCombo + combo;
         levelAnimationUIManager.ShowDamageCombo();
         if (totalCombo <= 5 ){
@@ -430,13 +429,44 @@ public class Boards : MonoBehaviour {
     }
     // Gây tăng một hàng
 
+    public void ItemsRestartGame(){
+        currentHealth = maxHealth;
+        healthbar.SetHealth(currentHealth);
+        RectInt bounds = this.Bounds;
+        for (int row = bounds.yMin; row < bounds.yMax; row++){
+            LineClear(bounds.yMin);
+        }
+        ItemsChangeControlPiece();
+        ItemsChangeNextPiece();
+    }
+
+    public void ItemDestroyColumn(){
+        RectInt bounds = this.Bounds;
+        int deleteCol = Random.Range(Bounds.xMin, Bounds.xMax - 2);
+        deleteCollum(deleteCol);
+        deleteCollum(deleteCol + 1);
+        deleteCollum(deleteCol + 2);
+    }
+    // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
+    // Hàm tính thiệt hại thêm từ skill, item
+    public void calculateAdditionDamage(int additionPercent)
+    {
+        if (additionPercent != -1)
+            damage = damage + (damage * additionPercent) / 100;
+    }
+    // Thay đổi piece tiếp theo
+    public void ChangeNextPiece(int pieceIndexChange)
+    {
+        this.activePieceIndex = pieceIndexChange;
+    }
+    // Hồi máu cho quái
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
-
+    // Gây tăng một hàng
     public void MakeAGrayLine(){
         RectInt bounds = this.Bounds;
         int NullTile = Random.Range(bounds.xMin, Bounds.xMax);
