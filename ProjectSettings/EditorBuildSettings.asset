@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/_Scenes/Tetris.unity
     guid: 74d6dcc99b7823b46aab17589af75e9f
   - enabled: 1
+    path: Assets/_Scenes/Tetris_2.unity
+    guid: a330ab373899fef48b080903df2e316f
+  - enabled: 1
+    path: Assets/_Scenes/Tetris_3.unity
+    guid: 44dd0c865b0caa44e8ee00e7ea633652
+  - enabled: 1
     path: Assets/_Scenes/Tetris_Boss.unity
     guid: 70f292690b752b340ac342123b2de960
   - enabled: 1

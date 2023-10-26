@@ -23,7 +23,7 @@ public class Werewolf : EnemyCore
         skillWait = skillWait + lines;
         if (activeSkill2 == true){
             while (skillWait - 5 >= 0){
-                if (Boards.currentHealth <= (EnemyHealth * 2 / 3) && Phase2 == true){
+                if (boards.currentHealth <= (EnemyHealth * 2 / 3) && Phase2 == true){
                     boards.MakeAGrayLine();
                     Phase2 = false;
                 } else {
@@ -36,7 +36,7 @@ public class Werewolf : EnemyCore
             }
         } else {
             while (skillWait - 4 >= 0){
-                if (Boards.currentHealth <= (EnemyHealth * 2 / 3) && Phase2 == true){
+                if (boards.currentHealth <= (EnemyHealth * 2 / 3) && Phase2 == true){
                     boards.MakeAGrayLine();
                     Phase2 = false;
                 } else {
@@ -73,7 +73,7 @@ public class Werewolf : EnemyCore
     
     public void EnemySkill2()
     {
-        if (Boards.currentHealth * 3 <= EnemyHealth && activeSkill2==true)
+        if (boards.currentHealth * 3 <= EnemyHealth && activeSkill2==true)
         {
             for (int i = 0; i < 5; i++)
                 boards.MakeAGrayLine();

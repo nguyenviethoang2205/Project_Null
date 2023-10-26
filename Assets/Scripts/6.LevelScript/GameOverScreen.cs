@@ -28,6 +28,27 @@ public class GameOverScreen : MonoBehaviour{
         SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
     }
 
+    public void Restart2(){
+        Time.timeScale = 1f;
+        boards.DestroyPlayer();
+        SceneManager.UnloadScene("Tetris_2");
+        SceneManager.LoadScene("Tetris_2", LoadSceneMode.Additive);
+    }
+
+    public void Restart3(){
+        Time.timeScale = 1f;
+        boards.DestroyPlayer();
+        SceneManager.UnloadScene("Tetris_3");
+        SceneManager.LoadScene("Tetris_3", LoadSceneMode.Additive);
+    }
+
+    public void Restart4(){
+        Time.timeScale = 1f;
+        boards.DestroyPlayer();
+        SceneManager.UnloadScene("Tetris_4");
+        SceneManager.LoadScene("Tetris_4", LoadSceneMode.Additive);
+    }
+
     public void RestartBoss(){
         Time.timeScale = 1f;
         boards.DestroyPlayer();
@@ -57,7 +78,7 @@ public class GameOverScreen : MonoBehaviour{
 
     IEnumerator GameOverAnimation(){
         Color panelColor = gameOverPanel.color;
-        float deltaAlpha = 0.025f;
+        float deltaAlpha = 0.01f;
         gameOverPanel.gameObject.SetActive(true); 
         //Hiện Panel      
         while (panelColor.a < 0.7f)
@@ -69,7 +90,7 @@ public class GameOverScreen : MonoBehaviour{
         yield return new WaitForSecondsRealtime(0.5f);
         // Hiện Text
         Color textColor = gameOverText.color;
-        deltaAlpha = 0.025f;
+        deltaAlpha = 0.01f;
         while (textColor.a < 1f)
         {
             textColor.a += deltaAlpha;
@@ -80,7 +101,7 @@ public class GameOverScreen : MonoBehaviour{
         // Hiện button
         Color buttonColor = gameOverRestart.image.color;
 
-        deltaAlpha = 0.025f;
+        deltaAlpha = 0.01f;
         while (buttonColor.a < 1f)
         {
             buttonColor.a += deltaAlpha;
