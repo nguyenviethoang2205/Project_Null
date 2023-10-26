@@ -10,6 +10,7 @@ TagManager:
   - BossZone
   - Item
   - EliteZone
+  - Board
   layers:
   - Default
   - TransparentFX

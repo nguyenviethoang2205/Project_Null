@@ -17,19 +17,28 @@ public class Bubba : CharacterCore
     }
     private void Start()
     {
-        
+
+
     }
     private bool skillReady;
     private float skillTiming;
+    private float coolDown = 15f;
+
     public void CharacterSkill()
     {
         this.boards.nextBox.ClearPiece();
         this.boards.nextBox.SpawmPiece(0);
         this.boards.ChangeNextPiece(0);
     }
-    public void Update()
+
+    private void Update()
     {
-        if (this.skillTiming + 15f <= Time.time)
+        //--------------------------//
+        board = GameObject.FindGameObjectWithTag("Board");
+        boards = board.GetComponent<Boards>();
+        //--------------------------//
+
+        if (this.skillTiming + this.coolDown <= Time.time)
         {
             this.skillReady = true;
         }
@@ -43,6 +52,6 @@ public class Bubba : CharacterCore
     public override string GetName()
     {
         SetName("Bubba");
-        return characterName;
+        return name;
     }
 }

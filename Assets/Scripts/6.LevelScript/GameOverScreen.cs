@@ -79,7 +79,6 @@ public class GameOverScreen : MonoBehaviour{
         yield return new WaitForSecondsRealtime(0.5f);
         // Hiện button
         Color buttonColor = gameOverRestart.image.color;
-
         deltaAlpha = 0.025f;
         while (buttonColor.a < 1f)
         {

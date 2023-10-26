@@ -15,12 +15,18 @@ public class Olek : CharacterCore
         SetExp(0);
         SetMaxExp(100);
         SetAtk(5);
+        //characterSkillBar.setMaxSkillValue(skillEnergyMax);
+        //characterSkillBar.setSkillValue(skillEnergy);
         this.skillEnergy = 0;
         this.readyStack = 1;
         this.activeStack = 0;
     }
     private void Update()
     {
+        //--------------------------//
+        board = GameObject.FindGameObjectWithTag("Board");
+        boards = board.GetComponent<Boards>();
+        //--------------------------//
         if (activeStack < 3 && readyStack > 0 && Input.GetKeyDown(KeyCode.E))
         {
             CharacterSkill();
@@ -80,6 +86,6 @@ public class Olek : CharacterCore
     public override string GetName()
     {
         SetName("Olek");
-        return characterName;
+        return name;
     }
 }

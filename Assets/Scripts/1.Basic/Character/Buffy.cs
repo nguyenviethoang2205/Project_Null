@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buffy : CharacterCore
+public class Buffy: Character
 {
     public int skillEnergy;
     public bool skillReady;
@@ -25,6 +25,11 @@ public class Buffy : CharacterCore
     }
     private void Update()
     {
+        //--------------------------//
+        board = GameObject.FindGameObjectWithTag("Board");
+        boards = board.GetComponent<Boards>();
+        //--------------------------//
+
         if (skillReady == true && Input.GetKeyDown(KeyCode.E))
         {
             if (skillActive == false)
@@ -131,6 +136,7 @@ public class Buffy : CharacterCore
     public override string GetName()
     {
         SetName("Buffy");
-        return characterName;
+        return name;
+
     }
 }
