@@ -30,7 +30,7 @@ public class ZoneSelect : MonoBehaviour
     public Path path;
 
     #region Data
-    private CharacterCore character;
+    private Character character;
     private IDataService DataService = new JsonDataService();
     private bool EncryptionEnable;
     #endregion

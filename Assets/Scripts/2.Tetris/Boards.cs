@@ -448,17 +448,6 @@ public class Boards : MonoBehaviour {
         deleteCollum(deleteCol + 2);
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
-    // Hàm tính thiệt hại thêm từ skill, item
-    public void calculateAdditionDamage(int additionPercent)
-    {
-        if (additionPercent != -1)
-            damage = damage + (damage * additionPercent) / 100;
-    }
-    // Thay đổi piece tiếp theo
-    public void ChangeNextPiece(int pieceIndexChange)
-    {
-        this.activePieceIndex = pieceIndexChange;
-    }
     // Hồi máu cho quái
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;

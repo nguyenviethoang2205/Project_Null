@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubba : CharacterCore
+public class Bubba : Character
 {
     public override void Awake()
     {

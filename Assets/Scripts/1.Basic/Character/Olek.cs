@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Olek : CharacterCore
+public class Olek : Character
 {
     private int skillEnergy;
     private int skillEnergyMax = 20;

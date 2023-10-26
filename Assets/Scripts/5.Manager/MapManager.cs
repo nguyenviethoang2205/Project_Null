@@ -6,7 +6,7 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     private IDataService DataService = new JsonDataService();
-    private CharacterCore character = new CharacterCore();
+    private Character character = new Character();
     private bool EncryptionEnable;
     private long saveTime;
 
