@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "BoomBaKuBum", menuName = "Game/BoomBaKuBoom")]
+// [CreateAssetMenu(fileName = "BoomBaKuBum", menuName = "Game/BoomBaKuBoom")]
 public class BoomBaKuBum : ItemBase
 {
     public override void Initialize()
@@ -11,6 +11,7 @@ public class BoomBaKuBum : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsDealDamage(75);
     }
 }

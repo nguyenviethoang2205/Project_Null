@@ -20,8 +20,7 @@ public class ItemsManager : MonoBehaviour{
     public Text itemName3;
     public Text itemSkill3;
 
-    private void Start()
-    {
+    private void Start(){
         GetItem1();
         GetItem2();
         GetItem3();
@@ -30,6 +29,10 @@ public class ItemsManager : MonoBehaviour{
         GetItem6();
         GetItem7();
         GetItem8();
+        GetItem9();
+        GetItem10();
+        GetItem11();
+        GetItem12();
 
         GetRandom1();
         GetRandom2();
@@ -123,6 +126,29 @@ public class ItemsManager : MonoBehaviour{
         items.Add(item);
     }
 
+    private void GetItem9(){
+        DestinyCoin item = ScriptableObject.CreateInstance<DestinyCoin>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem10(){
+        GalacticMushroom item = ScriptableObject.CreateInstance<GalacticMushroom>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem11(){
+        AntiqueClock item = ScriptableObject.CreateInstance<AntiqueClock>();
+        item.Initialize();
+        items.Add(item);
+    }
+
+    private void GetItem12(){
+        DrillingMachine item = ScriptableObject.CreateInstance<DrillingMachine>();
+        item.Initialize();
+        items.Add(item);
+    }
     public void ChooseItem1(){
         playerInventory.AddItem(randomItem1);
     }

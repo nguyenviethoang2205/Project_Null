@@ -29,7 +29,6 @@ public class Werewolf : EnemyCore
                 } else {
                     int deleteCol = Random.Range(boards.Bounds.xMin, boards.Bounds.xMax);
                     boards.deleteCollum(deleteCol);
-                    deleteCol++;
                     Phase2 = true;
                 }
                 boards.DoEnemyAttack();

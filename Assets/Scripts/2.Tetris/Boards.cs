@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine; 
 using UnityEngine.Tilemaps;
 using Spine.Unity;
@@ -342,19 +343,19 @@ public class Boards : MonoBehaviour {
     }
 
     // ----------------- Hiệu ứng Items ảnh hưởng tới map ------- //
-    private void PlayerUseItemAnimation(){
+    public void PlayerUseItemAnimation(){
         levelAudioPlayer.PlayItemSound();
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
     }
     public void ItemsDealDamage(int itemDamage){
-        PlayerUseItemAnimation();
         if (currentHealth - itemDamage < 1){
             currentHealth = 1;
         }  else {
             currentHealth = currentHealth - itemDamage;
         }
         damage = itemDamage;
+        damageLastTurn = damage;
         levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
         CheckHealthStatus();
@@ -362,7 +363,6 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsDestroyLine(){
-        PlayerUseItemAnimation();
         Clear(this.activePiece);
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
@@ -371,18 +371,15 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsReduceSkill(){
-        PlayerUseItemAnimation();
         enemyCore.skillWait = 0;
         enemyCore.skillBar.SetSkillValue(enemyCore.skillWait);
     }
 
     public void ItemsInsertDamage(int buff){
-        PlayerUseItemAnimation();
         itemBuffATK = itemBuffATK + buff;
     }
 
     public void ItemsChangeControlPiece(){
-        PlayerUseItemAnimation();
         Clear(this.activePiece);
         activePieceIndex = -1;
         activePieceColor = -1;
@@ -390,13 +387,11 @@ public class Boards : MonoBehaviour {
     }
 
     public void ItemsChangeNextPiece(){
-        PlayerUseItemAnimation();
         nextBox.ClearPiece();
         nextBox.SpawmPiece();
     }
 
     public void ItemsInsertCombo(int combo){
-        PlayerUseItemAnimation();
         totalCombo = totalCombo + combo;
         levelAnimationUIManager.ShowDamageCombo();
         if (totalCombo <= 5 ){
@@ -416,6 +411,25 @@ public class Boards : MonoBehaviour {
             levelAnimationUIManager.ComboTurnRed();
             comboLost = 1; 
         }
+    }
+
+    public void ItemsRestartGame(){
+        currentHealth = maxHealth;
+        healthbar.SetHealth(currentHealth);
+        RectInt bounds = this.Bounds;
+        for (int row = bounds.yMin; row < bounds.yMax; row++){
+            LineClear(bounds.yMin);
+        }
+        ItemsChangeControlPiece();
+        ItemsChangeNextPiece();
+    }
+
+    public void ItemDestroyColumn(){
+        RectInt bounds = this.Bounds;
+        int deleteCol = Random.Range(Bounds.xMin, Bounds.xMax - 2);
+        deleteCollum(deleteCol);
+        deleteCollum(deleteCol + 1);
+        deleteCollum(deleteCol + 2);
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
     // Hàm tính thiệt hại thêm từ skill, item

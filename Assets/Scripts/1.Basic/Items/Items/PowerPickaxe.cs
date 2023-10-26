@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "PowerPickaxe", menuName = "Game/PowerPickaxe")]
+// [CreateAssetMenu(fileName = "PowerPickaxe", menuName = "Game/PowerPickaxe")]
 public class PowerPickaxe : ItemBase
 {
     public override void Initialize()
@@ -11,6 +11,7 @@ public class PowerPickaxe : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsDestroyLine();
         boards.ItemsDestroyLine();
         boards.ItemsDestroyLine();

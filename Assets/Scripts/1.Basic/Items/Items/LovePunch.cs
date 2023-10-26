@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "LovePunch", menuName = "Game/LovePunch")]
+// [CreateAssetMenu(fileName = "LovePunch", menuName = "Game/LovePunch")]
 public class LovePunch : ItemBase
 {
     public override void Initialize()
@@ -11,6 +11,7 @@ public class LovePunch : ItemBase
     }
 
     public override void UseItems(Boards boards){
+        boards.PlayerUseItemAnimation();
         boards.ItemsReduceSkill();
     }
 }
