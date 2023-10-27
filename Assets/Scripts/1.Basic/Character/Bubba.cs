@@ -8,10 +8,11 @@ public class Bubba : Character
     public override void Awake()
     {
         GetName();
-        SetLevel(1);
-        SetExp(0);
-        SetMaxExp(100);
         SetAtk(5);
+        SetSkillName("");
+        SetSkillDetail("Your next Piece will be I Block. Cooldown 15s.");
+        //characterSkillBar.setMaxSkillValue(skillEnergyMax);
+        //characterSkillBar.setSkillValue(skillEnergy);
         this.skillReady = true;
         this.skillTiming = Time.time;
     }

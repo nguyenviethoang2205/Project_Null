@@ -94,7 +94,6 @@ public class Boards : MonoBehaviour {
     }
 
     private void Update(){
-        hp = currentHealth;
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
@@ -302,12 +301,11 @@ public class Boards : MonoBehaviour {
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
         comboLost = 4;
-        damage = (lines * 5) + (10 * (lines - 1));
+        damage = (lines * (character.GetAtk() + itemBuffATK)) + (10 * (lines - 1));
         if (totalCombo > 1)
         {
             checkComboDamage();
         }
-        damage = damage + itemBuffATK;
         calculateAdditionDamage(additionDamage);
         // damage = damage + 2 * (totalCombo - 1);
         // D = 1.1 wait 4

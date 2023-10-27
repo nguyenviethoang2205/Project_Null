@@ -11,10 +11,9 @@ public class Olek : Character
     public override void Awake()
     {
         GetName();
-        SetLevel(1);
-        SetExp(0);
-        SetMaxExp(100);
         SetAtk(5);
+        SetSkillName("");
+        SetSkillDetail("When active put a stack of \"Loving Punch\", max 3. The next time you deal damage, for each stack, damage will increase by 100%. Energy skill: 20, stack up to 3.");
         //characterSkillBar.setMaxSkillValue(skillEnergyMax);
         //characterSkillBar.setSkillValue(skillEnergy);
         this.skillEnergy = 0;
