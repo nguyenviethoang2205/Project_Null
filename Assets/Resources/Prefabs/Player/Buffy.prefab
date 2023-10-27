@@ -177,13 +177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf11858dfe0646840a88c2216e00ac08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
+  collider: {fileID: -103051910028648104}
   board: {fileID: 0}
   name: 
-  characterLevel: 0
-  characterExp: 0
-  characterMaxExp: 0
   characterAtk: 0
+  monsterTrophy: 0
   boards: {fileID: 0}
   image: {fileID: 0}
   skillName: 
