@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2890828183796783864}
   - component: {fileID: 5256332518199774050}
   - component: {fileID: 5344670406370094521}
+  - component: {fileID: -4567915458930442633}
   m_Layer: 0
   m_Name: Olek
   m_TagString: Player
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Olek
+  collider: {fileID: -4567915458930442633}
 --- !u!114 &5344670406370094521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +61,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimation: {fileID: 4976307437624435916}
+--- !u!58 &-4567915458930442633
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890828183796783871}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.51}
+  serializedVersion: 2
+  m_Radius: 0.38
 --- !u!1 &5348891099759598122
 GameObject:
   m_ObjectHideFlags: 0

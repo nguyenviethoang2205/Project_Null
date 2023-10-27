@@ -76,6 +76,7 @@ public class CharSelection : MonoBehaviour
 
         newData.NewPosition();
         newData.NewStatus();
+        newData.NewZone();
         SceneManager.LoadScene("Level_Map");
     }
 }

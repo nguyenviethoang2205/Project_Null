@@ -12,11 +12,13 @@ public class ZoneSelect : MonoBehaviour
 {
     [SerializeField] private static GameObject player;
     [SerializeField] private GameObject uncompleteOj;
-    [SerializeField] private GameObject selectionZone;
+    [SerializeField] public GameObject selectionZone;
     [JsonProperty] private float[] currentPos;
     [JsonProperty] public bool isCompleted; //false
+    public string currentZone;
 
-    public new Collider collider;
+    public new Collider2D collider;
+    public Collider2D playerCollider;
     public Path path;
 
     #region Data
@@ -30,14 +32,18 @@ public class ZoneSelect : MonoBehaviour
         this.selectionZone = this.gameObject;
         LoadChar();
         path = GetComponentInParent<Path>();
+        playerCollider = player.GetComponent<Collider2D>();
         LoadPos();
 
     }
-
+    private void Start()
+    {
+        StartCoroutine(ZoneSelected());
+    }
     private void Update()
     {
         UpdateZone();
-        ZoneSelected();
+        Debug.Log(currentZone);
     }
 
     private void OnMouseDown()
@@ -46,7 +52,8 @@ public class ZoneSelect : MonoBehaviour
         {
             path.isMove = true;
             Move();
-
+            currentZone = selectionZone.name;
+            SaveZone();
         }
     }
     public void UpdateZone()
@@ -65,9 +72,9 @@ public class ZoneSelect : MonoBehaviour
         }
 
     }
-    public IEnumerator Completed()
+    public void Completed()
     {
-        yield return new WaitForSeconds(1);
+        // yield return new WaitForSeconds(1);
         isCompleted = true;
         path.SaveStatus();
         CurrentPos(player);
@@ -86,7 +93,7 @@ public class ZoneSelect : MonoBehaviour
         if (DataService.SaveData("/position.json", currentPos, EncryptionEnable))
         {
 
-            Debug.Log(currentPos);
+
         }
         else
         {
@@ -94,6 +101,30 @@ public class ZoneSelect : MonoBehaviour
         }
     }
 
+    public void SaveZone()
+    {
+        JsonConvert.SerializeObject(currentZone, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+        if (DataService.SaveData("/zone.json", currentZone, EncryptionEnable))
+        {
+
+            Debug.Log(currentZone);
+        }
+        else
+        {
+            Debug.LogError("Could not save the file!");
+        }
+    }
+
+    public void LoadZone()
+    {
+        string zoneData = DataService.LoadData<string>("/zone.json", EncryptionEnable);
+        currentZone = zoneData;
+    }
     public void LoadChar()
     {
         Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
@@ -124,19 +155,19 @@ public class ZoneSelect : MonoBehaviour
     }
     public void Move()
     {
-        
+
         player.transform.DOMove(selectionZone.transform.position, 1);
-        StartCoroutine(Completed());
+        // StartCoroutine(Completed());
         StartCoroutine(ZoneSelected());
 
     }
 
     public IEnumerator ZoneSelected()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        switch (selectionZone.name)
+        LoadZone();
+        switch (currentZone)
         {
 
             case "Zone_1":
@@ -194,6 +225,61 @@ public class ZoneSelect : MonoBehaviour
     }
 
 
+    private IEnumerator OnTriggerEnter2D(Collider2D other)
+    {
+        yield return new WaitForSeconds(1);
+        
+        if (!isCompleted)
+        {
+           Completed();
+            if (currentZone == "Zone_1")
+            {
+                SceneManager.LoadScene("Tetris");
+            }
+    
+            if (currentZone == "Zone_2")
+            {
+                SceneManager.LoadScene("GetItems");
+            }
+    
+            if (currentZone == "Zone_3")
+            {
+                SceneManager.LoadScene("Tetris");
+            }
+    
+            if (currentZone == "Zone_4")
+            {
+                SceneManager.LoadScene("Tetris");
+            }
+    
+            if (currentZone == "Zone_5")
+            {
+                SceneManager.LoadScene("Tetris");
+            }
+    
+            if (currentZone == "Zone_6")
+            {
+                SceneManager.LoadScene("Tetris_Elite");
+            }
+    
+            if (currentZone == "Zone_7")
+            {
+                SceneManager.LoadScene("Tetris_Elite");
+            }
+    
+            if (currentZone == "Zone_8")
+            {
+                SceneManager.LoadScene("GetItems");
+            }
+    
+            if (currentZone == "Boss_Zone")
+            {
+                SceneManager.LoadScene("Tetris");
+            }
+        }
+
+
+    }
 
 }
 

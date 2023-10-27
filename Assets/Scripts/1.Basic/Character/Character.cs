@@ -10,5 +10,5 @@ public class Character : MonoBehaviour
 {
     [JsonProperty]
     public new string name; 
-
+    public new Collider2D collider;
 }
