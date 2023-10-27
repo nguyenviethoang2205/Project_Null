@@ -4981,7 +4981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 86b5538a5de904c159ef5e749863f828, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 1e827b64345af4de1836e70123bd3e30, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -5024,7 +5024,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a1346046044d14d24836d6c06cbc528d, type: 2}
+  - {fileID: 2100000, guid: f7247b588e2d24af0a69ae979827e4c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7291,7 +7291,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 0
   damage: 0
-  hp: 0
+  additionDamage: 0
   dropSpeed: 1
   currnetTime: 0
   addSpeedTime: 15

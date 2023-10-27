@@ -229,6 +229,7 @@ public class Boards : MonoBehaviour {
             enemyCore.CheckSkillClearLine();
             CheckNearEnd();
             CheckVictory();
+            damage = 0;
         }
     }
 
@@ -358,6 +359,7 @@ public class Boards : MonoBehaviour {
         }
         damage = itemDamage;
         damageLastTurn = damage;
+        damage = 0;
 
         levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
