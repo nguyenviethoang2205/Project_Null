@@ -33,42 +33,42 @@ public class VictoryScreen : MonoBehaviour{
 
     public void ExitToMap3(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_3");
-        boards.DestroyPlayer();
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("Tetris_3");
+        // boards.DestroyPlayer();
+        SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMap4(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_4");
-        boards.DestroyPlayer();
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("Tetris_4");
+        // boards.DestroyPlayer();
+        SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMapElite(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Elite");
-        boards.DestroyPlayer();
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("Tetris_Elite");
+        // boards.DestroyPlayer();
+        SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMapElite2(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Elite_2");
-        boards.DestroyPlayer();
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("Tetris_Elite_2");
+        // boards.DestroyPlayer();
+        SceneManager.LoadScene("Level_Map");
     }
 
     public void ExitToMapBoss(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("Tetris_Boss");
-        boards.DestroyPlayer();
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("Tetris_Boss");
+        // boards.DestroyPlayer();
+        SceneManager.LoadScene("Level_Map");
     }
     public void ExitToMapItems(){
         Time.timeScale = 1f;
-        SceneManager.UnloadScene("GetItems");
-        // SceneManager.LoadScene("Level_Map");
+        // SceneManager.UnloadScene("GetItems");
+        SceneManager.LoadScene("Level_Map");
     }
 
     IEnumerator VictoryAnimation(){
