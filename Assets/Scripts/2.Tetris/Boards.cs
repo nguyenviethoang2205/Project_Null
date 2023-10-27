@@ -28,7 +28,7 @@ public class Boards : MonoBehaviour {
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
-
+ 
     public int currentHealth;
     public int maxHealth;
     public int damage;
@@ -94,7 +94,6 @@ public class Boards : MonoBehaviour {
     }
 
     private void Update(){
-        hp = currentHealth;
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
@@ -230,6 +229,7 @@ public class Boards : MonoBehaviour {
             enemyCore.CheckSkillClearLine();
             CheckNearEnd();
             CheckVictory();
+            damage = 0;
         }
     }
 
@@ -359,6 +359,7 @@ public class Boards : MonoBehaviour {
         }
         damage = itemDamage;
         damageLastTurn = damage;
+        damage = 0;
 
         levelAnimationUIManager.ChooseDamageToShow();
         healthbar.SetHealth(currentHealth);
@@ -453,7 +454,6 @@ public class Boards : MonoBehaviour {
         RectInt bounds = this.Bounds;        
         LineClear(bounds.yMin);
     }
-
     public void Heal(int percent){
         currentHealth = currentHealth + (maxHealth / 100)*percent;
         if (currentHealth >= maxHealth)
