@@ -14,15 +14,6 @@ public class Character : MonoBehaviour
     public new string name;
 
     [JsonProperty]
-    public int characterLevel;
-
-    [JsonProperty]
-    public int characterExp;
-
-    [JsonProperty]
-    public int characterMaxExp;
-
-    [JsonProperty]
     public int characterAtk;
 
     [JsonProperty]
