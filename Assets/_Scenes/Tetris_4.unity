@@ -2565,7 +2565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 362599750}
-        m_MethodName: ExitToMap3
+        m_MethodName: ExitToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
