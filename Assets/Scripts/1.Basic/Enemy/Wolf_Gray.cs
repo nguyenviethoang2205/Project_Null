@@ -55,6 +55,7 @@ public class Wolf_Gray: EnemyCore
             skillWait = 0;
             skillBar.SetSkillValue(skillWait);
         }
+        CheckStatus();
     }
 
     public override void CheckSkillStart() { 

@@ -29,6 +29,7 @@ public class Treant: EnemyCore
                 skillBar.SetSkillValue(skillWait);
                 waitExplosive = 10;
                 isSkillReady = true;
+                CheckStatus();
             }
         } else {
             skillWait -= boards.damage;
