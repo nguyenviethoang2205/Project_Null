@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5256332518199774050}
   - component: {fileID: 5344670406370094521}
   - component: {fileID: -4567915458930442633}
+  - component: {fileID: 3703985583884987441}
   m_Layer: 0
   m_Name: Olek
   m_TagString: Player
@@ -46,8 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9730b2faf2d504549a6a2108dbc1adf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Olek
   collider: {fileID: -4567915458930442633}
+  board: {fileID: 0}
+  name: Olek
+  characterLevel: 0
+  characterExp: 0
+  characterMaxExp: 0
+  characterAtk: 0
+  boards: {fileID: 0}
+  image: {fileID: 0}
+  skillName: 
+  skillDetail: 
 --- !u!114 &5344670406370094521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,12 +81,33 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.51}
   serializedVersion: 2
   m_Radius: 0.38
+--- !u!50 &3703985583884987441
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890828183796783871}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5348891099759598122
 GameObject:
   m_ObjectHideFlags: 0
