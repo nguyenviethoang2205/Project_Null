@@ -7244,9 +7244,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000079868}
+  - component: {fileID: 2000079864}
   - component: {fileID: 2000079867}
   - component: {fileID: 2000079866}
-  - component: {fileID: 2000079864}
   - component: {fileID: 2000079865}
   m_Layer: 0
   m_Name: BoardTilemap

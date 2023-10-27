@@ -91,8 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5573660984508736945}
   - component: {fileID: 6968511297144877320}
-  - component: {fileID: 3464324160830166461}
-  - component: {fileID: 2226305661476922346}
+  - component: {fileID: 642719547114439427}
   m_Layer: 0
   m_Name: Zone
   m_TagString: NormalZone
@@ -128,38 +127,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49db9050143e75448945f60c64ac0fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completed: 0
   uncompleteOj: {fileID: 2214870887382292061}
-  player: {fileID: 0}
-  startZone: {fileID: 0}
   selectionZone: {fileID: 0}
-  collider: {fileID: 3464324160830166461}
+  isCompleted: 0
+  currentZone: 
+  collider: {fileID: 642719547114439427}
+  playerCollider: {fileID: 0}
   path: {fileID: 0}
---- !u!135 &3464324160830166461
-SphereCollider:
+--- !u!58 &642719547114439427
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3317140515828492958}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.98
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2226305661476922346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317140515828492958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a8ff24d5a60994488d0b541b759c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.59
 --- !u!1 &4276319298150323730
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public Image openPanel; 
     public Image closePanel; 
     public AudioManager audioManager;
+     public Path path;
+    public ZoneSelect zoneSelect;
 
     public bool isDone = false;
     public bool isPlay = false;

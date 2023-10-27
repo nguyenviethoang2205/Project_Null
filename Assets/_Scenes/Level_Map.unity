@@ -167,7 +167,17 @@ MonoBehaviour:
   - {fileID: 1287319227}
   - {fileID: 2042881328}
   - {fileID: 1336875927}
-  zoneSelect: {fileID: 0}
+  zoneSelect:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &188648606
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,6 +1248,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 14787104019193475, guid: 4135015519ca62040aefa81ee4df7c83,
+        type: 3}
+      propertyPath: trangThai
+      value: Chua vao
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7740852348287230850, guid: 4135015519ca62040aefa81ee4df7c83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4135015519ca62040aefa81ee4df7c83, type: 3}
@@ -2049,6 +2064,11 @@ PrefabInstance:
     - target: {fileID: 5573660984508736945, guid: 320f8d2bf53a0e947bfae84704b82541,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968511297144877320, guid: 320f8d2bf53a0e947bfae84704b82541,
+        type: 3}
+      propertyPath: isCompleted
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
