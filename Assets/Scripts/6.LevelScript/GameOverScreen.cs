@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameOverScreen : MonoBehaviour{
+public class GameOverScreen : MonoBehaviour
+{
     public bool isOver = false;
     public Button gameOverRestart;
     public Button gameOverExit;
@@ -12,74 +13,73 @@ public class GameOverScreen : MonoBehaviour{
     public Text gameOverText;
     public Image gameOverPanel;
     public Boards boards;
-    
-    public void Setup(){
+
+    public void Setup()
+    {
         Time.timeScale = 0f;
-        gameObject.SetActive(true); 
+        gameObject.SetActive(true);
         StartCoroutine(GameOverAnimation());
         isOver = true;
-        
+
     }
 
-    public void Restart(){
+    public void Restart()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris");
-        SceneManager.LoadScene("Tetris", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Tetris");
     }
 
-    public void Restart2(){
+    public void Restart2()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_2");
-        SceneManager.LoadScene("Tetris_2", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Tetris_2");
     }
 
-    public void Restart3(){
+    public void Restart3()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_3");
-        SceneManager.LoadScene("Tetris_3", LoadSceneMode.Additive);
+
+        SceneManager.LoadScene("Tetris_3");
     }
 
-    public void Restart4(){
+    public void Restart4()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_4");
-        SceneManager.LoadScene("Tetris_4", LoadSceneMode.Additive);
+
+        SceneManager.LoadScene("Tetris_4");
     }
 
-    public void RestartBoss(){
+    public void RestartBoss()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_Boss");
-        SceneManager.LoadScene("Tetris_Boss", LoadSceneMode.Additive);
+
+        SceneManager.LoadScene("Tetris_Boss");
     }
 
-    public void RestartElite(){
+    public void RestartElite()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_Elite");
-        SceneManager.LoadScene("Tetris_Elite", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Tetris_Elite");
     }
 
-    public void RestartElite2(){
+    public void RestartElite2()
+    {
         Time.timeScale = 1f;
-        boards.DestroyPlayer();
-        SceneManager.UnloadScene("Tetris_Elite_2");
-        SceneManager.LoadScene("Tetris_Elite_2", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Tetris_Elite_2");
     }
 
 
-    public void ReturnMenu(){
+    public void ReturnMenu()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
-    IEnumerator GameOverAnimation(){
+    IEnumerator GameOverAnimation()
+    {
         Color panelColor = gameOverPanel.color;
         float deltaAlpha = 0.01f;
-        gameOverPanel.gameObject.SetActive(true); 
+        gameOverPanel.gameObject.SetActive(true);
         //Hiện Panel      
         while (panelColor.a < 0.7f)
         {
@@ -106,7 +106,7 @@ public class GameOverScreen : MonoBehaviour{
             buttonColor.a += deltaAlpha;
             gameOverRestart.image.color = buttonColor;
             gameOverRestartText.color = buttonColor;
-            gameOverExit.image.color  = buttonColor;
+            gameOverExit.image.color = buttonColor;
             gameOverExitText.color = buttonColor;
             yield return new WaitForSecondsRealtime(0.0005f);
         }
