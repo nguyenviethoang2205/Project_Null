@@ -6,7 +6,7 @@ public class MysteryBox : ItemBase
     public override void Initialize()
     {
         itemName = "Mystery Box";
-        itemInfo = "Perform one of the following actions:\n1.Deal 1~500 damage.\n2.Destroy 1~10 Lines.\n3.Increase damage by 1~10 for each attack on the enemy.\n4.Create and push 1~10 Lines.";
+        itemInfo = "Perform one of the following actions:\n1.Deal 1~500 damage.\n2.Destroy 1~10 Lines.\n3.Increase the player's attack points by 1~5.\n4.Create and push 1~10 Lines.";
         itemImage = Resources.Load<Sprite>("Items/Item7");;
     }
 
@@ -37,15 +37,15 @@ public class MysteryBox : ItemBase
             int buffRangeRandom = Random.Range(1, 1000);
             int buffRandom = 0;
             if (buffRangeRandom == 1){
-                buffRandom =  Random.Range(9,11);
+                buffRandom = 5;
             } else if (buffRangeRandom >= 2 && buffRangeRandom <= 6){
-                buffRandom =  Random.Range(7,9);
+                buffRandom = 4;
             } else if (buffRangeRandom >= 7 && buffRangeRandom <= 17){
-                buffRandom =  Random.Range(5,7);
+                buffRandom = 3;
             } else if (buffRangeRandom >= 18 && buffRangeRandom <= 38){
-                buffRandom =  Random.Range(3,5);
+                buffRandom = 2;
             } else {
-                buffRandom =  Random.Range(1,3);
+                buffRandom = 1;
             }
             boards.ItemsInsertDamage(buffRandom);
         } else {
