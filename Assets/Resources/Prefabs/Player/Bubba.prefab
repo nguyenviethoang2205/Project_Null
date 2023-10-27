@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 2890828183796783864}
   - component: {fileID: -301165772910571285}
   - component: {fileID: 8973135874239928979}
+  - component: {fileID: 2044827221915430515}
+  - component: {fileID: -2554791438974991057}
   m_Layer: 0
   m_Name: Bubba
   m_TagString: Player
@@ -163,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Bubba
+  collider: {fileID: 2044827221915430515}
 --- !u!114 &8973135874239928979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +179,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimation: {fileID: 2890828182849161769}
+--- !u!58 &2044827221915430515
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890828183796783871}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.51}
+  serializedVersion: 2
+  m_Radius: 0.38
+--- !u!50 &-2554791438974991057
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890828183796783871}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

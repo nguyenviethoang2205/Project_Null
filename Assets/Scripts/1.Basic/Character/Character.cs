@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 [JsonObject(MemberSerialization.OptIn)]
 public class Character : MonoBehaviour
 {
+    public new Collider2D collider;
     public GameObject board;
     [JsonProperty]
     public new string name;
@@ -59,4 +60,5 @@ public class Character : MonoBehaviour
     {
         this.characterAtk = atk;
     }
+    
 }
