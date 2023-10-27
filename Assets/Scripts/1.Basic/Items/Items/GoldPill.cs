@@ -6,12 +6,12 @@ public class GoldPill : ItemBase
     public override void Initialize()
     {
         itemName = "HND-2910 Gold";
-        itemInfo = "Deal an additional 3 damage for each time you damage the opponent.";
+        itemInfo = "Increase the player's attack points by 2.";
         itemImage = Resources.Load<Sprite>("Items/Item1");;
     }
 
     public override void UseItems(Boards boards){
         boards.PlayerUseItemAnimation();
-        boards.ItemsInsertDamage(3);
+        boards.ItemsInsertDamage(2);
     }
 }

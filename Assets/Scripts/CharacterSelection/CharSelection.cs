@@ -18,11 +18,12 @@ public class CharSelection : MonoBehaviour
         private Character character;
         private IDataService DataService = new JsonDataService();
         private bool EncryptionEnable;
-        private long saveTime;
+        public NewData newData;
     #endregion
 
     private void Awake()
     {
+        newData = GetComponent<NewData>();
         SelectChar(0);
         UpdateChar();
 
@@ -73,7 +74,9 @@ public class CharSelection : MonoBehaviour
             Debug.LogError("Could not save the file!");
         }
 
-
+        newData.NewPosition();
+        newData.NewStatus();
+        newData.NewZone();
         SceneManager.LoadScene("Level_Map");
     }
 }

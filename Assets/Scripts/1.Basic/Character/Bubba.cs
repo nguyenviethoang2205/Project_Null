@@ -35,8 +35,13 @@ public class Bubba : Character
     private void Update()
     {
         //--------------------------//
-        board = GameObject.FindGameObjectWithTag("Board");
-        boards = board.GetComponent<Boards>();
+        try{
+            board = GameObject.FindGameObjectWithTag("Board");
+            boards = board.GetComponent<Boards>();
+        }
+        catch (Exception e){
+            Debug.Log(e);
+        }
         //--------------------------//
 
         if (this.skillTiming + this.coolDown <= Time.time)

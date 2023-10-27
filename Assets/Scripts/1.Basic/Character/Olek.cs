@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,8 +24,13 @@ public class Olek : Character
     private void Update()
     {
         //--------------------------//
-        board = GameObject.FindGameObjectWithTag("Board");
-        boards = board.GetComponent<Boards>();
+        try{
+            board = GameObject.FindGameObjectWithTag("Board");
+            boards = board.GetComponent<Boards>();
+        }
+        catch (Exception e){
+            Debug.Log(e);
+        }
         //--------------------------//
         if (activeStack < 3 && readyStack > 0 && Input.GetKeyDown(KeyCode.E))
         {

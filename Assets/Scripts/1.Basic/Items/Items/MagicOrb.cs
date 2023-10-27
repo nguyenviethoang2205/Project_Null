@@ -6,7 +6,7 @@ public class MagicOrb : ItemBase
     public override void Initialize()
     {
         itemName = "Magic Orb";
-        itemInfo = "Destroy a piece in the queue and replace it with a random piece.";
+        itemInfo = "Destroy a block in the queue and replace it with a random block.";
         itemImage = Resources.Load<Sprite>("Items/Item6");;
     }
 
