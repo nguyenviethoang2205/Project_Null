@@ -125,6 +125,7 @@ public class ZoneSelect : MonoBehaviour
         string zoneData = DataService.LoadData<string>("/zone.json", EncryptionEnable);
         currentZone = zoneData;
     }
+    
     public void LoadChar()
     {
         Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);

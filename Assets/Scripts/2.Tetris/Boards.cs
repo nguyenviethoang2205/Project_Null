@@ -94,7 +94,6 @@ public class Boards : MonoBehaviour {
     }
 
     private void Update(){
-        hp = currentHealth;
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
