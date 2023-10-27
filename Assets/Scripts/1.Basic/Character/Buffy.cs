@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,8 +27,13 @@ public class Buffy: Character
     private void Update()
     {
         //--------------------------//
-        board = GameObject.FindGameObjectWithTag("Board");
-        boards = board.GetComponent<Boards>();
+        try{
+            board = GameObject.FindGameObjectWithTag("Board");
+            boards = board.GetComponent<Boards>();
+        }
+        catch (Exception e){
+            Debug.Log(e);
+        }
         //--------------------------//
 
         if (skillReady == true && Input.GetKeyDown(KeyCode.E))

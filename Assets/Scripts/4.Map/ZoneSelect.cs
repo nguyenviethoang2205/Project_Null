@@ -189,16 +189,17 @@ public class ZoneSelect : MonoBehaviour
                 // SceneManager.LoadScene("Tetris");
                 break;
 
-            case "Zone_4":
-                path.zone[7].SetActive(true);
-                // SceneManager.LoadScene("Tetris");
-                break;
-
-            case "Zone_5":
-                path.zone[7].SetActive(true);
-                path.zone[6].SetActive(false);
-                // SceneManager.LoadScene("Tetris");
-                break;
+                case "Zone_4":
+                    path.zone[7].SetActive(true);
+                    SceneManager.LoadScene("Tetris_2", LoadSceneMode.Additive);
+                    break;
+                    // SceneManager.LoadScene("Tetris");
+                case "Zone_5":
+                    path.zone[7].SetActive(true);
+                    path.zone[6].SetActive(false);
+                    SceneManager.LoadScene("Tetris_3", LoadSceneMode.Additive);
+                    // SceneManager.LoadScene("Tetris");
+                    break;
 
             case "Zone_6":
                 path.zone[8].SetActive(true);
