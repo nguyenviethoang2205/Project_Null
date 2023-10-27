@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class JsonDataService : IDataService
 {
-    
+
     public bool SaveData<T>(string RelativePath, T Data, bool Encrypted)
     {
         string path = Application.persistentDataPath + RelativePath;
@@ -19,7 +19,7 @@ public class JsonDataService : IDataService
                 Debug.Log("Data exist, deleting old file and writing new one");
                 File.Delete(path);
             }
-            
+
             else
             {
                 Debug.Log("Create data fist time");

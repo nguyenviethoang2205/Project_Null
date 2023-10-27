@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Bubba
+  boards: {fileID: 0}
 --- !u!114 &8973135874239928979
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,30 +5,21 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 [JsonObject(MemberSerialization.OptIn)]
 public class ZoneSelect : MonoBehaviour
 {
-    public bool isCompleted; //false
-    [SerializeField] private GameObject uncompleteOj;
     [SerializeField] private static GameObject player;
-    [SerializeField] private GameObject startZone;
+    [SerializeField] private GameObject uncompleteOj;
     [SerializeField] private GameObject selectionZone;
     [JsonProperty] private float[] currentPos;
+    [JsonProperty] public bool isCompleted; //false
 
-    public float[] CurrentPos(GameObject _player)
-    {
-        currentPos = new float[3];
-        currentPos[0] = _player.transform.position.x;
-        currentPos[1] = _player.transform.position.y;
-        currentPos[2] = _player.transform.position.z;
-        return currentPos;
-    }
     public new Collider collider;
     public Path path;
 
     #region Data
-    private Character character;
     private IDataService DataService = new JsonDataService();
     private bool EncryptionEnable;
     #endregion
@@ -36,46 +27,17 @@ public class ZoneSelect : MonoBehaviour
 
     private void Awake()
     {
-        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
-
-        if (player == null)
-        {
-            player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject))) as GameObject;
-        }
-
+        this.selectionZone = this.gameObject;
+        LoadChar();
         path = GetComponentInParent<Path>();
-        startZone = GameObject.FindGameObjectWithTag("Respawn");
-        player.transform.position = startZone.transform.position;
-        selectionZone = gameObject;
-    }
-
-    private void Start()
-    {
+        LoadPos();
 
     }
 
     private void Update()
     {
         UpdateZone();
-    }
-
-    public void UpdateZone()
-    {
-        foreach (var i in path.zone)
-        {
-
-            if (!isCompleted)
-            {
-                uncompleteOj.SetActive(true);
-            }
-            if (isCompleted)
-            {
-                i.SetActive(true);
-                uncompleteOj.SetActive(false);
-                collider.enabled = false;
-            }
-        }
-
+        ZoneSelected();
     }
 
     private void OnMouseDown()
@@ -87,13 +49,30 @@ public class ZoneSelect : MonoBehaviour
 
         }
     }
+    public void UpdateZone()
+    {
+        switch (isCompleted)
+        {
+            case false:
+                uncompleteOj.SetActive(true);
+                break;
 
+            case true:
+                uncompleteOj.SetActive(false);
+                collider.enabled = false;
+                break;
+
+        }
+
+    }
     public IEnumerator Completed()
     {
         yield return new WaitForSeconds(1);
-        gameObject.SetActive(true);
-        uncompleteOj.SetActive(false);
-        collider.enabled = false;
+        isCompleted = true;
+        path.SaveStatus();
+        CurrentPos(player);
+        Debug.Log(player.transform.position);
+        SavePos();
     }
 
     public void SavePos()
@@ -114,13 +93,42 @@ public class ZoneSelect : MonoBehaviour
             Debug.LogError("Could not save the file!");
         }
     }
+
+    public void LoadChar()
+    {
+        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
+
+        if (player == null)
+        {
+            player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject))) as GameObject;
+        }
+    }
+
+    public void LoadPos()
+    {
+        float[] posData = DataService.LoadData<float[]>("/position.json", EncryptionEnable);
+        Vector3 position;
+        position.x = posData[0];
+        position.y = posData[1];
+        position.z = posData[2];
+        player.transform.position = position;
+    }
+
+    public float[] CurrentPos(GameObject _player)
+    {
+        currentPos = new float[3];
+        currentPos[0] = _player.transform.position.x;
+        currentPos[1] = _player.transform.position.y;
+        currentPos[2] = _player.transform.position.z;
+        return currentPos;
+    }
     public void Move()
     {
-        CurrentPos(player);
-        SavePos();
+        
         player.transform.DOMove(selectionZone.transform.position, 1);
         StartCoroutine(Completed());
         StartCoroutine(ZoneSelected());
+
     }
 
     public IEnumerator ZoneSelected()

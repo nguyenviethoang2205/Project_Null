@@ -1163,7 +1163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ea36f5df712f84ca56909584063a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimation: {fileID: 0}
   enemyAnimation: {fileID: 1232612511}
 --- !u!1 &337135555
 GameObject:
@@ -6802,13 +6801,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000079868}
+  - component: {fileID: 2000079864}
   - component: {fileID: 2000079867}
   - component: {fileID: 2000079866}
-  - component: {fileID: 2000079864}
   - component: {fileID: 2000079865}
   m_Layer: 0
   m_Name: BoardTilemap
-  m_TagString: Untagged
+  m_TagString: Board
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6825,10 +6824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68b892c75624548b17d1ba87b11974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   enemyCore: {fileID: 1547606836}
   nextBox: {fileID: 295504792}
   healthbar: {fileID: 1129838884}
   characterAnimation: {fileID: 309315442}
+  animationCharacter: {fileID: 0}
   overScreen: {fileID: 420338192}
   victoryScreen: {fileID: 362599750}
   levelAudioPlayer: {fileID: 309315440}
