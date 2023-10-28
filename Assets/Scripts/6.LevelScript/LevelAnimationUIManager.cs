@@ -8,6 +8,8 @@ public class LevelAnimationUIManager : MonoBehaviour
     public EnemyCore enemyCore;
     public ComboBar comboBar;
     public Boards boards;
+    public EnergyBar energyBar;
+    public SpriteRenderer skillImage;
     //-------------------------
     public Text enemyDisplayName;
     public Text textCombo;
@@ -22,7 +24,34 @@ public class LevelAnimationUIManager : MonoBehaviour
     private int choose = 0;
 
     private void Start(){
+        skillImage.sprite = boards.character.skillImage;
         ChangeName();
+    }
+
+    public void EnergyNotFull(){
+        energyBar.TurnWhite();
+    }
+
+    public void EnergyFull(){
+        energyBar.TurnBlue();
+    }
+
+    public void SkillCanUse(){
+        Color skillImageColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        skillImage.color = skillImageColor;
+    }
+
+    public void SkillCannotUse(){
+        Color skillImageColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+        skillImage.color = skillImageColor;
+    }
+
+    public void SetEnergy(int energy){
+        energyBar.SetEnergyValue(energy);
+    }
+
+    public void SetMaxEnergy(int energy){
+        energyBar.SetMaxEnergyValue(energy);
     }
 
     public void ShowDamageCombo(){

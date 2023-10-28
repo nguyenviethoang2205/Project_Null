@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class Boards : MonoBehaviour {
 
     #region Data
-    private Character character;
+    public Character character;
     private IDataService DataService = new JsonDataService();
     private bool EncryptionEnable;
     public GameObject player;
@@ -20,6 +20,8 @@ public class Boards : MonoBehaviour {
     public EnemyAnimation characterAnimation;
     public AnimationCharacter animationCharacter;
     public GameOverScreen overScreen;
+    
+    public CheckEnemyScreen checkEnemyScreen;
     public VictoryScreen victoryScreen;
     public LevelAudioPlayer levelAudioPlayer;
     public LevelAnimationUIManager levelAnimationUIManager;
@@ -78,9 +80,13 @@ public class Boards : MonoBehaviour {
         for ( int i = 0; i < this.tetrominoes.Length; i++ ){
             this.tetrominoes[i].Initialize();
         }
+
+        character = player.GetComponentInChildren<Character>();
     }
     
     private void Start(){ 
+        // levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
+        // levelAnimationUIManager.SetEnergy(character.skillEnergy);
         inventoryManager.isGameStart = true;
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
@@ -91,9 +97,12 @@ public class Boards : MonoBehaviour {
         this.currnetTime = Time.time;
         enemyCore.CheckSkillStart();
         SpawmPiece();  
+        checkEnemyScreen.Setup();
     }
 
     private void Update(){
+        levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
+        levelAnimationUIManager.SetEnergy(character.skillEnergy);
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
                 if (Input.GetKeyDown(KeyCode.Return)){
                     inventoryManager.UseItems(this);
@@ -199,7 +208,6 @@ public class Boards : MonoBehaviour {
                     row++;
                 }
             }
-            // characterCore.CheckBeforeClearLine(totalLinesClear);
             if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
@@ -210,6 +218,7 @@ public class Boards : MonoBehaviour {
                 }
                 levelAudioPlayer.PlayPieceDownSound();
             } else {
+                character.CheckBeforeClearLine(totalLinesClear);
                 totalCombo++;
                 levelAudioPlayer.PlayPieceClearSound();
                 // Kiểm tra thiệt hại và ghi nó vào thanh máu

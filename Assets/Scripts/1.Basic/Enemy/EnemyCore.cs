@@ -7,8 +7,13 @@ public abstract class EnemyCore : MonoBehaviour
 {
     public SkillBar skillBar;
     public Boards boards;
+
+    public Sprite EnemyImage;
     
     public string EnemyName;
+    public string EnemyDetail;
+
+    public string EnemyDifficulty;
     public int EnemyHealth;
     public int maxSkillWait;
     public int skillWait;
@@ -25,6 +30,10 @@ public abstract class EnemyCore : MonoBehaviour
     public abstract string getName();
     // Lấy giá trị máu
     public abstract int getHealth();
+
+    public abstract string getDifficulty();
+
+    public abstract string getDetail();
 
     // Kiểm tra sử dụng chiêu
     // Dùng chiêu lúc bất đầu game
@@ -43,6 +52,16 @@ public abstract class EnemyCore : MonoBehaviour
     public void SetEnemyName(string name)
     {
         this.EnemyName = name;
+    }
+
+    public void SetEnemyDetail(string detail)
+    {
+        this.EnemyDetail = detail;
+    }
+
+    public void SetEnemyDifficulty(string difficulty)
+    {
+        this.EnemyDifficulty = difficulty;
     }
 }
 

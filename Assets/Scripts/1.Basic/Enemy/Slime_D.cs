@@ -8,8 +8,11 @@ public class Slime_D : EnemyCore{
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
+                EnemyImage = Resources.Load<Sprite>("Enemy/Slime");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
     
     public override void CheckSkillStart(){}
@@ -26,8 +29,20 @@ public class Slime_D : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(100);
+        SetEnemyHealth(149);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("A normal Slime, quite useless and doesn't attack you, but you need to defeat it to proceed");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Easy");
+        return EnemyDifficulty;
     }
 }    
 

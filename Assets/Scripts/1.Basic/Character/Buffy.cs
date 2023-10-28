@@ -5,21 +5,19 @@ using UnityEngine;
 
 public class Buffy: Character
 {
-    public int skillEnergy;
     public bool skillReady;
     public bool skillActive;
     public int changePieceUses;
     public float timeFlag;
-    private int skillEnergyMax = 20;
     public override void Awake()
     {
+        skillEnergy = 15;
+        skillEnergyMax = 20;
+        skillImage = Resources.Load<Sprite>("PlayerSkill/Buffy_Skill");
         GetName();
-        SetAtk(5);
+        SetAtk(4);
         SetSkillName("");
         SetSkillDetail("For 5s, Drop Speed will decrease 5 time. When the skill is active, reactive will change the Currnet Piece into the Next Piece, max 3 time. Energy skill: 20");
-        //characterSkillBar.setMaxSkillValue(skillEnergyMax);
-        //characterSkillBar.setSkillValue(skillEnergy);
-        this.skillEnergy = 15;
         this.skillReady = false;
         this.skillActive = false;
         this.changePieceUses = 0;
@@ -31,14 +29,39 @@ public class Buffy: Character
         try{
             board = GameObject.FindGameObjectWithTag("Board");
             boards = board.GetComponent<Boards>();
+            boards.levelAnimationUIManager.SetMaxEnergy(skillEnergyMax);
+            boards.levelAnimationUIManager.SetEnergy(skillEnergy);
         }
         catch (Exception e){
             Debug.Log(e);
         }
         //--------------------------//
+        if (changePieceUses > 0){ 
+            try{
+                boards.levelAnimationUIManager.SkillCanUse();
+                boards.levelAnimationUIManager.EnergyFull();
+            } catch (Exception e){
+                Debug.Log(e);
+            }
+        } else if (skillEnergy < skillEnergyMax){
+            try{
+                boards.levelAnimationUIManager.SkillCannotUse();
+                boards.levelAnimationUIManager.EnergyNotFull();
+            } catch (Exception e){
+                Debug.Log(e);
+            }
+        } 
 
         if (skillReady == true && Input.GetKeyDown(KeyCode.E))
         {
+            try{
+                boards.levelAudioPlayer.PlayPlayerAttackSound();
+                boards.animationCharacter.PlayerDoAttackAction();
+                boards.characterAnimation.EnemyDoDefenseAction();
+            }
+            catch (Exception e){
+                Debug.Log(e);
+            }
             if (skillActive == false)
                 timeFlag = Time.time;
             CharacterSkill();
@@ -47,6 +70,10 @@ public class Buffy: Character
         {
             skillActive = false;
             skillReady = false;
+            skillEnergy = 0;
+            skillEnergyMax = 20;
+            boards.levelAnimationUIManager.SkillCannotUse();
+            boards.levelAnimationUIManager.EnergyNotFull();
             timeFlag = -1;
             changePieceUses = 0;
             this.boards.activePiece.getSpeed(0.2f);
@@ -63,8 +90,9 @@ public class Buffy: Character
         }
         else
         {
-            if (this.changePieceUses < 3)
+            if (this.changePieceUses > 0)
             {
+                skillEnergy--;
                 RectInt bounds = this.boards.Bounds;
                 Vector3Int currentPosition = this.boards.activePiece.position;
                 Vector3Int[] checkCells = new Vector3Int[4];
@@ -76,10 +104,10 @@ public class Buffy: Character
                 if (IsValidPosition(checkCells, currentPosition))
                 {
                     this.boards.SpawmPiece(currentPosition);
-                    this.changePieceUses++;
                 }
                 else
                     this.boards.Set(this.boards.activePiece);
+                changePieceUses--;
             }
         }
     }
@@ -112,31 +140,35 @@ public class Buffy: Character
             case 0:
                 break;
             case 1:
-                checkEnegry(totalLineClear);
+                checkEnergy(totalLineClear);
                 break;
             case 2:
-                checkEnegry(totalLineClear);
+                checkEnergy(totalLineClear);
                 break;
             case 3:
-                checkEnegry(totalLineClear);
+                checkEnergy(totalLineClear);
                 break;
             case 4:
-                checkEnegry(totalLineClear);
+                checkEnergy(totalLineClear);
                 break;
             default:
                 Debug.LogWarning("some thing wrong");
                 break;
         }
     }
-    private void checkEnegry(int totalLineClear)
+    private void checkEnergy(int totalLineClear)
     {
         if (this.skillReady == false)
         {
-            this.skillEnergy = this.skillEnergy + 1 + 2 * (totalLineClear - 1);
-            if (this.skillEnergy >= this.skillEnergyMax)
+            skillEnergy = skillEnergy + 1 + 2 * (totalLineClear - 1);
+            if (skillEnergy >= skillEnergyMax)
             {
-                this.skillReady = true;
-                this.skillEnergy = 0;
+                skillReady = true;
+                skillEnergyMax = 3;
+                skillEnergy = skillEnergyMax;
+                changePieceUses = 3;
+                boards.levelAnimationUIManager.SkillCanUse();
+                boards.levelAnimationUIManager.EnergyFull();
             }
         }
     }

@@ -20,9 +20,12 @@ public class Character : MonoBehaviour
     public int monsterTrophy = 0;
 
     public Boards boards;
-    public Sprite image;
+    public Sprite skillImage;
     public string skillName;
     public string skillDetail;
+
+    public int skillEnergy;
+    public int skillEnergyMax;
 
 
     public virtual void Awake() { }

@@ -11,8 +11,11 @@ public class Slime_Fusion: EnemyCore
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Slime_Fusion");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
     public void EnemySkill(){
@@ -67,7 +70,19 @@ public class Slime_Fusion: EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(150);
+        SetEnemyHealth(200);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("Being a disciple of some Dryad, however, he always uses his magic incorrectly. He constantly takes 1 damage when blocks fall, until a certain point when he will make you 'dizzy' for a short time. When you're 'dizzy,' if you clear 1 line, he will restore a certain amount of health");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Normal");
+        return EnemyDifficulty;
     }
 }
