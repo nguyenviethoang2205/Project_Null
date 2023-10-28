@@ -32,6 +32,11 @@ public class NewData : MonoBehaviour
         return position;
     }
 
+    public void NewMapData(){
+        NewStatus();
+        NewPosition();
+        NewZone();
+    }
     public void NewStatus()
     {
         GetContain();
@@ -47,7 +52,7 @@ public class NewData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Could not save the file!");
+            Debug.LogError("Could not save status!");
         }
     }
 
@@ -65,7 +70,7 @@ public class NewData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Could not save the file!");
+            Debug.LogError("Could not save position!");
         }
     }
 

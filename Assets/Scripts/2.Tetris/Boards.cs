@@ -6,7 +6,9 @@ using Spine;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-public class Boards : MonoBehaviour {
+using UnityEngine.UI;
+public class Boards : MonoBehaviour
+{
 
     #region Data
     public Character character;
@@ -87,6 +89,7 @@ public class Boards : MonoBehaviour {
             this.tetrominoes[i].Initialize();
         }
         character = player.GetComponentInChildren<Character>();
+
     }
 
     private void Start()
@@ -117,6 +120,8 @@ public class Boards : MonoBehaviour {
                 inventoryManager.UseItems(this);
             }
         }
+
+        
     }
 
     // Tạo khối
@@ -157,7 +162,11 @@ public class Boards : MonoBehaviour {
             {
                 StartCoroutine(GameOver());
                 isGameOver = true;
-                character.LostTrophy();
+                if (character.monsterTrophy > 0)
+                {
+                    character.LostTrophy();
+                }
+
                 SaveCharacterData();
             }
         }
@@ -256,7 +265,9 @@ public class Boards : MonoBehaviour {
                     totalDamageWithCombo = 0;
                 }
                 levelAudioPlayer.PlayPieceDownSound();
-            } else {
+            }
+            else
+            {
                 character.CheckBeforeClearLine(totalLinesClear);
                 totalCombo++;
                 levelAudioPlayer.PlayPieceClearSound();
@@ -627,6 +638,7 @@ public class Boards : MonoBehaviour {
     {
         StartCoroutine(DoEnemyAttackAnimation());
     }
+
     public void SaveCharacterData()
     {
         JsonConvert.SerializeObject(character, Formatting.Indented,
