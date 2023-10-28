@@ -15,7 +15,6 @@ public class ZoneSelect : MonoBehaviour
     [SerializeField] private static GameObject player;
     [SerializeField] private GameObject uncompleteOj;
     [SerializeField] public GameObject selectionZone;
-    [SerializeField] private UILevelMapScreen uiLevelMapScreen;
     [JsonProperty] private float[] currentPos;
     [JsonProperty] public bool isCompleted; //false
     public string currentZone;
@@ -36,7 +35,6 @@ public class ZoneSelect : MonoBehaviour
         LoadChar();
         path = GetComponentInParent<Path>();
         playerCollider = player.GetComponent<Collider2D>();
-        uiLevelMapScreen = GetComponent<UILevelMapScreen>();
         LoadPos();
 
     }
@@ -53,7 +51,7 @@ public class ZoneSelect : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (path.isMove == false && path.isPause == false)
+        if (path.isMove == false)
         {
             path.isMove = true;
             Move();
