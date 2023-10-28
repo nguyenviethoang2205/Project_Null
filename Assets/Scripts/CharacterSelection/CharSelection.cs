@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharSelection : MonoBehaviour
 {
-    
+
     [SerializeField] private Button nextButton;
     [SerializeField] private Button backButton;
     [SerializeField] private new Text name;
@@ -20,10 +20,10 @@ public class CharSelection : MonoBehaviour
     private int currentChar;
 
     #region Data
-        private Character character;
-        private IDataService DataService = new JsonDataService();
-        private bool EncryptionEnable;
-        public NewData newData;
+    private Character character = new Character();
+    private IDataService DataService = new JsonDataService();
+    private bool EncryptionEnable;
+    public NewData newData;
     #endregion
 
     private void Awake()
@@ -33,7 +33,7 @@ public class CharSelection : MonoBehaviour
         UpdateChar();
 
     }
-   
+
     public void SelectChar(int _index)
     {
         backButton.interactable = (_index != 0);
@@ -66,15 +66,14 @@ public class CharSelection : MonoBehaviour
 
     }
 
-    public void SelectChar()
+    public void SaveChar()
     {
-    
-        JsonConvert.SerializeObject(character, Formatting.Indented, 
-                new JsonSerializerSettings 
-                { 
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        JsonConvert.SerializeObject(character, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 });
-                
+
         if (DataService.SaveData("/characters.json", character, EncryptionEnable))
         {
 
@@ -82,12 +81,14 @@ public class CharSelection : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Could not save the file!");
+            Debug.LogError("Could not save character!");
         }
+    }
 
-        newData.NewPosition();
-        newData.NewStatus();
-        newData.NewZone();
+    public void SelectChar()
+    {
+        SaveChar();
+        newData.NewMapData();
         SceneManager.LoadScene("Level_Map");
     }
 }
