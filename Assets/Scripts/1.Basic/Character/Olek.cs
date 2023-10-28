@@ -17,7 +17,7 @@ public class Olek : Character{
         SetSkillName("LOVE FOR MUSCLES");
         SetSkillDetail("When activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Requires 20 energy per layer. Can be activated when the energy bar turns green, restore energy by clearing lines).");
         skillEnergy = 0;
-        skillEnergyMax = 60;
+        skillEnergyMax = 45;
         this.readyStack = 1;
         this.activeStack = 0;
     }
@@ -34,7 +34,7 @@ public class Olek : Character{
             Debug.Log(e);
         }
 
-        if (skillEnergy < 20 * (activeStack + 1) ){
+        if (skillEnergy < 15 * (activeStack + 1) ){
             try{
                 boards.levelAnimationUIManager.SkillCannotUse();
                 boards.levelAnimationUIManager.EnergyNotFull();
@@ -43,7 +43,7 @@ public class Olek : Character{
             }
         }
         //--------------------------//
-        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C))){
+        if (activeStack < 3 && skillEnergy >= 15 * (activeStack + 1)  && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C))){
             try{
                 boards.levelAudioPlayer.PlayPlayerAttackSound();
                 boards.animationCharacter.PlayerDoAttackAction();
@@ -95,7 +95,7 @@ public class Olek : Character{
             skillEnergy = skillEnergyMax;
         }
         // Check Skill
-        if (skillEnergy >= (activeStack + 1) * 20){
+        if (skillEnergy >= (activeStack + 1) * 15){
             boards.levelAnimationUIManager.SkillCanUse();
             boards.levelAnimationUIManager.EnergyFull();
         }
