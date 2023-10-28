@@ -23,7 +23,8 @@ public class Character : MonoBehaviour
     public Sprite skillImage;
     public string skillName;
     public string skillDetail;
-
+    public string charDifficulty;
+    public string charStyle;
     public int skillEnergy;
     public int skillEnergyMax;
 
@@ -33,6 +34,9 @@ public class Character : MonoBehaviour
     public virtual string GetSkillDetail() { return skillDetail; }
     public virtual string GetName() { return name; }
     public virtual int GetAtk() { return characterAtk; }
+    public virtual string GetStyle() { return charStyle; }
+    public virtual string GetDifficulty() { return charDifficulty; }
+
     public virtual int GetMonsterTrophy() { return monsterTrophy; }
     public virtual void CheckBeforeClearLine(int totalLineClear) { }
     public virtual void CheckAfterClearLine(int totalLineClear) { }
@@ -56,5 +60,15 @@ public class Character : MonoBehaviour
     public void SetSkillDetail(string skillDetail) 
     {
         this.skillDetail = skillDetail;
+    }
+
+    public void SetCharDifficulty(string charDifficulty) 
+    {
+        this.charDifficulty = charDifficulty;
+    }
+
+    public void SetCharStyle(string charStyle)
+    {
+        this.charStyle = charStyle;
     }
 }

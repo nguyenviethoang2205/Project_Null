@@ -69,7 +69,7 @@ public class Piece : MonoBehaviour{
         }
         // Vô hiêu hóa điều khiển nếu dừng, thua hoặc thắng trò chơi
         
-        if(pauseScreen.isPause == false && overScreen.isOver == false && victoryScreen.isVictory == false && board.isAnimationRun == false){
+        if(pauseScreen.isPause == false && overScreen.isOver == false && victoryScreen.isVictory == false && board.isAnimationRun == false && board.checkEnemyScreen.isPause == false){
             this.board.Clear(this);
 
 
