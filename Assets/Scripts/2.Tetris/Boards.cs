@@ -80,10 +80,9 @@ public class Boards : MonoBehaviour {
         for ( int i = 0; i < this.tetrominoes.Length; i++ ){
             this.tetrominoes[i].Initialize();
         }
-
         character = player.GetComponentInChildren<Character>();
     }
-    
+  
     private void Start(){ 
         // levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
         // levelAnimationUIManager.SetEnergy(character.skillEnergy);
@@ -229,7 +228,7 @@ public class Boards : MonoBehaviour {
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
-            // characterCore.CheckAfterClearLine(totalLinesClear);
+            character.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();

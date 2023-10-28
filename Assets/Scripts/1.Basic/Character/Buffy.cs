@@ -18,7 +18,9 @@ public class Buffy: Character
         SetAtk(4);
         SetSkillName("");
         SetSkillDetail("For 5s, Drop Speed will decrease 5 time. When the skill is active, reactive will change the Currnet Piece into the Next Piece, max 3 time. Energy skill: 20");
+
         this.skillReady = false;
+
         this.skillActive = false;
         this.changePieceUses = 0;
         this.timeFlag = -1;
