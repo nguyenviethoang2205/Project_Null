@@ -5841,7 +5841,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
 --- !u!33 &1232612513
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9365,7 +9365,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 420338192}
-        m_MethodName: Restart
+        m_MethodName: Restart2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
