@@ -26,7 +26,7 @@ public class Treant: EnemyCore
             skillBar.SetSkillValue(skillWait);
             if (skillWait >= maxSkillWait){
                 boards.DoEnemyAttack();
-                maxSkillWait = 50;
+                maxSkillWait = 40;
                 skillWait = maxSkillWait;
                 skillBar.SetMaxSkillValue(maxSkillWait);
                 skillBar.SetSkillValue(skillWait);
@@ -43,14 +43,16 @@ public class Treant: EnemyCore
             if (waitExplosive <= 0){
                 for (int i = 0; i < 5; i++){
                     boards.MakeAGrayLine();
-                    boards.HealInt(25);
                 }
+                boards.HealInt(25);
                 boards.DoEnemyAttack();
                 maxSkillWait = 100;
                 skillWait = 0;
                 skillBar.SetMaxSkillValue(maxSkillWait);
                 skillBar.SetSkillValue(skillWait);
+                boards.CheckHealthStatus();
                 isSkillReady = false;
+                CheckStatus();
             } else {
                 if (skillWait <= 0){
                 boards.ItemsDealDamage(150);
@@ -59,6 +61,7 @@ public class Treant: EnemyCore
                 skillBar.SetMaxSkillValue(maxSkillWait);
                 skillBar.SetSkillValue(skillWait);
                 isSkillReady = false;
+                CheckStatus();
                 }
             }
         }

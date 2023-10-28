@@ -25,15 +25,15 @@ public class Wolf_Gray: EnemyCore
     public void EnemySkill(){
         if (boards.currentHealth <= (EnemyHealth / 3) && Phase3 == true){
             boards.DoEnemyAttack();
-            boards.dropSpeed = boards.dropSpeed / 100 * 85;
+            boards.dropSpeed = boards.dropSpeed / 100 * 80;
             Phase3 = false;
         } else if (boards.currentHealth <= (EnemyHealth / 3 * 2) && Phase2 == true){
             boards.DoEnemyAttack();
-            boards.dropSpeed = boards.dropSpeed / 100 * 90;
+            boards.dropSpeed = boards.dropSpeed / 100 * 85;
             Phase2 = false;
         } else if (boards.currentHealth == EnemyHealth && Phase1 == true){
             boards.DoEnemyAttack();
-            boards.dropSpeed = boards.dropSpeed / 100 * 95;
+            boards.dropSpeed = boards.dropSpeed / 100 * 90;
             Phase1 = false;
         }
     }

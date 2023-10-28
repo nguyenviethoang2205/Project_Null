@@ -313,7 +313,7 @@ public class Boards : MonoBehaviour
         }
     }
 
-    private void CheckHealthStatus()
+    public void CheckHealthStatus()
     {
         if (currentHealth > (maxHealth * 2 / 3))
             healthbar.TurnGreen();
