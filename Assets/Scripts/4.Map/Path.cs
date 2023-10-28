@@ -31,14 +31,14 @@ public class Path : MonoBehaviour
 
         LoadStatus();
 
-        for (int i = 2; i <= 9; i++)
-        {
-            if (!zoneSelect[i].isCompleted)
-            {
-                zone[i].SetActive(false);
-            }
+        // for (int i = 2; i <= 9; i++)
+        // {
+        //     if (!zoneSelect[i].isCompleted)
+        //     {
+        //         zone[i].SetActive(false);
+        //     }
 
-        }
+        // }
         for (int i = 0; i <= 9; i++)
         {
             zoneSelect[i].currentZone = zoneSelect[i].selectionZone.name;

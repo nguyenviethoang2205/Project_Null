@@ -43,7 +43,7 @@ public class Olek : Character{
             }
         }
         //--------------------------//
-        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && Input.GetKeyDown(KeyCode.E)){
+        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C))){
             try{
                 boards.levelAudioPlayer.PlayPlayerAttackSound();
                 boards.animationCharacter.PlayerDoAttackAction();
@@ -74,12 +74,12 @@ public class Olek : Character{
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 3:
-                skillEnergy += 5;
+                skillEnergy += 6;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 4:
-                skillEnergy += 7;
+                skillEnergy += 9;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
@@ -115,7 +115,7 @@ public class Olek : Character{
 
     public override string GetDifficulty()
     {
-        SetCharDifficulty("Easy");
+        SetCharDifficulty("Normal");
         return charDifficulty;
     }
 }

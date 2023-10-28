@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Baba_Bear : EnemyCore{ 
     public int lastTotalLine = 0;
-// public class Baba_Bear : EnemyCore{
-//     private int countLineSkill = 0;
+
     public override void Awake(){
         maxSkillWait = 4;
         skillWait = 2;
@@ -60,7 +59,7 @@ public class Baba_Bear : EnemyCore{
 
     public override int getHealth()
     {
-        SetEnemyHealth(400);
+        SetEnemyHealth(450);
         return EnemyHealth;
     }
 
