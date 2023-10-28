@@ -1,12 +1,14 @@
 using System.Runtime.CompilerServices;
-using UnityEngine; 
+using UnityEngine;
 using UnityEngine.Tilemaps;
 using Spine.Unity;
 using Spine;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-public class Boards : MonoBehaviour {
+using UnityEngine.UI;
+public class Boards : MonoBehaviour
+{
 
     #region Data
     public Character character;
@@ -21,17 +23,17 @@ public class Boards : MonoBehaviour {
     public EnemyAnimation characterAnimation;
     public AnimationCharacter animationCharacter;
     public GameOverScreen overScreen;
-    
+
     public CheckEnemyScreen checkEnemyScreen;
     public VictoryScreen victoryScreen;
     public LevelAudioPlayer levelAudioPlayer;
     public LevelAnimationUIManager levelAnimationUIManager;
-    public Tilemap tilemap {get; private set;}
-    public Piece activePiece {get; private set;}
+    public Tilemap tilemap { get; private set; }
+    public Piece activePiece { get; private set; }
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(9, 18);
- 
+
     public int currentHealth;
     public int maxHealth;
     public int damage;
@@ -59,32 +61,39 @@ public class Boards : MonoBehaviour {
     public bool nearEnd = false;
     public bool nearEndAudioPlayer = false;
     // Lấy vị trí trung tâm của bảng
-    public RectInt Bounds{
-        get{
-            Vector2Int position = new Vector2Int( -this.boardSize.x / 2 , -this.boardSize.y / 2);
+    public RectInt Bounds
+    {
+        get
+        {
+            Vector2Int position = new Vector2Int(-this.boardSize.x / 2, -this.boardSize.y / 2);
             return new RectInt(position, this.boardSize);
         }
     }
 
-    private void Awake(){
+    private void Awake()
+    {
         Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
 
-        if(player == null){
-            player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject)), new Vector3(-6, (float)-3.5f, -5), Quaternion.Euler(0,180f,0)) as GameObject;
+        if (player == null)
+        {
+            player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject)), new Vector3(-6, (float)-3.5f, -5), Quaternion.Euler(0, 180f, 0)) as GameObject;
         }
         animationCharacter = player.GetComponent<AnimationCharacter>();
         Debug.Log(animationCharacter);
 
         levelAudioPlayer.PlayThemeAudio();
         this.tilemap = GetComponentInChildren<Tilemap>();
-        this.activePiece  = GetComponentInChildren<Piece>();
-        for ( int i = 0; i < this.tetrominoes.Length; i++ ){
+        this.activePiece = GetComponentInChildren<Piece>();
+        for (int i = 0; i < this.tetrominoes.Length; i++)
+        {
             this.tetrominoes[i].Initialize();
         }
         character = player.GetComponentInChildren<Character>();
+
     }
-  
-    private void Start(){ 
+
+    private void Start()
+    {
         // levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
         // levelAnimationUIManager.SetEnergy(character.skillEnergy);
         inventoryManager.isGameStart = true;
@@ -92,51 +101,72 @@ public class Boards : MonoBehaviour {
         maxHealth = enemyCore.EnemyHealth;
         currentHealth = enemyCore.EnemyHealth;
         additionDamage = 0;
-        healthbar.SetMaxHealth(maxHealth);;
+        healthbar.SetMaxHealth(maxHealth); ;
         healthbar.SetHealth(maxHealth);
         this.currnetTime = Time.time;
         enemyCore.CheckSkillStart();
-        SpawmPiece();  
+        SpawmPiece();
         checkEnemyScreen.Setup();
     }
 
-    private void Update(){
+    private void Update()
+    {
         levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
         levelAnimationUIManager.SetEnergy(character.skillEnergy);
-        if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true){
-                if (Input.GetKeyDown(KeyCode.Return)){
-                    inventoryManager.UseItems(this);
-                }
+        if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                inventoryManager.UseItems(this);
             }
+        }
+
+        
     }
+
     // Tạo khối
-    public void SpawmPiece(){
-        if (isGameOver == false){
+    public void SpawmPiece()
+    {
+        if (isGameOver == false)
+        {
             TetrominoData data;
-            if (activePieceIndex == -1){
+            if (activePieceIndex == -1)
+            {
                 int random = Random.Range(0, this.tetrominoes.Length);
                 data = this.tetrominoes[random];
                 activePieceIndex = nextBox.nextPieceIndex;
-            }else{
+            }
+            else
+            {
                 data = this.tetrominoes[activePieceIndex];
                 activePieceIndex = nextBox.nextPieceIndex;
             }
             if (Time.time - this.currnetTime >= addSpeedTime)
                 updateSpeed();
             this.activePiece.Initialize(this, this.spawnPosition, data, dropSpeed);
-            
-            if (activePieceColor == -1){
+
+            if (activePieceColor == -1)
+            {
                 this.activePiece.RandomTile();
-            } else {
+            }
+            else
+            {
                 this.activePiece.GetColorTile(activePieceColor);
             }
-            
-            if(IsValidPosition(this.activePiece, this.spawnPosition)){
+
+            if (IsValidPosition(this.activePiece, this.spawnPosition))
+            {
                 Set(this.activePiece);
-            } else {
+            }
+            else
+            {
                 StartCoroutine(GameOver());
                 isGameOver = true;
-                character.LostTrophy();
+                if (character.monsterTrophy > 0)
+                {
+                    character.LostTrophy();
+                }
+
                 SaveCharacterData();
             }
         }
@@ -156,35 +186,43 @@ public class Boards : MonoBehaviour {
     }
 
     // Xóa block cần xóa trong tilemap
-    public void Clear(Piece piece){
-        for ( int i = 0; i < piece.cells.Length; i++ ){
+    public void Clear(Piece piece)
+    {
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
             Vector3Int tilePosition = piece.cells[i] + piece.position;
             this.tilemap.SetTile(tilePosition, null);
         }
     }
 
     // Đặt các ô trông  title map
-    public void Set(Piece piece){
-        for ( int i = 0; i < piece.cells.Length; i++ ){
+    public void Set(Piece piece)
+    {
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
             Vector3Int tilePosition = piece.cells[i] + piece.position;
             this.tilemap.SetTile(tilePosition, piece.selectTile);
         }
     }
 
     // Kiểm tra vị trí block có hợp lệ không
-    public bool IsValidPosition(Piece piece, Vector3Int position){
+    public bool IsValidPosition(Piece piece, Vector3Int position)
+    {
         RectInt bounds = this.Bounds;
-        
-        for (int i = 0; i < piece.cells.Length; i++){
-            Vector3Int tilePosition = piece. cells[i] + position;
+
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
+            Vector3Int tilePosition = piece.cells[i] + position;
 
             // Nằm ngoài biên
-            if (!bounds.Contains((Vector2Int)tilePosition)){
+            if (!bounds.Contains((Vector2Int)tilePosition))
+            {
                 return false;
             }
 
             // Vị trí đã có block
-            if (this.tilemap.HasTile(tilePosition)){
+            if (this.tilemap.HasTile(tilePosition))
+            {
                 return false;
             }
         }
@@ -192,34 +230,44 @@ public class Boards : MonoBehaviour {
     }
 
     // Xóa các hàng đầy 
-    public void ClearLines(){
-        if (isGameOver == false){
+    public void ClearLines()
+    {
+        if (isGameOver == false)
+        {
             RectInt bounds = this.Bounds;
             // Bất đầu từ dòng dưới cùng
             int row = bounds.yMin;
             totalLinesClear = 0;
 
-            while (row < bounds.yMax){
-                if (IsLineFull(row)){
+            while (row < bounds.yMax)
+            {
+                if (IsLineFull(row))
+                {
                     // Xóa dòng; 
                     LineClear(row);
                     totalLinesClear++;
                     totalLines++;
-                } else {
+                }
+                else
+                {
                     // Kiểm tra hàng tiếp theo
                     row++;
                 }
             }
-            if (totalLinesClear == 0){
+            if (totalLinesClear == 0)
+            {
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
-                if (comboLost == 0){
+                if (comboLost == 0)
+                {
                     comboLost = 4;
                     totalCombo = 0;
                     totalDamageWithCombo = 0;
                 }
                 levelAudioPlayer.PlayPieceDownSound();
-            } else {
+            }
+            else
+            {
                 character.CheckBeforeClearLine(totalLinesClear);
                 totalCombo++;
                 levelAudioPlayer.PlayPieceClearSound();
@@ -244,16 +292,20 @@ public class Boards : MonoBehaviour {
         }
     }
 
-    private void CheckNearEnd(){
-        if (nearEnd == true && nearEndAudioPlayer == false){
+    private void CheckNearEnd()
+    {
+        if (nearEnd == true && nearEndAudioPlayer == false)
+        {
             levelAudioPlayer.StopThemeAudio();
             levelAudioPlayer.PlayNearEndTheme();
             nearEndAudioPlayer = true;
         }
     }
 
-    private void CheckVictory(){
-        if (currentHealth <= 0){
+    private void CheckVictory()
+    {
+        if (currentHealth <= 0)
+        {
             StartCoroutine(Victory());
             isGameOver = true;
             character.AddTrophy();
@@ -261,25 +313,30 @@ public class Boards : MonoBehaviour {
         }
     }
 
-    private void CheckHealthStatus(){
+    private void CheckHealthStatus()
+    {
         if (currentHealth > (maxHealth * 2 / 3))
-                healthbar.TurnGreen();
-            else if (currentHealth <= (maxHealth / 3)){
-                healthbar.TurnRed();
-                nearEnd = true;
-            }
-            else
-                healthbar.TurnYellow();
+            healthbar.TurnGreen();
+        else if (currentHealth <= (maxHealth / 3))
+        {
+            healthbar.TurnRed();
+            nearEnd = true;
+        }
+        else
+            healthbar.TurnYellow();
     }
 
     // Kiểm tra dòng có đủ block không
-    private bool IsLineFull(int row){
+    private bool IsLineFull(int row)
+    {
         RectInt bounds = this.Bounds;
 
-        for (int col = bounds.xMin; col < bounds.xMax; col++){
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
             Vector3Int position = new Vector3Int(col, row, 0);
-        
-            if (!this.tilemap.HasTile(position)){
+
+            if (!this.tilemap.HasTile(position))
+            {
                 return false;
             }
         }
@@ -287,30 +344,35 @@ public class Boards : MonoBehaviour {
     }
 
     // Hàm xóa dòng
-    private void LineClear(int row){
-        
+    private void LineClear(int row)
+    {
+
         RectInt bounds = this.Bounds;
 
-        for (int col = bounds.xMin; col < bounds.xMax; col++){
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
             Vector3Int position = new Vector3Int(col, row, 0);
             this.tilemap.SetTile(position, null);
         }
 
-        while(row < bounds.yMax){
-            for (int col = bounds.xMin; col < bounds.xMax; col++){
+        while (row < bounds.yMax)
+        {
+            for (int col = bounds.xMin; col < bounds.xMax; col++)
+            {
                 Vector3Int position = new Vector3Int(col, row + 1, 0);
                 TileBase above = this.tilemap.GetTile(position);
 
                 position = new Vector3Int(col, row, 0);
                 this.tilemap.SetTile(position, above);
-            }  
-            
+            }
+
             row++;
         }
     }
 
     // Hàm tính thiệt hại
-    private void CalculateDamage(int lines) {
+    private void CalculateDamage(int lines)
+    {
         levelAudioPlayer.PlayPlayerAttackSound();
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
@@ -329,44 +391,58 @@ public class Boards : MonoBehaviour {
         damageLastTurn = damage;
     }
     // Hàm tính combo
-    private void checkComboDamage(){
-        if (totalCombo <= 5 ){
+    private void checkComboDamage()
+    {
+        if (totalCombo <= 5)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(4);
             levelAnimationUIManager.ComboTurnWhite();
             comboLost = 4;
-            damage = (int)((damage + totalCombo - 1)* 1.1);
-        } else if (totalCombo <= 10) {
+            damage = (int)((damage + totalCombo - 1) * 1.1);
+        }
+        else if (totalCombo <= 10)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(3);
             levelAnimationUIManager.ComboTurnYellow();
             comboLost = 3;
-            damage = (int)((damage + totalCombo - 1)* 1.3);
-        } else if (totalCombo <= 15) {
+            damage = (int)((damage + totalCombo - 1) * 1.3);
+        }
+        else if (totalCombo <= 15)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(2);
             levelAnimationUIManager.ComboTurnOrange();
             comboLost = 2;
-            damage = (int)((damage + totalCombo - 1)* 1.65);
-        } else {
+            damage = (int)((damage + totalCombo - 1) * 1.65);
+        }
+        else
+        {
             levelAnimationUIManager.UpdateMaxComboWait(1);
             levelAnimationUIManager.ComboTurnRed();
-            comboLost = 1; 
-            damage = (int)((damage + totalCombo - 1 )* 2);
+            comboLost = 1;
+            damage = (int)((damage + totalCombo - 1) * 2);
         }
     }
 
-    public void DestroyPlayer(){
+    public void DestroyPlayer()
+    {
         DestroyImmediate(player);
     }
 
     // ----------------- Hiệu ứng Items ảnh hưởng tới map ------- //
-    public void PlayerUseItemAnimation(){
+    public void PlayerUseItemAnimation()
+    {
         levelAudioPlayer.PlayItemSound();
         animationCharacter.PlayerDoAttackAction();
         characterAnimation.EnemyDoDefenseAction();
     }
-    public void ItemsDealDamage(int itemDamage){
-        if (currentHealth - itemDamage < 1){
+    public void ItemsDealDamage(int itemDamage)
+    {
+        if (currentHealth - itemDamage < 1)
+        {
             currentHealth = 1;
-        }  else {
+        }
+        else
+        {
             currentHealth = currentHealth - itemDamage;
         }
         damage = itemDamage;
@@ -379,53 +455,66 @@ public class Boards : MonoBehaviour {
         CheckNearEnd();
     }
 
-    public void ItemsDestroyLine(){
+    public void ItemsDestroyLine()
+    {
         Clear(this.activePiece);
-        RectInt bounds = this.Bounds;        
+        RectInt bounds = this.Bounds;
         LineClear(bounds.yMin);
         Set(this.activePiece);
     }
 
-    public void ItemsReduceSkill(){
+    public void ItemsReduceSkill()
+    {
         enemyCore.skillWait = 0;
         enemyCore.skillBar.SetSkillValue(enemyCore.skillWait);
     }
 
-    public void ItemsInsertDamage(int buff){
+    public void ItemsInsertDamage(int buff)
+    {
         itemBuffATK = itemBuffATK + buff;
     }
 
-    public void ItemsChangeControlPiece(){
+    public void ItemsChangeControlPiece()
+    {
         Clear(this.activePiece);
         activePieceIndex = -1;
         activePieceColor = -1;
         SpawmPiece();
     }
 
-    public void ItemsChangeNextPiece(){
+    public void ItemsChangeNextPiece()
+    {
         nextBox.ClearPiece();
         nextBox.SpawmPiece();
     }
 
-    public void ItemsInsertCombo(int combo){
+    public void ItemsInsertCombo(int combo)
+    {
         totalCombo = totalCombo + combo;
         levelAnimationUIManager.ShowDamageCombo();
-        if (totalCombo <= 5 ){
+        if (totalCombo <= 5)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(4);
             levelAnimationUIManager.ComboTurnWhite();
             comboLost = 4;
-        } else if (totalCombo <= 10) {
+        }
+        else if (totalCombo <= 10)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(3);
             levelAnimationUIManager.ComboTurnYellow();
             comboLost = 3;
-        } else if (totalCombo <= 15) {
+        }
+        else if (totalCombo <= 15)
+        {
             levelAnimationUIManager.UpdateMaxComboWait(2);
             levelAnimationUIManager.ComboTurnOrange();
             comboLost = 2;
-        } else {
+        }
+        else
+        {
             levelAnimationUIManager.UpdateMaxComboWait(1);
             levelAnimationUIManager.ComboTurnRed();
-            comboLost = 1; 
+            comboLost = 1;
         }
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
@@ -442,18 +531,21 @@ public class Boards : MonoBehaviour {
     }
     // Gây tăng một hàng
 
-    public void ItemsRestartGame(){
+    public void ItemsRestartGame()
+    {
         currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
         RectInt bounds = this.Bounds;
-        for (int row = bounds.yMin; row < bounds.yMax; row++){
+        for (int row = bounds.yMin; row < bounds.yMax; row++)
+        {
             LineClear(bounds.yMin);
         }
         ItemsChangeControlPiece();
         ItemsChangeNextPiece();
     }
 
-    public void ItemDestroyColumn(){
+    public void ItemDestroyColumn()
+    {
         RectInt bounds = this.Bounds;
         int deleteCol = Random.Range(Bounds.xMin, Bounds.xMax - 2);
         deleteCollum(deleteCol);
@@ -462,56 +554,65 @@ public class Boards : MonoBehaviour {
     }
     // ----------------- Hiệu ứng Skill ảnh hưởng tới map ------- //
     // Gây tăng một hàng
-    public void EnemyDestroyLine(){
-        RectInt bounds = this.Bounds;        
+    public void EnemyDestroyLine()
+    {
+        RectInt bounds = this.Bounds;
         LineClear(bounds.yMin);
     }
-    public void Heal(int percent){
-        currentHealth = currentHealth + (maxHealth / 100)*percent;
+    public void Heal(int percent)
+    {
+        currentHealth = currentHealth + (maxHealth / 100) * percent;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
 
-    public void HealInt(int HP){
+    public void HealInt(int HP)
+    {
         currentHealth = currentHealth + HP;
         if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
     }
 
-    public void MakeAGrayLine(){
+    public void MakeAGrayLine()
+    {
         RectInt bounds = this.Bounds;
         int NullTile = Random.Range(bounds.xMin, Bounds.xMax);
         int row = bounds.yMax;
-        while(row > bounds.yMin - 1){
-            for (int col = bounds.xMin; col < bounds.xMax; col++){
+        while (row > bounds.yMin - 1)
+        {
+            for (int col = bounds.xMin; col < bounds.xMax; col++)
+            {
                 Vector3Int position = new Vector3Int(col, row, 0);
                 TileBase above = this.tilemap.GetTile(position);
 
                 position = new Vector3Int(col, row + 1, 0);
                 this.tilemap.SetTile(position, above);
-            }  
+            }
             row--;
         }
-        for (int col = bounds.xMin; col < bounds.xMax; col++){
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
             Vector3Int position = new Vector3Int(col, bounds.yMin, 0);
             this.tilemap.SetTile(position, null);
         }
 
 
         this.activePiece.GetBlackTile();
-        for (int col = bounds.xMin; col < bounds.xMax; col++){
-            if (col != NullTile){
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
+            if (col != NullTile)
+            {
                 Vector3Int position = new Vector3Int(col, bounds.yMin, 0);
                 this.tilemap.SetTile(position, activePiece.blackTile);
-            }    
+            }
         }
 
     }
     // xóa cột
 
-    public void deleteCollum(int col) 
+    public void deleteCollum(int col)
     {
         RectInt bounds = this.Bounds;
         for (int row = bounds.yMin; row < bounds.yMax; row++)
@@ -527,20 +628,23 @@ public class Boards : MonoBehaviour {
         this.currnetTime = Time.time;
     }
 
-    public void MoveSound(){
+    public void MoveSound()
+    {
         levelAudioPlayer.PlayPieceMoveSound();
     }
 
     // thực hiện hành động khi thất bại
-    public void DoEnemyAttack(){
+    public void DoEnemyAttack()
+    {
         StartCoroutine(DoEnemyAttackAnimation());
     }
+
     public void SaveCharacterData()
     {
-        JsonConvert.SerializeObject(character, Formatting.Indented, 
-                new JsonSerializerSettings 
-                { 
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        JsonConvert.SerializeObject(character, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 });
         if (DataService.SaveData("/characters.json", character, EncryptionEnable))
         {
@@ -552,12 +656,16 @@ public class Boards : MonoBehaviour {
         }
     }
 
-    IEnumerator GameOver(){
+    IEnumerator GameOver()
+    {
         inventoryManager.isGameStart = false;
         isAnimationRun = true;
-        if (nearEnd == true){
+        if (nearEnd == true)
+        {
             levelAudioPlayer.StopNearEndTheme();
-        } else {
+        }
+        else
+        {
             levelAudioPlayer.StopThemeAudio();
         }
         animationCharacter.PlayerDoLoseAction();
@@ -571,7 +679,8 @@ public class Boards : MonoBehaviour {
     }
 
     // thực hiện hành động khi chiến thắng
-    IEnumerator Victory(){
+    IEnumerator Victory()
+    {
         inventoryManager.isGameStart = false;
         isAnimationRun = true;
         levelAudioPlayer.StopNearEndTheme();
@@ -587,8 +696,9 @@ public class Boards : MonoBehaviour {
         isAnimationRun = false;
     }
 
-    IEnumerator DoEnemyAttackAnimation(){   
-        levelAudioPlayer.PlayDefenseAttackSound(); 
+    IEnumerator DoEnemyAttackAnimation()
+    {
+        levelAudioPlayer.PlayDefenseAttackSound();
         characterAnimation.EnemyDoAttackAction();
         yield return new WaitForSecondsRealtime(0.2f);
         animationCharacter.PlayerDoDefenseAction();

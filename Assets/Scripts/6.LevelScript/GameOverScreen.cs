@@ -13,6 +13,18 @@ public class GameOverScreen : MonoBehaviour
     public Text gameOverText;
     public Image gameOverPanel;
     public Boards boards;
+    public Button button;
+    public GameObject restartButton;
+    public Character character;
+
+    private void Awake() {
+        
+        restartButton = GameObject.Find("RestartButton");
+        button = restartButton.GetComponentInChildren<Button>();
+        GameObject player = GameObject.FindWithTag("Player");
+        Debug.Log("Nhan "+player);
+        character = player.GetComponentInChildren<Character>();
+    }
 
     public void Setup()
     {
@@ -20,7 +32,9 @@ public class GameOverScreen : MonoBehaviour
         gameObject.SetActive(true);
         StartCoroutine(GameOverAnimation());
         isOver = true;
-
+        if(character.monsterTrophy < 1){
+            button.interactable = false;
+        }
     }
 
     public void Restart()
