@@ -12,8 +12,11 @@ public class Baba_Bear : EnemyCore{
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Baba_Bear");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
     public void EnemySkill()
@@ -59,6 +62,18 @@ public class Baba_Bear : EnemyCore{
     {
         SetEnemyHealth(400);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("Baba Bear is not lenient with those who provoke him. Whenever you clear 4 Lines, Baba Bear will attack and push up one line.");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Hard");
+        return EnemyDifficulty;
     }
 }    
 

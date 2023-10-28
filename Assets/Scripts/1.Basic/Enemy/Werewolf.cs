@@ -11,8 +11,12 @@ public class Werewolf : EnemyCore
         skillWait = 2;
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
+        CheckStatus();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Mecha");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
 
@@ -103,7 +107,19 @@ public class Werewolf : EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(500);
+        SetEnemyHealth(600);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("Being an invulnerable creature. No one knows how to withstand his attacks. However, we only know not to mess with him.");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("NIGHTMARE");
+        return EnemyDifficulty;
     }
 }
