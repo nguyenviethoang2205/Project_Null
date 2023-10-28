@@ -5,6 +5,7 @@ using Spine.Unity;
 using Spine;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 public class Boards : MonoBehaviour {
 
     #region Data
@@ -135,6 +136,8 @@ public class Boards : MonoBehaviour {
             } else {
                 StartCoroutine(GameOver());
                 isGameOver = true;
+                character.LostTrophy();
+                SaveCharacterData();
             }
         }
     }
@@ -253,6 +256,8 @@ public class Boards : MonoBehaviour {
         if (currentHealth <= 0){
             StartCoroutine(Victory());
             isGameOver = true;
+            character.AddTrophy();
+            SaveCharacterData();
         }
     }
 
@@ -529,6 +534,22 @@ public class Boards : MonoBehaviour {
     // thực hiện hành động khi thất bại
     public void DoEnemyAttack(){
         StartCoroutine(DoEnemyAttackAnimation());
+    }
+    public void SaveCharacterData()
+    {
+        JsonConvert.SerializeObject(character, Formatting.Indented, 
+                new JsonSerializerSettings 
+                { 
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+        if (DataService.SaveData("/characters.json", character, EncryptionEnable))
+        {
+            Debug.Log(character);
+        }
+        else
+        {
+            Debug.LogError("Could not save the file!");
+        }
     }
 
     IEnumerator GameOver(){

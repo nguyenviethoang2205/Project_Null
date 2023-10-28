@@ -45,9 +45,13 @@ public class Character : MonoBehaviour
     {
         this.characterAtk = atk;
     }
-    public void SetMonsterTrophy(int trophy)
+    public void AddTrophy()
     {
-        this.monsterTrophy = trophy;
+        this.monsterTrophy++;
+    }
+    public void LostTrophy()
+    {
+        this.monsterTrophy--;
     }
     public void SetSkillName(string skillName)
     {
