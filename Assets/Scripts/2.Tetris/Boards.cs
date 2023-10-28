@@ -89,7 +89,7 @@ public class Boards : MonoBehaviour
             this.tetrominoes[i].Initialize();
         }
         character = player.GetComponentInChildren<Character>();
-
+        character.GetData();
     }
 
     private void Start()
