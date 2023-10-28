@@ -180,10 +180,8 @@ MonoBehaviour:
   collider: {fileID: -103051910028648104}
   board: {fileID: 0}
   name: 
-  characterLevel: 0
-  characterExp: 0
-  characterMaxExp: 0
   characterAtk: 0
+  monsterTrophy: 0
   boards: {fileID: 0}
   image: {fileID: 0}
   skillName: 
