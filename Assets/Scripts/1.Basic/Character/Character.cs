@@ -20,9 +20,12 @@ public class Character : MonoBehaviour
     public int monsterTrophy = 0;
 
     public Boards boards;
-    public Sprite image;
+    public Sprite skillImage;
     public string skillName;
     public string skillDetail;
+
+    public int skillEnergy;
+    public int skillEnergyMax;
 
 
     public virtual void Awake() { }
@@ -42,9 +45,13 @@ public class Character : MonoBehaviour
     {
         this.characterAtk = atk;
     }
-    public void SetMonsterTrophy(int trophy)
+    public void AddTrophy()
     {
-        this.monsterTrophy = trophy;
+        this.monsterTrophy++;
+    }
+    public void LostTrophy()
+    {
+        this.monsterTrophy--;
     }
     public void SetSkillName(string skillName)
     {

@@ -5,8 +5,8 @@ using Spine.Unity;
 using Spine;
 using System.Collections;
 using System.Collections.Generic;
-public class Boards : MonoBehaviour
-{
+using Newtonsoft.Json;
+public class Boards : MonoBehaviour {
 
     #region Data
     public Character character;
@@ -21,6 +21,8 @@ public class Boards : MonoBehaviour
     public EnemyAnimation characterAnimation;
     public AnimationCharacter animationCharacter;
     public GameOverScreen overScreen;
+
+    public CheckEnemyScreen checkEnemyScreen;
     public VictoryScreen victoryScreen;
     public LevelAudioPlayer levelAudioPlayer;
     public LevelAnimationUIManager levelAnimationUIManager;
@@ -84,11 +86,13 @@ public class Boards : MonoBehaviour
         {
             this.tetrominoes[i].Initialize();
         }
-        character = player.GetComponent<Character>();
+        character = player.GetComponentInChildren<Character>();
     }
 
     private void Start()
     {
+        // levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
+        // levelAnimationUIManager.SetEnergy(character.skillEnergy);
         inventoryManager.isGameStart = true;
         isGameOver = false;
         maxHealth = enemyCore.EnemyHealth;
@@ -99,10 +103,13 @@ public class Boards : MonoBehaviour
         this.currnetTime = Time.time;
         enemyCore.CheckSkillStart();
         SpawmPiece();
+        checkEnemyScreen.Setup();
     }
 
     private void Update()
     {
+        levelAnimationUIManager.SetMaxEnergy(character.skillEnergyMax);
+        levelAnimationUIManager.SetEnergy(character.skillEnergy);
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
@@ -111,6 +118,7 @@ public class Boards : MonoBehaviour
             }
         }
     }
+
     // Tạo khối
     public void SpawmPiece()
     {
@@ -149,6 +157,8 @@ public class Boards : MonoBehaviour
             {
                 StartCoroutine(GameOver());
                 isGameOver = true;
+                character.LostTrophy();
+                SaveCharacterData();
             }
         }
     }
@@ -235,8 +245,8 @@ public class Boards : MonoBehaviour
                     row++;
                 }
             }
-            character.CheckBeforeClearLine(totalLinesClear);
-            if (totalLinesClear == 0){
+            if (totalLinesClear == 0)
+            {
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
                 if (comboLost == 0)
@@ -246,9 +256,8 @@ public class Boards : MonoBehaviour
                     totalDamageWithCombo = 0;
                 }
                 levelAudioPlayer.PlayPieceDownSound();
-            }
-            else
-            {
+            } else {
+                character.CheckBeforeClearLine(totalLinesClear);
                 totalCombo++;
                 levelAudioPlayer.PlayPieceClearSound();
                 // Kiểm tra thiệt hại và ghi nó vào thanh máu
@@ -288,6 +297,8 @@ public class Boards : MonoBehaviour
         {
             StartCoroutine(Victory());
             isGameOver = true;
+            character.AddTrophy();
+            SaveCharacterData();
         }
     }
 
@@ -615,6 +626,22 @@ public class Boards : MonoBehaviour
     public void DoEnemyAttack()
     {
         StartCoroutine(DoEnemyAttackAnimation());
+    }
+    public void SaveCharacterData()
+    {
+        JsonConvert.SerializeObject(character, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+        if (DataService.SaveData("/characters.json", character, EncryptionEnable))
+        {
+            Debug.Log(character);
+        }
+        else
+        {
+            Debug.LogError("Could not save the file!");
+        }
     }
 
     IEnumerator GameOver()

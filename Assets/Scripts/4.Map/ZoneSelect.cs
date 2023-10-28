@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using Cinemachine;
 using DG.Tweening;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using Spine.Unity;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
@@ -38,6 +40,8 @@ public class ZoneSelect : MonoBehaviour
     }
     private void Start()
     {
+        SkeletonAnimation skeletonAnimation = player.GetComponentInChildren<SkeletonAnimation>();
+        skeletonAnimation.gameObject.GetComponent<MeshRenderer>().sortingOrder = -1;
         StartCoroutine(ZoneSelected());
     }
     private void Update()
@@ -187,13 +191,11 @@ public class ZoneSelect : MonoBehaviour
 
             case "Zone_4":
                 path.zone[7].SetActive(true);
-                SceneManager.LoadScene("Tetris_2", LoadSceneMode.Additive);
                 break;
 
             case "Zone_5":
                 path.zone[7].SetActive(true);
                 path.zone[6].SetActive(false);
-                SceneManager.LoadScene("Tetris_3", LoadSceneMode.Additive);
                 break;
 
             case "Zone_6":
@@ -236,22 +238,22 @@ public class ZoneSelect : MonoBehaviour
 
             if (currentZone == "Zone_3")
             {
-                SceneManager.LoadScene("Tetris");
+                SceneManager.LoadScene("Tetris_4");
             }
 
             if (currentZone == "Zone_4")
             {
-                SceneManager.LoadScene("Tetris");
+                SceneManager.LoadScene("Tetris_3");
             }
 
             if (currentZone == "Zone_5")
             {
-                SceneManager.LoadScene("Tetris");
+                SceneManager.LoadScene("Tetris_2");
             }
 
             if (currentZone == "Zone_6")
             {
-                SceneManager.LoadScene("Tetris_Elite");
+                SceneManager.LoadScene("Tetris_Elite_2");
             }
 
             if (currentZone == "Zone_7")
@@ -264,7 +266,7 @@ public class ZoneSelect : MonoBehaviour
                 SceneManager.LoadScene("GetItems");
             }
 
-            if (currentZone == "Boss_Zone")
+            if (currentZone == "BossZone")
             {
                 SceneManager.LoadScene("Tetris_Boss");
             }
