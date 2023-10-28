@@ -11,9 +11,11 @@ public class Olek : Character{
     {
         skillImage = Resources.Load<Sprite>("PlayerSkill/Olek_Skill");
         GetName();
+        GetStyle();
+        GetDifficulty();
         SetAtk(6);
         SetSkillName("");
-        SetSkillDetail("When active put a stack of \"Loving Punch\", max 3. The next time you deal damage, for each stack, damage will increase by 100%. Energy skill: 20, stack up to 3.");
+        SetSkillDetail("LOVE FOR MUSCLES\nWhen activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Activation requirement: 20 Energy per stack).");
         skillEnergy = 0;
         skillEnergyMax = 60;
         this.readyStack = 1;
@@ -62,22 +64,22 @@ public class Olek : Character{
     public override void CheckBeforeClearLine(int totalLineClear){
         switch (totalLineClear){
             case 1:
-                skillEnergy += 20;
+                skillEnergy += 1;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 2:
-                skillEnergy += 20;
+                skillEnergy += 3;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 3:
-                skillEnergy += 40;
+                skillEnergy += 5;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 4:
-                skillEnergy += 60;
+                skillEnergy += 7;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
@@ -102,5 +104,18 @@ public class Olek : Character{
     {
         SetName("Olek");
         return name;
+    }
+
+    public override string GetStyle()
+    {
+        SetCharStyle("Attack");
+        return charStyle;
+
+    }
+
+    public override string GetDifficulty()
+    {
+        SetCharDifficulty("Easy");
+        return charDifficulty;
     }
 }

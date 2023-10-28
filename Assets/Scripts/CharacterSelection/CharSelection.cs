@@ -12,6 +12,11 @@ public class CharSelection : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button backButton;
     [SerializeField] private new Text name;
+    [SerializeField] private new Text difficulty;
+    [SerializeField] private new Text style;
+    [SerializeField] private new Text detail;
+    [SerializeField] private new Text atk;
+    [SerializeField] private new SpriteRenderer image;
     private int currentChar;
 
     #region Data
@@ -53,6 +58,12 @@ public class CharSelection : MonoBehaviour
     {
         character = GetComponentInChildren<Character>();
         name.text = character.name;
+        difficulty.text ="Difficulty: " + character.charDifficulty;
+        style.text = "Style: " + character.charStyle;
+        detail.text = character.skillDetail;
+        atk.text = "ATK: " + character.characterAtk.ToString(); 
+        image.sprite = character.skillImage;
+
     }
 
     public void SelectChar()

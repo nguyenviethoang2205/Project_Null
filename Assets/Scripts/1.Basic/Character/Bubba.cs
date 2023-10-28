@@ -10,10 +10,12 @@ public class Bubba : Character
         skillEnergyMax = 2351;
         skillEnergy = 0;
         skillImage = Resources.Load<Sprite>("PlayerSkill/Bubba_Skill");
+        GetStyle();
+        GetDifficulty();
         GetName();
         SetAtk(5);
         SetSkillName("");
-        SetSkillDetail("Your next Piece will be I Block. Cooldown 15s.");
+        SetSkillDetail("I-BLOCK INCOMING \n When activated, your next block is an I-Block (Countdown: 15s).");
         this.skillReady = true;
         this.skillTiming = Time.time;
     }
@@ -61,7 +63,7 @@ public class Bubba : Character
         } else {
             skillEnergy++;
         }
-        if (this.skillReady == true && Input.GetKeyDown(KeyCode.E) && skillEnergy == skillEnergyMax){
+        if (this.skillReady == true && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C)) && skillEnergy == skillEnergyMax){
             CharacterSkill();
             skillReady = false;
             skillTiming = Time.time;
@@ -81,5 +83,18 @@ public class Bubba : Character
     {
         SetName("Bubba");
         return name;
+    }
+
+    public override string GetStyle()
+    {
+        SetCharStyle("Control");
+        return charStyle;
+
+    }
+
+    public override string GetDifficulty()
+    {
+        SetCharDifficulty("Easy");
+        return charDifficulty;
     }
 }

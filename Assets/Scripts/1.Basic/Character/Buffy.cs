@@ -14,10 +14,12 @@ public class Buffy: Character
         skillEnergy = 15;
         skillEnergyMax = 20;
         skillImage = Resources.Load<Sprite>("PlayerSkill/Buffy_Skill");
+        GetStyle();
+        GetDifficulty();
         GetName();
         SetAtk(4);
         SetSkillName("");
-        SetSkillDetail("For 5s, Drop Speed will decrease 5 time. When the skill is active, reactive will change the Currnet Piece into the Next Piece, max 3 time. Energy skill: 20");
+        SetSkillDetail("FREEZE TIME\n When activated, the block falling speed will significantly decrease for a short time. During that time, you can change the current block into the next block a maximum of 3 times. (Countdown: 20 Energy).");
 
         this.skillReady = false;
 
@@ -54,7 +56,7 @@ public class Buffy: Character
             }
         } 
 
-        if (skillReady == true && Input.GetKeyDown(KeyCode.E))
+        if (skillReady == true && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C)))
         {
             try{
                 boards.levelAudioPlayer.PlayPlayerAttackSound();
@@ -178,6 +180,18 @@ public class Buffy: Character
     {
         SetName("Buffy");
         return name;
+    }
 
+    public override string GetStyle()
+    {
+        SetCharStyle("Control");
+        return charStyle;
+
+    }
+
+    public override string GetDifficulty()
+    {
+        SetCharDifficulty("Normal");
+        return charDifficulty;
     }
 }
