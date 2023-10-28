@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
-    public void ContinuGame(){
+    public void ContinueGame(){
         StartCoroutine(LoadGame());
     }
 
