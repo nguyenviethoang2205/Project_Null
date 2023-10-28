@@ -22,6 +22,7 @@ public class ZoneSelect : MonoBehaviour
     public new Collider collider;
     public Collider playerCollider;
     public Path path;
+    public Character character;
 
     #region Data
     private IDataService DataService = new JsonDataService();
@@ -32,11 +33,14 @@ public class ZoneSelect : MonoBehaviour
     private void Awake()
     {
         this.selectionZone = this.gameObject;
+        
         LoadChar();
+        character = player.GetComponent<Character>();
         path = GetComponentInParent<Path>();
         playerCollider = player.GetComponent<Collider>();
         LoadPos();
-
+        LoadTrophy();
+        
     }
     private void Start()
     {
@@ -71,7 +75,6 @@ public class ZoneSelect : MonoBehaviour
                 uncompleteOj.SetActive(false);
                 collider.enabled = false;
                 break;
-
         }
 
     }
@@ -137,6 +140,14 @@ public class ZoneSelect : MonoBehaviour
         {
             player = Instantiate(Resources.Load("Prefabs/Player/" + charData.name, typeof(GameObject))) as GameObject;
         }
+        
+        
+    }
+
+    public void LoadTrophy(){
+        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
+        character.monsterTrophy = charData.monsterTrophy;
+        Debug.Log(character.monsterTrophy);
     }
 
     public void LoadPos()
