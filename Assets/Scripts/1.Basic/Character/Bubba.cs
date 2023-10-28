@@ -7,7 +7,7 @@ public class Bubba : Character
 {
     public override void Awake()
     {
-        skillEnergyMax = 2351;
+        skillEnergyMax = 3000;
         skillEnergy = 0;
         skillImage = Resources.Load<Sprite>("PlayerSkill/Bubba_Skill");
         GetStyle();
@@ -50,19 +50,21 @@ public class Bubba : Character
                 boards.levelAnimationUIManager.EnergyNotFull();
                 boards.levelAnimationUIManager.SkillCannotUse();
             }
-        }
-        catch (Exception e){
+
+            if (skillEnergy == skillEnergyMax)
+            {
+                this.skillReady = true;
+                skillEnergy = 3000;
+            } else {
+                
+                if (boards.activePiece.pauseScreen.isPause == false && boards.activePiece.overScreen.isOver == false && boards.activePiece.victoryScreen.isVictory == false && boards.isAnimationRun == false && boards.checkEnemyScreen.isPause == false)
+                    skillEnergy++;
+            }
+        }  catch (Exception e){
             Debug.Log(e);
         }
         //--------------------------//
 
-        if (this.skillTiming + this.coolDown <= Time.time)
-        {
-            this.skillReady = true;
-            skillEnergy = 2351;
-        } else {
-            skillEnergy++;
-        }
         if (this.skillReady == true && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C)) && skillEnergy == skillEnergyMax){
             CharacterSkill();
             skillReady = false;
@@ -87,7 +89,7 @@ public class Bubba : Character
 
     public override string GetStyle()
     {
-        SetCharStyle("Control");
+        SetCharStyle("Balance");
         return charStyle;
 
     }

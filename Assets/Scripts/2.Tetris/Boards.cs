@@ -89,7 +89,7 @@ public class Boards : MonoBehaviour
             this.tetrominoes[i].Initialize();
         }
         character = player.GetComponentInChildren<Character>();
-
+        character.GetData();
     }
 
     private void Start()
@@ -162,12 +162,6 @@ public class Boards : MonoBehaviour
             {
                 StartCoroutine(GameOver());
                 isGameOver = true;
-                if (character.monsterTrophy > 0)
-                {
-                    character.LostTrophy();
-                }
-
-                SaveCharacterData();
             }
         }
     }
@@ -674,6 +668,11 @@ public class Boards : MonoBehaviour
         levelAudioPlayer.PlayDefenseVictorySound();
         yield return new WaitForSeconds(3);
         overScreen.Setup();
+        if (character.monsterTrophy > 0)
+        {
+            character.LostTrophy();
+        }
+        SaveCharacterData();
         levelAudioPlayer.PlayGameOverAudio();
         isAnimationRun = false;
     }
