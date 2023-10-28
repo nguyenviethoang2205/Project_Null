@@ -16,6 +16,7 @@ public class CharSelection : MonoBehaviour
     [SerializeField] private new Text style;
     [SerializeField] private new Text detail;
     [SerializeField] private new Text atk;
+    [SerializeField] private new Text skill;
     [SerializeField] private new SpriteRenderer image;
     private int currentChar;
 
@@ -58,12 +59,26 @@ public class CharSelection : MonoBehaviour
     {
         character = GetComponentInChildren<Character>();
         name.text = character.name;
-        difficulty.text ="Difficulty: " + character.charDifficulty;
-        style.text = "Style: " + character.charStyle;
+        difficulty.text = character.charDifficulty;
+        style.text = character.charStyle;
         detail.text = character.skillDetail;
-        atk.text = "ATK: " + character.characterAtk.ToString(); 
+        atk.text = character.characterAtk.ToString(); 
         image.sprite = character.skillImage;
+        skill.text = character.skillName;
 
+        if (character.charDifficulty == "Easy"){
+            TurnGreen(difficulty);
+        } else if (character.charDifficulty == "Normal"){
+            TurnYellow(difficulty);
+        } else {
+            TurnRed(difficulty);
+        }
+
+        if (character.charStyle == "Attack"){
+            TurnRed(style);
+        } else {
+            TurnBlue(style);
+        }
     }
 
     public void SaveChar()
@@ -90,5 +105,25 @@ public class CharSelection : MonoBehaviour
         SaveChar();
         newData.NewMapData();
         SceneManager.LoadScene("Level_Map");
+    }
+
+    private void TurnGreen(Text text){
+        Color color = new Color(0f, 0.8f, 0.2196f);
+        text.color = color;
+    }
+
+    private void TurnYellow(Text text){
+        Color color = new Color(0.8f, 0.7529f, 0.1647f, 1f);
+        text.color = color;
+    }
+
+    private void TurnRed(Text text){
+        Color color = new Color(0.8f, 0.1137f, 0.1098f, 1f);
+        text.color = color;
+    }
+    
+    public void TurnBlue(Text text){
+        Color color = new Color(0.15f, 0.76f, 0.8f);
+        text.color = color;
     }
 }
