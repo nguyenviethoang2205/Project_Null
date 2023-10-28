@@ -154,7 +154,7 @@ public class Piece : MonoBehaviour{
                 if (control == true)
                 {
                     board.MoveSound();
-                    Move(Vector2Int.down);
+                    MoveDown(Vector2Int.down);
                     Thread.Sleep(this.delayControl);
                     control = false;
                 }
