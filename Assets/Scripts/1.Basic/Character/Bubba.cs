@@ -7,7 +7,7 @@ public class Bubba : Character
 {
     public override void Awake()
     {
-        skillEnergyMax = 3000;
+        skillEnergyMax = 2315;
         skillEnergy = 0;
         skillImage = Resources.Load<Sprite>("PlayerSkill/Bubba_Skill");
         GetStyle();
@@ -54,7 +54,7 @@ public class Bubba : Character
             if (skillEnergy == skillEnergyMax)
             {
                 this.skillReady = true;
-                skillEnergy = 3000;
+                skillEnergy = 2315;
             } else {
                 
                 if (boards.activePiece.pauseScreen.isPause == false && boards.activePiece.overScreen.isOver == false && boards.activePiece.victoryScreen.isVictory == false && boards.isAnimationRun == false && boards.checkEnemyScreen.isPause == false)
