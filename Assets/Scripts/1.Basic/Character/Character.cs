@@ -8,6 +8,11 @@ using UnityEngine.UIElements;
 [JsonObject(MemberSerialization.OptIn)]
 public class Character : MonoBehaviour
 {
+    #region Data
+    [SerializeField] private Character character;
+    private IDataService DataService = new JsonDataService();
+    private bool EncryptionEnable;
+    #endregion
     public new Collider collider;
     public GameObject board;
     [JsonProperty]
@@ -41,6 +46,12 @@ public class Character : MonoBehaviour
     public virtual void CheckBeforeClearLine(int totalLineClear) { }
     public virtual void CheckAfterClearLine(int totalLineClear) { }
 
+    public void GetData() 
+    {
+        Character charData = DataService.LoadData<Character>("/characters.json", EncryptionEnable);
+        SetTrophy(charData.monsterTrophy);
+    }
+
     public void SetName(string name)
     {
         this.name = name;
@@ -56,6 +67,10 @@ public class Character : MonoBehaviour
     public void LostTrophy()
     {
         this.monsterTrophy--;
+    }
+    private void SetTrophy(int monsterTrophy)
+    {
+        this.monsterTrophy = monsterTrophy;
     }
     public void SetSkillName(string skillName)
     {

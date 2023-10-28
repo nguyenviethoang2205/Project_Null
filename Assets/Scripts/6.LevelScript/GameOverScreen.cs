@@ -22,7 +22,6 @@ public class GameOverScreen : MonoBehaviour
         restartButton = GameObject.Find("RestartButton");
         button = restartButton.GetComponentInChildren<Button>();
         GameObject player = GameObject.FindWithTag("Player");
-        Debug.Log("Nhan "+player);
         character = player.GetComponentInChildren<Character>();
     }
 
