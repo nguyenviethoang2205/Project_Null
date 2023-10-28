@@ -2866,7 +2866,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3bbcfc20ca8e23345bf2c5d16552e3cf, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3377,8 +3377,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1188041903}
-        m_MethodName: Setup
+      - m_Target: {fileID: 1540098406}
+        m_MethodName: PlayButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3388,8 +3388,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1540098406}
-        m_MethodName: PlayButtonSound
+      - m_Target: {fileID: 1188041903}
+        m_MethodName: Setup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4350,21 +4350,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f6a384213d4f749bd3e8fd224ff731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTheme: {fileID: 0}
-  nearEndTheme: {fileID: 0}
-  gameOverTheme: {fileID: 0}
-  victoryTheme: {fileID: 0}
-  pieceDownSound: {fileID: 0}
-  pieceClearSound: {fileID: 0}
-  pieceMoveSound: {fileID: 0}
-  playerAttackSound: {fileID: 0}
-  playerVictorySound: {fileID: 0}
-  playerLoseSound: {fileID: 0}
-  defenseAttackSound: {fileID: 0}
-  defenseVictorySound: {fileID: 0}
-  defenseLoseSound: {fileID: 0}
+  mainTheme: {fileID: 390893210}
+  nearEndTheme: {fileID: 390893210}
+  gameOverTheme: {fileID: 390893210}
+  victoryTheme: {fileID: 390893210}
+  pieceDownSound: {fileID: 390893210}
+  pieceClearSound: {fileID: 390893210}
+  pieceMoveSound: {fileID: 390893210}
+  playerAttackSound: {fileID: 390893210}
+  playerVictorySound: {fileID: 390893210}
+  playerLoseSound: {fileID: 390893210}
+  defenseAttackSound: {fileID: 390893210}
+  defenseVictorySound: {fileID: 390893210}
+  defenseLoseSound: {fileID: 390893210}
   buttonSound: {fileID: 390893210}
-  itemSound: {fileID: 0}
+  itemSound: {fileID: 390893210}
 --- !u!1 &1550435614
 GameObject:
   m_ObjectHideFlags: 0
@@ -4608,8 +4608,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295939421}
-        m_MethodName: Setup
+      - m_Target: {fileID: 1540098406}
+        m_MethodName: PlayButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4619,8 +4619,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1540098406}
-        m_MethodName: PlayButtonSound
+      - m_Target: {fileID: 295939421}
+        m_MethodName: Setup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
