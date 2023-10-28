@@ -18,8 +18,8 @@ public class Buffy: Character
         GetDifficulty();
         GetName();
         SetAtk(4);
-        SetSkillName("");
-        SetSkillDetail("FREEZE TIME\n When activated, the block falling speed will significantly decrease for a short time. During that time, you can change the current block into the next block a maximum of 3 times. (Countdown: 20 Energy).");
+        SetSkillName("FREEZE TIME");
+        SetSkillDetail("When activated, the block falling speed will significantly decrease for a short time. During that time, you can change the current block into the next block a maximum of 3 times. (Countdown: 20 Energy).");
 
         this.skillReady = false;
 
