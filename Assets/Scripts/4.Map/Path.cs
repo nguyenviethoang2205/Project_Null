@@ -20,7 +20,7 @@ public class Path : MonoBehaviour
     public ZoneSelect[] zoneSelect;
     private bool[] contain;
     public bool isMove { get; set; }
-
+    public bool isPause = false;
 
     private void Start()
     {

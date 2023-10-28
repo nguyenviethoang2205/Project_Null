@@ -36,7 +36,7 @@ public class ZoneSelect : MonoBehaviour
         LoadChar();
         path = GetComponentInParent<Path>();
         playerCollider = player.GetComponent<Collider2D>();
-        // uiLevelMapScreen = GetComponentInChildren<UILevelMapScreen>(true);
+        uiLevelMapScreen = GetComponent<UILevelMapScreen>();
         LoadPos();
 
     }
@@ -53,7 +53,7 @@ public class ZoneSelect : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (path.isMove == false && uiLevelMapScreen.isPause == false)
+        if (path.isMove == false && path.isPause == false)
         {
             path.isMove = true;
             Move();
