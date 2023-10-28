@@ -43,7 +43,7 @@ public class Olek : Character{
             }
         }
         //--------------------------//
-        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && Input.GetKeyDown(KeyCode.E)){
+        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.C))){
             try{
                 boards.levelAudioPlayer.PlayPlayerAttackSound();
                 boards.animationCharacter.PlayerDoAttackAction();
