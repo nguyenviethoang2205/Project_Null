@@ -14,8 +14,8 @@ public class Bubba : Character
         GetDifficulty();
         GetName();
         SetAtk(5);
-        SetSkillName("");
-        SetSkillDetail("I-BLOCK INCOMING \n When activated, your next block is an I-Block (Countdown: 15s).");
+        SetSkillName("I-BLOCK INCOMING");
+        SetSkillDetail("When activated, your next block is an I-Block (Countdown: 15s).");
         this.skillReady = true;
         this.skillTiming = Time.time;
     }
