@@ -128,6 +128,7 @@ public class Boards : MonoBehaviour {
             } else {
                 StartCoroutine(GameOver());
                 isGameOver = true;
+                character.LostTrophy();
             }
         }
     }
@@ -246,6 +247,7 @@ public class Boards : MonoBehaviour {
         if (currentHealth <= 0){
             StartCoroutine(Victory());
             isGameOver = true;
+            character.AddTrophy();
         }
     }
 
