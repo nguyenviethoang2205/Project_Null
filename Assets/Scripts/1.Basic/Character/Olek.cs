@@ -15,7 +15,7 @@ public class Olek : Character{
         GetDifficulty();
         SetAtk(6);
         SetSkillName("LOVE FOR MUSCLES");
-        SetSkillDetail("When activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Activation requirement: 20 Energy per stack).");
+        SetSkillDetail("When activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Requires 20 energy per layer. Can be activated when the energy bar turns green, restore energy by clearing lines).");
         skillEnergy = 0;
         skillEnergyMax = 60;
         this.readyStack = 1;
