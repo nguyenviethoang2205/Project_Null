@@ -19,8 +19,8 @@ public class ZoneSelect : MonoBehaviour
     [JsonProperty] public bool isCompleted; //false
     public string currentZone;
 
-    public new Collider2D collider;
-    public Collider2D playerCollider;
+    public new Collider collider;
+    public Collider playerCollider;
     public Path path;
 
     #region Data
@@ -34,7 +34,7 @@ public class ZoneSelect : MonoBehaviour
         this.selectionZone = this.gameObject;
         LoadChar();
         path = GetComponentInParent<Path>();
-        playerCollider = player.GetComponent<Collider2D>();
+        playerCollider = player.GetComponent<Collider>();
         LoadPos();
 
     }
@@ -219,7 +219,7 @@ public class ZoneSelect : MonoBehaviour
     }
 
 
-    private IEnumerator OnTriggerEnter2D(Collider2D other)
+    private IEnumerator OnTriggerEnter(Collider other)
     {
         yield return new WaitForSeconds(1);
 

@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 [JsonObject(MemberSerialization.OptIn)]
 public class Character : MonoBehaviour
 {
-    public new Collider2D collider;
+    public new Collider collider;
     public GameObject board;
     [JsonProperty]
     public new string name;

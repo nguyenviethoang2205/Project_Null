@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14787104019193474}
   - component: {fileID: 14787104019193475}
-  - component: {fileID: 3060447152386537865}
+  - component: {fileID: -8292698139797999690}
   m_Layer: 0
   m_Name: ItemZone
   m_TagString: ItemZone
@@ -212,22 +212,19 @@ MonoBehaviour:
   selectionZone: {fileID: 0}
   isCompleted: 0
   currentZone: 
-  collider: {fileID: 3060447152386537865}
+  collider: {fileID: 0}
   playerCollider: {fileID: 0}
   path: {fileID: 0}
---- !u!58 &3060447152386537865
-CircleCollider2D:
+--- !u!135 &-8292698139797999690
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14787104019193473}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
