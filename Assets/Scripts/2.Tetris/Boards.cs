@@ -84,6 +84,7 @@ public class Boards : MonoBehaviour
         {
             this.tetrominoes[i].Initialize();
         }
+        character = player.GetComponent<Character>();
     }
 
     private void Start()
@@ -235,8 +236,7 @@ public class Boards : MonoBehaviour
                 }
             }
             character.CheckBeforeClearLine(totalLinesClear);
-            if (totalLinesClear == 0)
-            {
+            if (totalLinesClear == 0){
                 comboLost = comboLost - 1;
                 levelAnimationUIManager.UpdateComboWait(comboLost);
                 if (comboLost == 0)
@@ -259,7 +259,7 @@ public class Boards : MonoBehaviour
                 CheckHealthStatus();
                 healthbar.SetHealth(currentHealth);
             }
-            // characterCore.CheckAfterClearLine(totalLinesClear);
+            character.CheckAfterClearLine(totalLinesClear);
             levelAnimationUIManager.ShowDamageCombo();
             activePieceColor = nextBox.nextPieceColor;
             nextBox.ClearPiece();

@@ -20,7 +20,7 @@ public class Buffy: Character
         //characterSkillBar.setMaxSkillValue(skillEnergyMax);
         //characterSkillBar.setSkillValue(skillEnergy);
         this.skillEnergy = 15;
-        this.skillReady = false;
+        this.skillReady = true;
         this.skillActive = false;
         this.changePieceUses = 0;
         this.timeFlag = -1;
