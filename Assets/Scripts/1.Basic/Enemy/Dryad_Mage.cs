@@ -79,7 +79,7 @@ public class Dryad_Mage : EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(350);
+        SetEnemyHealth(375);
         return EnemyHealth;
     }
 

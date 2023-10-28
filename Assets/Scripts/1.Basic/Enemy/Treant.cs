@@ -52,6 +52,7 @@ public class Treant: EnemyCore
                 skillBar.SetSkillValue(skillWait);
                 boards.CheckHealthStatus();
                 isSkillReady = false;
+                CheckStatus();
             } else {
                 if (skillWait <= 0){
                 boards.ItemsDealDamage(150);
@@ -60,6 +61,7 @@ public class Treant: EnemyCore
                 skillBar.SetMaxSkillValue(maxSkillWait);
                 skillBar.SetSkillValue(skillWait);
                 isSkillReady = false;
+                CheckStatus();
                 }
             }
         }

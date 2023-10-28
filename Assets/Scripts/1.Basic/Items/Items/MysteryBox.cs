@@ -6,7 +6,7 @@ public class MysteryBox : ItemBase
     public override void Initialize()
     {
         itemName = "Mystery Box";
-        itemInfo = "Perform one of the following actions:\n1.Deal 1~500 damage.\n2.Destroy 1~10 Lines.\n3.Increase the player's attack points by 1~5.\n4.Create and push 1~10 Lines.";
+        itemInfo = "Test you luck: \n1.Deal 1~500 damage.\n2.Destroy 1~10 Lines.\n3.Increase the player's attack points by 1~5.\n4.Create and push 1~10 Lines.";
         itemImage = Resources.Load<Sprite>("Items/Item7");;
     }
 
