@@ -119,7 +119,7 @@ public class Werewolf : EnemyCore
 
     public override string getDifficulty()
     {
-        SetEnemyDifficulty("NIGHTMARE");
+        SetEnemyDifficulty("Unknown");
         return EnemyDifficulty;
     }
 }

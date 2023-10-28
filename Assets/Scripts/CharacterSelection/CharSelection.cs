@@ -76,8 +76,10 @@ public class CharSelection : MonoBehaviour
 
         if (character.charStyle == "Attack"){
             TurnRed(style);
-        } else {
+        } else if (character.charStyle == "Control"){
             TurnBlue(style);
+        } else {
+            TurnGray(style);
         }
     }
 
@@ -124,6 +126,11 @@ public class CharSelection : MonoBehaviour
     
     public void TurnBlue(Text text){
         Color color = new Color(0.15f, 0.76f, 0.8f);
+        text.color = color;
+    }
+    
+    public void TurnGray(Text text){
+        Color color = new Color(0.4f, 0.4f, 0.4f);
         text.color = color;
     }
 }

@@ -191,7 +191,7 @@ public class Buffy: Character
 
     public override string GetDifficulty()
     {
-        SetCharDifficulty("Normal");
+        SetCharDifficulty("Hard");
         return charDifficulty;
     }
 }

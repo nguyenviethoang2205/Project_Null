@@ -164,7 +164,7 @@ MonoBehaviour:
   style: {fileID: 873010445}
   detail: {fileID: 1928077918}
   atk: {fileID: 1762475456}
-  skillName: {fileID: 0}
+  skill: {fileID: 258700450}
   image: {fileID: 1127807208}
   newData: {fileID: 0}
 --- !u!4 &45523211
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 258700451}
   - component: {fileID: 258700450}
   m_Layer: 5
-  m_Name: Atk
+  m_Name: SkillName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
