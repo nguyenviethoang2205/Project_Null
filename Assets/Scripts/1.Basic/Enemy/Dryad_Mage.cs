@@ -14,8 +14,11 @@ public class Dryad_Mage : EnemyCore
         this.skillTiming = Time.time;
         this.skillHealingTime = -1;
         CheckStatus();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Dryad_Mage");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
     private bool skillActive;
@@ -23,8 +26,10 @@ public class Dryad_Mage : EnemyCore
     private float skillHealingTime;
     public void EnemySkill()
     {
-        if(this.skillActive == true)
+        if(this.skillActive == true){
+            boards.DoEnemyAttack();
             this.boards.activePiece.getStatus("dizzy");
+            }
         else
             this.boards.activePiece.getStatus("normal");
     }
@@ -74,7 +79,19 @@ public class Dryad_Mage : EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(300);
+        SetEnemyHealth(350);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("A versatile wizard, he will make your battle much more challenging. Every 5 seconds without clearing a line, you will enter the 'dizzy' state. While you are in the 'dizzy' state, he will continuously regenerate health. You can exit the 'dizzy' state by clearing a Line.");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Hard");
+        return EnemyDifficulty;
     }
 }

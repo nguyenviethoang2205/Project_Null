@@ -12,7 +12,10 @@ public class Treant: EnemyCore
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
         getName();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Treant");
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
     private bool isSkillReady = false;
@@ -79,5 +82,17 @@ public class Treant: EnemyCore
     {
         SetEnemyHealth(300);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("He is a very friendly person. However, he will show you where the real opponent is. When he receives a certain amount of damage (not caused by items), he becomes immune to the damage and creates a shield. If you destroy that shield before 10 block drops, he will take an extremely large amount of damage. If not, he will punish you.");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Easy");
+        return EnemyDifficulty;
     }
 }

@@ -1,23 +1,21 @@
-﻿using System;
+﻿// using System.Diagnostics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Olek : Character
-{
-    private int skillEnergy;
-    private int skillEnergyMax = 20;
+public class Olek : Character{
     private int readyStack;//số skill tích trữ
     private int activeStack;// số stack tăng damage
     public override void Awake()
     {
+        skillImage = Resources.Load<Sprite>("PlayerSkill/Olek_Skill");
         GetName();
-        SetAtk(5);
+        SetAtk(6);
         SetSkillName("");
         SetSkillDetail("When active put a stack of \"Loving Punch\", max 3. The next time you deal damage, for each stack, damage will increase by 100%. Energy skill: 20, stack up to 3.");
-        //characterSkillBar.setMaxSkillValue(skillEnergyMax);
-        //characterSkillBar.setSkillValue(skillEnergy);
-        this.skillEnergy = 0;
+        skillEnergy = 0;
+        skillEnergyMax = 60;
         this.readyStack = 1;
         this.activeStack = 0;
     }
@@ -27,44 +25,61 @@ public class Olek : Character
         try{
             board = GameObject.FindGameObjectWithTag("Board");
             boards = board.GetComponent<Boards>();
+            boards.levelAnimationUIManager.SetMaxEnergy(skillEnergyMax);
+            boards.levelAnimationUIManager.SetEnergy(skillEnergy);
         }
         catch (Exception e){
             Debug.Log(e);
         }
+
+        if (skillEnergy < 20 * (activeStack + 1) ){
+            try{
+                boards.levelAnimationUIManager.SkillCannotUse();
+                boards.levelAnimationUIManager.EnergyNotFull();
+            } catch (Exception e){
+                Debug.Log(e);
+            }
+        }
         //--------------------------//
-        if (activeStack < 3 && readyStack > 0 && Input.GetKeyDown(KeyCode.E))
-        {
+        if (activeStack < 3 && skillEnergy >= 20 * (activeStack + 1)  && Input.GetKeyDown(KeyCode.E)){
+            try{
+                boards.levelAudioPlayer.PlayPlayerAttackSound();
+                boards.animationCharacter.PlayerDoAttackAction();
+                boards.characterAnimation.EnemyDoDefenseAction();
+            }
+            catch (Exception e){
+                Debug.Log(e);
+            }
             CharacterSkill();
             activeStack++;
-            readyStack--;
         }
+
     }
     private void CharacterSkill()
     {
         this.boards.additionDamage += 100;
     }
-    public override void CheckBeforeClearLine(int totalLineClear)
-    {
-        switch (totalLineClear)
-        {
+    public override void CheckBeforeClearLine(int totalLineClear){
+        switch (totalLineClear){
             case 1:
-                skillEnergy += 1;
-                checkEnegry();
+                skillEnergy += 20;
+                checkEnergy();
+                boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 2:
-                skillEnergy += 3;
-                checkEnegry();
+                skillEnergy += 20;
+                checkEnergy();
+                boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 3:
-                skillEnergy += 5;
-                checkEnegry();
+                skillEnergy += 40;
+                checkEnergy();
+                boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 4:
-                skillEnergy += 7;
-                checkEnegry();
-                break;
-            default:
-                Debug.LogWarning("some thing wrong");
+                skillEnergy += 60;
+                checkEnergy();
+                boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
         }
     }
@@ -73,20 +88,15 @@ public class Olek : Character
         boards.additionDamage = boards.additionDamage - 100 * activeStack;
         activeStack = 0;
     }
-    private void checkEnegry()
-    {
-        if (skillEnergy >= skillEnergyMax && readyStack < 2)
-        {
-            readyStack++;
-            skillEnergy -= skillEnergyMax;
+    private void checkEnergy(){
+        if (skillEnergy >= skillEnergyMax){
+            skillEnergy = skillEnergyMax;
         }
-        else if (skillEnergy >= skillEnergyMax && readyStack == 2)
-        {
-            readyStack++;
-            skillEnergy = 0;
+        // Check Skill
+        if (skillEnergy >= (activeStack + 1) * 20){
+            boards.levelAnimationUIManager.SkillCanUse();
+            boards.levelAnimationUIManager.EnergyFull();
         }
-        else
-            skillEnergy = 0;
     }
     public override string GetName()
     {

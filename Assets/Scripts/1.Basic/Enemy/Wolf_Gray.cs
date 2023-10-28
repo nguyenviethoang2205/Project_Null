@@ -11,8 +11,11 @@ public class Wolf_Gray: EnemyCore
         skillBar.SetMaxSkillValue(maxSkillWait);
         skillBar.SetSkillValue(skillWait);
         CheckStatus();
+        EnemyImage = Resources.Load<Sprite>("Enemy/Mad_Dog");
         getName();
         getHealth();
+        getDetail();
+        getDifficulty();
     }
 
     private bool Phase1 = true;
@@ -79,5 +82,17 @@ public class Wolf_Gray: EnemyCore
     {
         SetEnemyHealth(200);
         return EnemyHealth;
+    }
+
+    public override string getDetail()
+    {
+        SetEnemyDetail("Just like his name suggests, Mad Dog will continuously attack you. At the beginning of the battle and each time he loses a certain amount of health, he will make your blocks fall faster than usual. Next, every 2 times the blocks fall to the ground, he will attack and increase the falling speed of the blocks.");
+        return EnemyDetail;
+    }
+
+    public override string getDifficulty()
+    {
+        SetEnemyDifficulty("Normal");
+        return EnemyDifficulty;
     }
 }
