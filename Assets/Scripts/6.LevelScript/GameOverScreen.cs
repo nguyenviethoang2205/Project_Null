@@ -31,9 +31,12 @@ public class GameOverScreen : MonoBehaviour
         gameObject.SetActive(true);
         StartCoroutine(GameOverAnimation());
         isOver = true;
-        if(character.monsterTrophy < 1){
+        if (character.monsterTrophy < 1)
+        {
             button.interactable = false;
         }
+        else
+            button.interactable = true;
     }
 
     public void Restart()
