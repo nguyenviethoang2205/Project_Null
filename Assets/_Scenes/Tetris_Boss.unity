@@ -4732,7 +4732,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1219911599}
-        m_MethodName: ReturnMenu
+        m_MethodName: ReturnMenuBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5841,7 +5841,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
 --- !u!33 &1232612513
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9366,7 +9366,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 420338192}
-        m_MethodName: Restart
+        m_MethodName: RestartBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
