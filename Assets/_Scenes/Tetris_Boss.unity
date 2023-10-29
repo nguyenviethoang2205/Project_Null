@@ -3864,7 +3864,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to MAp
+  m_Text: End
 --- !u!222 &792530779
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7823,7 +7823,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6076a86dcc9df05468d1cbbd0238d492, type: 3}
-    m_FontSize: 200
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7834,7 +7834,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Victory!!!!!
+  m_Text: Don't worry. Your journey just started!
 --- !u!222 &1657277403
 CanvasRenderer:
   m_ObjectHideFlags: 0
