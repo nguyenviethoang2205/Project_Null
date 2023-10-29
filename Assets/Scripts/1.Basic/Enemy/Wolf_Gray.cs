@@ -80,7 +80,7 @@ public class Wolf_Gray: EnemyCore
 
     public override int getHealth()
     {
-        SetEnemyHealth(200);
+        SetEnemyHealth(250);
         return EnemyHealth;
     }
 
