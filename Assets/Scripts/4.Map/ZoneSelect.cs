@@ -40,6 +40,7 @@ public class ZoneSelect : MonoBehaviour
         playerCollider = player.GetComponent<Collider>();
         LoadPos();
         LoadTrophy();
+        path.Coin = character.monsterTrophy;
         
     }
     private void Start()

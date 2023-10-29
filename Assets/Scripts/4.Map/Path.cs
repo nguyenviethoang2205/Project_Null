@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;
 
@@ -15,12 +16,13 @@ public class Path : MonoBehaviour
     private bool EncryptionEnable;
     #endregion
 
-
     public GameObject[] zone;
     public ZoneSelect[] zoneSelect;
     private bool[] contain;
     public bool isMove { get; set; }
     public bool isPause = false;
+    public int Coin = 0;
+    public Text trophyText;
 
     private void Start()
     {
@@ -43,8 +45,14 @@ public class Path : MonoBehaviour
         {
             zoneSelect[i].currentZone = zoneSelect[i].selectionZone.name;
         }
-
+        GetCoinValue(Coin);
     }
+
+    private void GetCoinValue(int Trophy){
+        trophyText.text = "x " + Trophy.ToString();
+    }
+
+
 
     public bool[] GetContain()
     {
@@ -86,8 +94,4 @@ public class Path : MonoBehaviour
         }
 
     }
-
-
-    
-
 }

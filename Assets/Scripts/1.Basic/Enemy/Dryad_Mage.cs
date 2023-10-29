@@ -24,14 +24,20 @@ public class Dryad_Mage : EnemyCore
     private bool skillActive;
     private float skillTiming;
     private float skillHealingTime;
+    private bool animation;
     public void EnemySkill()
     {
         if(this.skillActive == true){
-            boards.DoEnemyAttack();
+            if (animation == false){
+                boards.DoEnemyAttack();
+                animation = true;
+            }
             this.boards.activePiece.getStatus("dizzy");
             }
-        else
+        else{
             this.boards.activePiece.getStatus("normal");
+            animation = false;
+            }
     }
 
     private void Update()

@@ -24,8 +24,8 @@ public class Slime_Fusion: EnemyCore
             skillBar.SetMaxSkillValue(maxSkillWait);
             skillWait = 1;
             skillBar.SetSkillValue(skillWait);
-            if (boards.totalLinesClear == 1){
-                boards.HealInt(25);
+            if (boards.totalLinesClear > 0){
+                boards.HealInt(40);
             }
             skillWait--;
             if (skillWait <= 0){

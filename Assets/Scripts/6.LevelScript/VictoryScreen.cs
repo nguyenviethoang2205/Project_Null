@@ -25,6 +25,11 @@ public class VictoryScreen : MonoBehaviour
         SceneManager.LoadScene("Level_Map");
     }
 
+    public void ExitGame(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
     IEnumerator VictoryAnimation()
     {
         Color panelColor = victoryPanel.color;
