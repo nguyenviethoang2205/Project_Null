@@ -15,7 +15,7 @@ public class Olek : Character{
         GetDifficulty();
         SetAtk(6);
         SetSkillName("LOVE FOR MUSCLES");
-        SetSkillDetail("When activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Activation requirement: 20 Energy per stack).");
+        SetSkillDetail("When activated, gain one \"Love Punch\" stack, up to a maximum of 3 stack. With each stack, character damage increases by 100%. (Requires 15 energy per layer. Can be activated when the energy bar turns green, restore energy by clearing lines).");
         skillEnergy = 0;
         skillEnergyMax = 45;
         this.readyStack = 1;
@@ -69,17 +69,17 @@ public class Olek : Character{
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 2:
-                skillEnergy += 3;
+                skillEnergy += 2;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 3:
-                skillEnergy += 6;
+                skillEnergy += 4;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;
             case 4:
-                skillEnergy += 9;
+                skillEnergy += 77;
                 checkEnergy();
                 boards.levelAnimationUIManager.SetEnergy(skillEnergy);
                 break;

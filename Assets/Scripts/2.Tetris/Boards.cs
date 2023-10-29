@@ -115,7 +115,7 @@ public class Boards : MonoBehaviour
         levelAnimationUIManager.SetEnergy(character.skillEnergy);
         if (inventoryManager.isGameStart == true && inventoryManager.playerInventory.isGetItem == true)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z))
             {
                 inventoryManager.UseItems(this);
             }
