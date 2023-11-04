@@ -119,4 +119,3 @@ public class Olek : Character{
         return charDifficulty;
     }
 }
-//jolo something
